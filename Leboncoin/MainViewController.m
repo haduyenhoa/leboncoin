@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "LeboncoinAgent.h"
 
 @interface MainViewController ()
 
@@ -24,6 +25,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [[LeboncoinAgent shareAgent] scheduleSearch];
 }
 
 #pragma mark - Flipside View Controller

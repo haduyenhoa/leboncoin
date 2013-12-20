@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 
 #import "MainViewController.h"
+#import "LeboncoinAgent.h"
+
 
 @implementation AppDelegate
 
@@ -23,7 +25,19 @@
     controller.managedObjectContext = self.managedObjectContext;
     return YES;
 }
-							
+
+-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    return YES;
+}
+
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [[LeboncoinAgent shareAgent] scheduleSearch];
+    
+    completionHandler(UIBackgroundFetchResultNewData);
+    NSLog(@"fetch in background complete");
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -34,6 +48,54 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    /*
+     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+     */
+    
+    NSLog(@"to background");
+    
+//    app.isInBackground = TRUE;
+    
+    UIApplication *app = [UIApplication sharedApplication];
+
+    __block UIBackgroundTaskIdentifier bgTask = 0;
+    
+    
+    // Request permission to run in the background. Provide an
+    // expiration handler in case the task runs long.
+    
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        // Synchronize the cleanup call on the main thread in case
+        // the task actually finishes at around the same time.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                [app endBackgroundTask:bgTask];
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    }];
+    
+    // Start the long-running task and return immediately.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        // Do the work associated with the task.
+        NSLog(@"App staus: applicationDidEnterBackground");
+        // Synchronize the cleanup call on the main thread in case
+        // the expiration handler is fired at the same time.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                [app endBackgroundTask:bgTask];
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    });
+    
+    NSLog(@"backgroundTimeRemaining: %.0f", [[UIApplication sharedApplication] backgroundTimeRemaining]);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
