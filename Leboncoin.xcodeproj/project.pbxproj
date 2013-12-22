@@ -45,6 +45,8 @@
 		ED85E3A31863C5F40073FC3C /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E3A01863C5F40073FC3C /* HTMLParser.m */; };
 		ED85E3A41863C5F40073FC3C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED85E3A11863C5F40073FC3C /* README.md */; };
 		ED85E3A71863DB300073FC3C /* Annonce.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E3A61863DB300073FC3C /* Annonce.m */; };
+		EDFB0242186651360027AAC8 /* SearchCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFB0241186651360027AAC8 /* SearchCondition.m */; };
+		EDFB0245186651EE0027AAC8 /* SearchLinkGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFB0244186651EE0027AAC8 /* SearchLinkGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,10 @@
 		ED85E3A11863C5F40073FC3C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		ED85E3A51863DB300073FC3C /* Annonce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annonce.h; sourceTree = "<group>"; };
 		ED85E3A61863DB300073FC3C /* Annonce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annonce.m; sourceTree = "<group>"; };
+		EDFB0240186651360027AAC8 /* SearchCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCondition.h; sourceTree = "<group>"; };
+		EDFB0241186651360027AAC8 /* SearchCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCondition.m; sourceTree = "<group>"; };
+		EDFB0243186651EE0027AAC8 /* SearchLinkGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLinkGenerator.h; sourceTree = "<group>"; };
+		EDFB0244186651EE0027AAC8 /* SearchLinkGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLinkGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +301,10 @@
 				ED85E39A1863BA4B0073FC3C /* LeboncoinAgent.m */,
 				ED85E3A51863DB300073FC3C /* Annonce.h */,
 				ED85E3A61863DB300073FC3C /* Annonce.m */,
+				EDFB0240186651360027AAC8 /* SearchCondition.h */,
+				EDFB0241186651360027AAC8 /* SearchCondition.m */,
+				EDFB0243186651EE0027AAC8 /* SearchLinkGenerator.h */,
+				EDFB0244186651EE0027AAC8 /* SearchLinkGenerator.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -431,10 +441,12 @@
 				ED85E38F1863B8EF0073FC3C /* CXMLElement_CreationExtensions.m in Sources */,
 				ED85E3941863B8EF0073FC3C /* CXMLNode_XPathExtensions.m in Sources */,
 				ED85E39B1863BA4B0073FC3C /* LeboncoinAgent.m in Sources */,
+				EDFB0242186651360027AAC8 /* SearchCondition.m in Sources */,
 				ED15161A1863B694008F04BD /* Leboncoin.xcdatamodeld in Sources */,
 				ED15160D1863B694008F04BD /* main.m in Sources */,
 				ED85E3931863B8EF0073FC3C /* CXMLNode_PrivateExtensions.m in Sources */,
 				ED85E3921863B8EF0073FC3C /* CXMLNode.m in Sources */,
+				EDFB0245186651EE0027AAC8 /* SearchLinkGenerator.m in Sources */,
 				ED1516201863B694008F04BD /* FlipsideViewController.m in Sources */,
 				ED15161D1863B694008F04BD /* MainViewController.m in Sources */,
 				ED85E3A31863C5F40073FC3C /* HTMLParser.m in Sources */,

@@ -7,6 +7,9 @@
 //
 
 #import "LeboncoinAgent.h"
+#import "Annonce.h"
+#import "SearchCondition.h"
+#import "SearchLinkGenerator.h"
 
 static LeboncoinAgent *_shareAgent;
 
@@ -27,11 +30,116 @@ static LeboncoinAgent *_shareAgent;
 
 -(void)scheduleSearch {
     NSLog(@"%s",__FUNCTION__);
-    [self searchAndPostNotification];
+    
+    SearchCondition *newSearchCondition = [[SearchCondition alloc] init];
+    newSearchCondition.page = 1;
+    newSearchCondition.searchCategory = SC_IMAGE_SON;
+    newSearchCondition.searchRegion = SL_ILE_DE_FRANCE;
+    newSearchCondition.searchKey = @"cabasse";
+    
+    [self searchAndPostNotification:newSearchCondition];
 }
 
--(void)searchAndPostNotification {
-    NSString *requestLink = @"http://www.leboncoin.fr/image_son/offres/ile_de_france/occasions/?f=a&th=1&q=cabasse&it=1";
+-(NSArray*)search:(SearchCondition*)aCondition {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    NSString *requestLink = [[SearchLinkGenerator shareSLG] getLinkForCondition:aCondition];
+    
+    NSLog(@"request link: %@",requestLink);
+    
+    NSError *errorGetData;
+    NSString *content = [NSString stringWithContentsOfURL:[NSURL URLWithString:requestLink] encoding:NSASCIIStringEncoding error:&errorGetData];
+    //    content = [self xmlSimpleEscape:content];
+    
+    HTMLParser *parser = [[HTMLParser alloc] initWithString:content error:&errorGetData];
+    
+    if (errorGetData) {
+        NSLog(@"Error: %@", errorGetData.localizedDescription);
+        return nil;
+    }
+    
+    HTMLNode *bodyNode = [parser body];
+    NSArray *temp = [bodyNode findChildrenWithAttribute:@"class" matchingName:@"list-lbc" allowPartial:NO];
+    
+    HTMLNode *foundNode;
+    if (temp && temp.count > 0) {
+        foundNode = [temp objectAtIndex:0];
+    }
+    
+    if (foundNode) {
+//        int i=0;
+        
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        df.dateFormat = @"HH:mm";
+        
+        for (HTMLNode *aNode in [foundNode findChildTags:@"a"]) {
+            //annonce title
+            NSString *title = [aNode getAttributeNamed:@"title"];
+            
+            //annonce url
+            NSString *link = [aNode getAttributeNamed:@"href"];
+            
+            //image url
+            NSString *imageLink;
+            
+            NSArray *imageNodes = [aNode findChildrenWithAttribute:@"class" matchingName:@"image-and-nb" allowPartial:NO];
+            if (imageNodes.count == 1) {
+                HTMLNode *imageAndNB = [imageNodes objectAtIndex:0];
+                
+                NSArray *annonceImageNodes = [imageAndNB findChildTags:@"img"];
+                
+                if (annonceImageNodes.count == 1) {
+                    HTMLNode *annonceImageNode = [annonceImageNodes objectAtIndex:0];
+                    if (annonceImageNode) {
+                        imageLink = [annonceImageNode getAttributeNamed:@"src"];
+                    }
+                }
+            }
+
+            //create ANnonce object
+            Annonce *foundAnnonce = [[Annonce alloc] init];
+            foundAnnonce.title = title;
+            foundAnnonce.linkAnnonce = link;
+            foundAnnonce.linkImage = imageLink;
+            
+            //post date
+            NSArray *dateNodes = [aNode findChildrenWithAttribute:@"class" matchingName:@"date" allowPartial:NO];
+            if (dateNodes && dateNodes.count == 1) {
+                HTMLNode *temp = [dateNodes objectAtIndex:0];
+                NSArray *detailDateNodes = [temp findChildTags:@"div"];
+                
+                NSString *dateAnnonceStr = @"";
+                NSDate *dateAnnonce = nil ;
+                if (detailDateNodes.count == 1) {
+                    //today
+                    dateAnnonceStr = ((HTMLNode*)[detailDateNodes objectAtIndex:0]).contents;
+                } else if (detailDateNodes.count == 2) {
+                    //yesterday
+                    NSString *dateStr =((HTMLNode*)[detailDateNodes objectAtIndex:1]).contents;
+                    if (dateStr) {
+                        dateAnnonce = [df dateFromString:dateStr];
+                    }
+                    dateAnnonceStr = [NSString stringWithFormat:@"(%@) %@",((HTMLNode*)[detailDateNodes objectAtIndex:0]).contents,((HTMLNode*)[detailDateNodes objectAtIndex:1]).contents];
+                }
+                
+                foundAnnonce.dateStr = dateAnnonceStr;
+                NSLog(@"%@: %@",dateAnnonce, title);
+            }
+            
+            
+            [result addObject:foundAnnonce];
+        }
+        
+        NSLog(@"----------------");
+    }
+    
+    return result;
+}
+
+-(void)searchAndPostNotification:(SearchCondition*)aCondition {
+    
+    
+    NSString *requestLink = [[SearchLinkGenerator shareSLG] getLinkForCondition:aCondition];
 
     NSError *errorGetData;
     NSString *content = [NSString stringWithContentsOfURL:[NSURL URLWithString:requestLink] encoding:NSASCIIStringEncoding error:&errorGetData];
@@ -100,6 +208,10 @@ static LeboncoinAgent *_shareAgent;
         
         NSLog(@"----------------");
     }
+}
+
+-(void)searchForCondition:(SearchCondition*)aCondition {
+    
 }
 
 - (NSString *)xmlSimpleEscape:(NSString*)inputStr

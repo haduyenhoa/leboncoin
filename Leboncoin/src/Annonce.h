@@ -12,6 +12,8 @@
 
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSDate *date;
-@property (nonatomic) NSString *link;
+@property (nonatomic) NSString *dateStr;
+@property (nonatomic) NSString *linkAnnonce;
+@property (nonatomic) NSString *linkImage;
 
 @end
