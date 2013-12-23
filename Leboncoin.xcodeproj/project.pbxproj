@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED07211718679E6500C8E89A /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07211218679E6500C8E89A /* FPPopoverController.m */; };
+		ED07211818679E6500C8E89A /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07211418679E6500C8E89A /* FPPopoverView.m */; };
+		ED07211918679E6500C8E89A /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07211618679E6500C8E89A /* FPTouchView.m */; };
+		ED07211B18679F2500C8E89A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED07211A18679F2500C8E89A /* QuartzCore.framework */; };
+		ED07211E18679F6400C8E89A /* FPPopoverKeyboardResponsiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07211D18679F6400C8E89A /* FPPopoverKeyboardResponsiveController.m */; };
+		ED0721211867A03800C8E89A /* AnnonceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0721201867A03800C8E89A /* AnnonceDetailViewController.m */; };
+		ED0721241867A26900C8E89A /* AnnonceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0721231867A26900C8E89A /* AnnonceDetail.m */; };
 		ED1515FF1863B694008F04BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1515FE1863B694008F04BD /* Foundation.framework */; };
 		ED1516011863B694008F04BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1516001863B694008F04BD /* CoreGraphics.framework */; };
 		ED1516031863B694008F04BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1516021863B694008F04BD /* UIKit.framework */; };
@@ -60,6 +67,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED07211018679E6500C8E89A /* ARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCMacros.h; sourceTree = "<group>"; };
+		ED07211118679E6500C8E89A /* FPPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverController.h; sourceTree = "<group>"; };
+		ED07211218679E6500C8E89A /* FPPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverController.m; sourceTree = "<group>"; };
+		ED07211318679E6500C8E89A /* FPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverView.h; sourceTree = "<group>"; };
+		ED07211418679E6500C8E89A /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverView.m; sourceTree = "<group>"; };
+		ED07211518679E6500C8E89A /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
+		ED07211618679E6500C8E89A /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
+		ED07211A18679F2500C8E89A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		ED07211C18679F6400C8E89A /* FPPopoverKeyboardResponsiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverKeyboardResponsiveController.h; sourceTree = "<group>"; };
+		ED07211D18679F6400C8E89A /* FPPopoverKeyboardResponsiveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverKeyboardResponsiveController.m; sourceTree = "<group>"; };
+		ED07211F1867A03800C8E89A /* AnnonceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnonceDetailViewController.h; sourceTree = "<group>"; };
+		ED0721201867A03800C8E89A /* AnnonceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnonceDetailViewController.m; sourceTree = "<group>"; };
+		ED0721221867A26900C8E89A /* AnnonceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnonceDetail.h; sourceTree = "<group>"; };
+		ED0721231867A26900C8E89A /* AnnonceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnonceDetail.m; sourceTree = "<group>"; };
 		ED1515FB1863B694008F04BD /* Leboncoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leboncoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED1515FE1863B694008F04BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ED1516001863B694008F04BD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED07211B18679F2500C8E89A /* QuartzCore.framework in Frameworks */,
 				ED85E3981863B99D0073FC3C /* libxml2.dylib in Frameworks */,
 				ED1516011863B694008F04BD /* CoreGraphics.framework in Frameworks */,
 				ED1516051863B694008F04BD /* CoreData.framework in Frameworks */,
@@ -154,6 +176,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED07210E18679E2100C8E89A /* fppopover */ = {
+			isa = PBXGroup;
+			children = (
+				ED07211C18679F6400C8E89A /* FPPopoverKeyboardResponsiveController.h */,
+				ED07211D18679F6400C8E89A /* FPPopoverKeyboardResponsiveController.m */,
+				ED07211018679E6500C8E89A /* ARCMacros.h */,
+				ED07211118679E6500C8E89A /* FPPopoverController.h */,
+				ED07211218679E6500C8E89A /* FPPopoverController.m */,
+				ED07211318679E6500C8E89A /* FPPopoverView.h */,
+				ED07211418679E6500C8E89A /* FPPopoverView.m */,
+				ED07211518679E6500C8E89A /* FPTouchView.h */,
+				ED07211618679E6500C8E89A /* FPTouchView.m */,
+			);
+			path = fppopover;
+			sourceTree = "<group>";
+		};
 		ED1515F21863B694008F04BD = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +214,7 @@
 		ED1515FD1863B694008F04BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED07211A18679F2500C8E89A /* QuartzCore.framework */,
 				ED85E3971863B99D0073FC3C /* libxml2.dylib */,
 				ED1515FE1863B694008F04BD /* Foundation.framework */,
 				ED1516001863B694008F04BD /* CoreGraphics.framework */,
@@ -195,6 +234,8 @@
 				ED1516101863B694008F04BD /* AppDelegate.m */,
 				ED1516121863B694008F04BD /* Main_iPhone.storyboard */,
 				ED1516151863B694008F04BD /* Main_iPad.storyboard */,
+				ED07211F1867A03800C8E89A /* AnnonceDetailViewController.h */,
+				ED0721201867A03800C8E89A /* AnnonceDetailViewController.m */,
 				ED15161B1863B694008F04BD /* MainViewController.h */,
 				ED15161C1863B694008F04BD /* MainViewController.m */,
 				ED15161E1863B694008F04BD /* FlipsideViewController.h */,
@@ -238,6 +279,7 @@
 		ED85E36A1863B8EF0073FC3C /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				ED07210E18679E2100C8E89A /* fppopover */,
 				ED85E39C1863C5F40073FC3C /* objcHtmlParser */,
 				ED85E36B1863B8EF0073FC3C /* TouchXML */,
 			);
@@ -301,6 +343,8 @@
 				ED85E39A1863BA4B0073FC3C /* LeboncoinAgent.m */,
 				ED85E3A51863DB300073FC3C /* Annonce.h */,
 				ED85E3A61863DB300073FC3C /* Annonce.m */,
+				ED0721221867A26900C8E89A /* AnnonceDetail.h */,
+				ED0721231867A26900C8E89A /* AnnonceDetail.m */,
 				EDFB0240186651360027AAC8 /* SearchCondition.h */,
 				EDFB0241186651360027AAC8 /* SearchCondition.m */,
 				EDFB0243186651EE0027AAC8 /* SearchLinkGenerator.h */,
@@ -429,18 +473,24 @@
 			files = (
 				ED85E3A21863C5F40073FC3C /* HTMLNode.m in Sources */,
 				ED85E3901863B8EF0073FC3C /* CXMLElement_ElementTreeExtensions.m in Sources */,
+				ED07211718679E6500C8E89A /* FPPopoverController.m in Sources */,
 				ED85E38D1863B8EF0073FC3C /* CXMLDocument_PrivateExtensions.m in Sources */,
 				ED1516111863B694008F04BD /* AppDelegate.m in Sources */,
+				ED0721241867A26900C8E89A /* AnnonceDetail.m in Sources */,
 				ED85E3951863B8EF0073FC3C /* CTidy.m in Sources */,
+				ED07211818679E6500C8E89A /* FPPopoverView.m in Sources */,
 				ED85E3911863B8EF0073FC3C /* CXMLNamespaceNode.m in Sources */,
 				ED85E38E1863B8EF0073FC3C /* CXMLElement.m in Sources */,
 				ED85E38A1863B8EF0073FC3C /* CXMLNode_CreationExtensions.m in Sources */,
 				ED85E3A71863DB300073FC3C /* Annonce.m in Sources */,
 				ED85E38B1863B8EF0073FC3C /* CXHTMLDocument.m in Sources */,
+				ED0721211867A03800C8E89A /* AnnonceDetailViewController.m in Sources */,
 				ED85E3891863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m in Sources */,
 				ED85E38F1863B8EF0073FC3C /* CXMLElement_CreationExtensions.m in Sources */,
+				ED07211E18679F6400C8E89A /* FPPopoverKeyboardResponsiveController.m in Sources */,
 				ED85E3941863B8EF0073FC3C /* CXMLNode_XPathExtensions.m in Sources */,
 				ED85E39B1863BA4B0073FC3C /* LeboncoinAgent.m in Sources */,
+				ED07211918679E6500C8E89A /* FPTouchView.m in Sources */,
 				EDFB0242186651360027AAC8 /* SearchCondition.m in Sources */,
 				ED15161A1863B694008F04BD /* Leboncoin.xcdatamodeld in Sources */,
 				ED15160D1863B694008F04BD /* main.m in Sources */,

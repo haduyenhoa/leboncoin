@@ -46,7 +46,11 @@ static SearchLinkGenerator *_shareSLG;
             result = @"http://www.leboncoin.fr/telephonie/offres/";
         }
             break;
-            
+        case SC_ELECTROMENAGER:
+        {
+            result = @"http://www.leboncoin.fr/electromenager/offres/";
+        }
+            break;
         default:
         {
             //ALL

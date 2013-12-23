@@ -9,18 +9,21 @@
 #import <Foundation/Foundation.h>
 
 enum SearchLocation {
-    SL_PARIS = 0,
-    SL_ILE_DE_FRANCE = 1,
-    SL_HAUT_DE_SEINE = 2,
-    SL_LA_FRANCE = 3
+    SL_LA_FRANCE = 0,
+    SL_PARIS = 1,
+    SL_ILE_DE_FRANCE = 2,
+    SL_HAUT_DE_SEINE = 3
+    
 };
 
 enum SearchCategory {
-    SC_MULTIMEDIA = 0,
-    SC_INFORMATIQUE = 1,
-    SC_IMAGE_SON = 2,
-    SC_TELEPHONE = 3,
-    SC_ALL      = 4
+    SC_ALL      = 0,
+    SC_MULTIMEDIA = 1,
+    SC_INFORMATIQUE = 2,
+    SC_IMAGE_SON = 3,
+    SC_TELEPHONE = 4,
+    SC_ELECTROMENAGER = 5
+    
 };
 
 

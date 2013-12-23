@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "TouchXML.h"
 #import "HTMLParser.h"
-
+#import "AnnonceDetail.h"
+#import "Annonce.h"
 @class SearchCondition;
 
 @interface LeboncoinAgent : NSObject
@@ -21,4 +22,5 @@
 
 -(NSArray*)search:(SearchCondition*)aCondition;
 
+-(AnnonceDetail*)getAnnonceDetail:(Annonce*)anAnnonce;
 @end

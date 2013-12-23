@@ -11,7 +11,7 @@
 #import "SearchCondition.h"
 #import "Annonce.h"
 #import "LeboncoinAgent.h"
-
+#import "AnnonceDetailViewController.h"
 
 @interface MainViewController ()
 
@@ -31,7 +31,13 @@
     newSearchCondition.searchRegion = SL_ILE_DE_FRANCE;
     newSearchCondition.searchKey = @"cabasse";
     
-    listSearchCondition = [NSArray arrayWithObject:newSearchCondition];
+    SearchCondition *dysonSearch = [[SearchCondition alloc] init];
+    dysonSearch.page = 1;
+    dysonSearch.searchCategory = SC_ELECTROMENAGER;
+    dysonSearch.searchRegion = SL_LA_FRANCE;
+    dysonSearch.searchKey = @"dyson";
+    
+    listSearchCondition = [NSArray arrayWithObjects:newSearchCondition, dysonSearch, nil];
     
     dictResult  = [[NSMutableDictionary alloc] init];
     dictImage  = [[NSMutableDictionary alloc] init];
@@ -159,6 +165,35 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *listAnnonce = [dictResult valueForKey:((SearchCondition*)[listSearchCondition objectAtIndex:indexPath.section]).uuid];
+    Annonce *anAnnonce = [listAnnonce objectAtIndex:indexPath.row];
+    [self showAnonceDetail:anAnnonce];
+}
+
+#pragma -
+
+#pragma mark PopOver
+-(void)showAnonceDetail:(Annonce*)anAnnonce
+{
+    //NSLog(@"popover retain count: %d",[popover retainCount]);
+    
+    SAFE_ARC_RELEASE(popover); popover=nil;
+    
+    //the controller we want to present as a popover
+    AnnonceDetailViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil]instantiateViewControllerWithIdentifier:@"AnnonceDetail"];
+    
+    AnnonceDetail *anAnnounceDetail = [[LeboncoinAgent shareAgent] getAnnonceDetail:anAnnonce];
+    
+    popover = [[FPPopoverKeyboardResponsiveController alloc] initWithViewController:controller];
+    popover.tint = FPPopoverDefaultTint;
+    
+    popover.contentSize = CGSizeMake(300, 450);
+    
+    popover.arrowDirection = FPPopoverNoArrow;
+    [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - popover.contentSize.height/2)];
+    
+}
 #pragma -
 
 @end

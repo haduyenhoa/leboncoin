@@ -10,6 +10,7 @@
 #import "Annonce.h"
 #import "SearchCondition.h"
 #import "SearchLinkGenerator.h"
+#import <Foundation/NSJSONSerialization.h>
 
 static LeboncoinAgent *_shareAgent;
 
@@ -41,6 +42,7 @@ static LeboncoinAgent *_shareAgent;
 }
 
 -(NSArray*)search:(SearchCondition*)aCondition {
+    
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
     NSString *requestLink = [[SearchLinkGenerator shareSLG] getLinkForCondition:aCondition];
@@ -273,4 +275,93 @@ static LeboncoinAgent *_shareAgent;
     NSLog(@"does not found list-lbc");
     return nil;
 }
+
+#pragma mark Annonce detail
+-(AnnonceDetail*)getAnnonceDetail:(Annonce*)anAnnonce {
+    if (anAnnonce == nil || anAnnonce.linkAnnonce == nil || [anAnnonce.linkAnnonce isEqualToString:@""]) {
+        return nil;
+    }
+    
+    NSData *annonceData = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:anAnnonce.linkAnnonce]] returningResponse:nil error:nil];
+    if (annonceData == nil) {
+        return nil;
+    }
+    
+    NSError *errorGetData;
+    HTMLParser *parser = [[HTMLParser alloc] initWithData:annonceData error:&errorGetData];
+    
+    if (errorGetData) {
+        NSLog(@"Error: %@", errorGetData.localizedDescription);
+        return nil;
+    }
+    
+    HTMLNode *headNode = [parser head];
+//    NSLog(@"all page: %@",bodyNode.rawContents);
+    NSArray *contentNodes = [headNode findChildrenWithAttribute:@"name" matchingName:@"description" allowPartial:YES];
+
+    HTMLNode *bodyNode = [parser body];
+    NSArray *thumbArrays = [bodyNode findChildrenWithAttribute:@"id" matchingName:@"thumbs_carousel" allowPartial:YES];
+    
+    //get image
+    NSMutableArray *listImage = [[NSMutableArray alloc] init];
+    if (thumbArrays != nil && thumbArrays.count > 0) {
+        HTMLNode *thumbNodes = [thumbArrays objectAtIndex:0];
+        NSArray *listThumbs = [thumbNodes findChildrenWithAttribute:@"class" matchingName:@"thumbs" allowPartial:YES];
+        
+        for (HTMLNode *aThumbNode in listThumbs) {
+            NSLog(@"thumbNode: %@",aThumbNode.rawContents);
+            NSString *link = [aThumbNode getAttributeNamed:@"style"];
+            if (link == nil || [link isEqualToString:@""]) {
+                continue;
+            }
+            link = [link stringByReplacingOccurrencesOfString:@"background-image: url('" withString:@""];
+            link = [link stringByReplacingOccurrencesOfString:@"');" withString:@""];
+            link = [link stringByReplacingOccurrencesOfString:@"thumbs" withString:@"images"];
+            [listImage addObject:link];
+        }
+    }
+    
+    //get id
+    NSString *annonceId;
+    NSArray *idNodes = [bodyNode findChildrenWithAttribute:@"name" matchingName:@"id" allowPartial:YES];
+    if (idNodes && idNodes.count == 1) {
+        HTMLNode *idNode = [idNodes objectAtIndex:0];
+        annonceId = [idNode getAttributeNamed:@"value"];
+    }
+    
+    if (contentNodes && contentNodes.count == 1) {
+        HTMLNode *foundContentNode = [contentNodes objectAtIndex:0];
+        NSLog(@"content: %@",foundContentNode);
+        AnnonceDetail *result = [[AnnonceDetail alloc] init];
+        result.text =[foundContentNode getAttributeNamed:@"content"];
+        result.annonceId = annonceId;
+        result.imageLink = listImage;
+        return result;
+    } else {
+        return nil;
+    }
+}
+
+-(NSString*)getPhoneImageLink:(NSString*)annonceId {
+    if (annonceId == nil || [annonceId isEqualToString:@""]) {
+        return nil;
+    }
+    
+    NSString *requestLink = @"http://www2.leboncoin.fr/ajapi/get/phone?list_id=";
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[requestLink stringByAppendingString:annonceId]]] returningResponse:nil error:nil];
+    
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:data //1
+                          options:kNilOptions
+                          error:&error];
+    
+    NSString *result = [json objectForKey:@"phoneUrl"];
+    
+    return result;
+}
+
+#pragma -
+
 @end
