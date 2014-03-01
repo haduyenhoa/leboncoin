@@ -13,9 +13,9 @@
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate, UIPopoverControllerDelegate, UITableViewDataSource, UITableViewDelegate, FPPopoverControllerDelegate> {
     
-    NSArray *listSearchCondition;
-    
     NSMutableDictionary *dictResult;
+    
+    int currentIndex;
     
     NSMutableDictionary *dictImage;
     
@@ -27,5 +27,8 @@
 @property (strong, nonatomic) UIPopoverController *flipsidePopoverController;
 
 @property (nonatomic) IBOutlet UITableView *tblSearch;
+
+@property (nonatomic) IBOutlet UIButton *btnNext;
+@property (nonatomic) IBOutlet UIButton *btnPrevious;
 
 @end

@@ -22,8 +22,8 @@ enum SearchCategory {
     SC_INFORMATIQUE = 2,
     SC_IMAGE_SON = 3,
     SC_TELEPHONE = 4,
-    SC_ELECTROMENAGER = 5
-    
+    SC_ELECTROMENAGER = 5,
+    SC_EQUIPEMENT_AUTO = 6
 };
 
 
@@ -35,6 +35,7 @@ enum SearchCategory {
 @property (nonatomic) int searchCodePostal;
 @property (nonatomic) int searchCategory;
 @property (nonatomic) int page;
+@property (nonatomic) BOOL searchInTitleOnly;
 
 -(NSString*)getCategoryName;
 -(NSString*)getLocationName;

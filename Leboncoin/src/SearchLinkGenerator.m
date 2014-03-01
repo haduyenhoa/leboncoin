@@ -19,6 +19,10 @@ static SearchLinkGenerator *_shareSLG;
     return _shareSLG;
 }
 
+-(NSString*)getJsonLinkForCondition:(SearchCondition*)aCondition {
+    return @"https://mobile.leboncoin.fr/templates/api/view.json";
+}
+
 -(NSString*)getLinkForCondition:(SearchCondition*)aCondition {
     if (aCondition == nil) {
         return nil;
@@ -49,6 +53,11 @@ static SearchLinkGenerator *_shareSLG;
         case SC_ELECTROMENAGER:
         {
             result = @"http://www.leboncoin.fr/electromenager/offres/";
+        }
+            break;
+        case SC_EQUIPEMENT_AUTO:
+        {
+            result = @"http://www.leboncoin.fr/equipement_auto/offres/";
         }
             break;
         default:
@@ -93,11 +102,14 @@ static SearchLinkGenerator *_shareSLG;
     }
     
     //only search in title
-    result = [result stringByAppendingString:@"&it=1"];
+    if (aCondition.searchInTitleOnly) {
+        result = [result stringByAppendingString:@"&it=1"];
+    }
+
     
     //search key &q=
     if (aCondition.searchKey) {
-        result = [result stringByAppendingFormat:@"&q=%@",aCondition.searchKey];
+        result = [result stringByAppendingFormat:@"&q=%@", [self htmlEncode:aCondition.searchKey]];
     }
     
     if (aCondition.searchCodePostal > 9999) { //code postale France has 5 digits
@@ -105,6 +117,10 @@ static SearchLinkGenerator *_shareSLG;
     }
     
     return result;
+}
+
+-(NSString*)htmlEncode:(NSString*)input {
+    return [input stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
 }
 
 @end

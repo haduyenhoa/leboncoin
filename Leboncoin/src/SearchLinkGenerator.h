@@ -13,6 +13,7 @@
 
 +(SearchLinkGenerator*)shareSLG;
 
+-(NSString*)getJsonLinkForCondition:(SearchCondition*)aCondition;
 -(NSString*)getLinkForCondition:(SearchCondition*)aCondition;
 
 @end

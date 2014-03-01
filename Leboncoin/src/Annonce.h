@@ -10,10 +10,13 @@
 
 @interface Annonce : NSObject
 
+@property (nonatomic) NSString *annonceId;
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSDate *date;
 @property (nonatomic) NSString *dateStr;
 @property (nonatomic) NSString *linkAnnonce;
 @property (nonatomic) NSString *linkImage;
+@property (nonatomic) NSString *location;
+@property (nonatomic) NSString *price;
 
 @end

@@ -23,7 +23,30 @@
     // Override point for customization after application launch.
     MainViewController *controller = (MainViewController *)self.window.rootViewController;
     controller.managedObjectContext = self.managedObjectContext;
+    
+    [self performSelectorInBackground:@selector(prepareTessData) withObject:nil];
+    
     return YES;
+}
+
+-(void)prepareTessData {
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *tessPath = [docPath stringByAppendingPathComponent:@"tessdata"];
+    
+    BOOL isDir;
+    BOOL exit = [[NSFileManager defaultManager] fileExistsAtPath:tessPath isDirectory:&isDir];
+    if (!exit || !isDir) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:tessPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    NSArray *listFiles = [NSArray arrayWithObjects:@"eng.cube.bigrams", @"eng.cube.fold", @"eng.cube.lm", @"eng.cub.nn", @"eng.cube.params", @"eng.cube.size", @"eng.cube.word-freq", @"eng.tesseract_cube.nn", @"eng.traineddata", nil];
+    
+    for (NSString *aFile in listFiles) {
+        NSString *srcPath = [[NSBundle mainBundle] pathForResource:[aFile stringByDeletingPathExtension] ofType:aFile.pathExtension];
+        if (srcPath != nil && ![[NSFileManager defaultManager] fileExistsAtPath:[tessPath stringByAppendingPathComponent:aFile]]) {
+            [[NSFileManager defaultManager] copyItemAtPath:srcPath toPath:[tessPath stringByAppendingPathComponent:aFile] error:nil];
+        }
+    }
 }
 
 -(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -32,7 +55,7 @@
 }
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    [[LeboncoinAgent shareAgent] scheduleSearch];
+    //[[LeboncoinAgent shareAgent] scheduleSearch];
     
     completionHandler(UIBackgroundFetchResultNewData);
     NSLog(@"fetch in background complete");

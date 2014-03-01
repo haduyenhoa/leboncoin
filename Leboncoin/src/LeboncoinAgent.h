@@ -15,12 +15,16 @@
 
 @interface LeboncoinAgent : NSObject
 
+@property (nonatomic) NSArray *searchConditions;
 
 +(LeboncoinAgent*)shareAgent;
 
 -(void)scheduleSearch;
 
+@property (nonatomic) NSDate *lastSearchTime;
+
 -(NSArray*)search:(SearchCondition*)aCondition;
 
+-(AnnonceDetail*)getAnnonceDetailFromJson:(Annonce*)anAnnonce;
 -(AnnonceDetail*)getAnnonceDetail:(Annonce*)anAnnonce;
 @end

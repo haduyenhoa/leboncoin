@@ -16,5 +16,11 @@
 @property (nonatomic) NSString *text;
 @property (nonatomic) NSString *telephoneNumberImageLink;
 @property (nonatomic) NSString *telephoneNumber;
+@property (nonatomic) UIImage *imgPhoneNumber;
+@property (nonatomic) NSString *priceString;
+@property (nonatomic) NSString *dateString;
 @property (nonatomic) NSString *email;
+@property (nonatomic) NSString *ville;
+@property (nonatomic) NSString *postalCode;
+@property (nonatomic) NSData *annonceData;
 @end
