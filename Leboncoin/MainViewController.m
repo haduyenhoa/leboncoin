@@ -61,8 +61,13 @@
         } else {
             self.btnPrevious.enabled = YES;
         }
-        
+        SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:currentIndex];
+        NSArray *listResultForCurrentSearch = [dictResult valueForKey:aSearchCondition.uuid];
         [self.tblSearch reloadData];
+        if (listResultForCurrentSearch.count > 0) {
+            [self.tblSearch scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        }
+        self.tblSearch.alpha = 1.0;
     }
 }
 
@@ -107,11 +112,14 @@
 }
 
 -(void)threadSearchCurrentIndex {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.tblSearch.alpha  = 0.0;
+    });
     NSLog(@"%s",__FUNCTION__);
     currentIndex = MIN((int)[LeboncoinAgent shareAgent].searchConditions.count-1, currentIndex);
     currentIndex = MAX(0, currentIndex);
-    
-    [self performSelectorOnMainThread:@selector(mainThreadRefresh) withObject:nil waitUntilDone:NO];
+//    
+//    [self performSelectorOnMainThread:@selector(mainThreadRefresh) withObject:nil waitUntilDone:NO];
     
     SearchCondition *aCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:currentIndex];
     [self performSelectorInBackground:@selector(threadRenewSearch:) withObject:aCondition];
