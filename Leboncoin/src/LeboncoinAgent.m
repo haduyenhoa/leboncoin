@@ -72,7 +72,7 @@ static LeboncoinAgent *_shareAgent;
         aristonCondition.page = 1;
         aristonCondition.searchCategory = SC_IMAGE_SON;
         aristonCondition.searchRegion = SL_LA_FRANCE;
-        aristonCondition.searchKey = @"ariston rd";
+        aristonCondition.searchKey = @"ariston";
         
         SearchCondition *transcriptorCondition = [[SearchCondition alloc] init];
         transcriptorCondition.page = 1;
@@ -122,7 +122,25 @@ static LeboncoinAgent *_shareAgent;
         demenagementAllCatCondition.searchRegion = SL_LA_FRANCE;
         demenagementAllCatCondition.searchKey = @"demenagement";
         
-        self.searchConditions = [NSArray arrayWithObjects:cabasseCondition, thielCondition, tannoyCondition, regaCondition, michellCondition, demenagementCondition, dysonSearch, sansuiCondition, iphone5sCondition, mcintoshCondition, transcriptorCondition, aristonCondition, linnCondition, tomtoGoCondition, demenagementAllCatCondition, nil];
+        SearchCondition *neilYoungCondition = [[SearchCondition alloc] init];
+        neilYoungCondition.page = 1;
+        neilYoungCondition.searchCategory = SC_MUSIC;
+        neilYoungCondition.searchRegion = SL_LA_FRANCE;
+        neilYoungCondition.searchKey = @"neil young";
+        
+        SearchCondition *ericClaptonCondition = [[SearchCondition alloc] init];
+        ericClaptonCondition.page = 1;
+        ericClaptonCondition.searchCategory = SC_MUSIC;
+        ericClaptonCondition.searchRegion = SL_LA_FRANCE;
+        ericClaptonCondition.searchKey = @"eric clapton";
+        
+        SearchCondition *vinylesCondition = [[SearchCondition alloc] init];
+        vinylesCondition.page = 1;
+        vinylesCondition.searchCategory = SC_MUSIC;
+        vinylesCondition.searchRegion = SL_LA_FRANCE;
+        vinylesCondition.searchKey = @"vinyles";
+        
+        self.searchConditions = [NSArray arrayWithObjects:cabasseCondition, thielCondition, tannoyCondition, regaCondition, michellCondition, demenagementCondition, dysonSearch, sansuiCondition, iphone5sCondition, mcintoshCondition, transcriptorCondition, aristonCondition, linnCondition, tomtoGoCondition, demenagementAllCatCondition, neilYoungCondition, ericClaptonCondition, vinylesCondition, nil];
     }
     return self;
 }

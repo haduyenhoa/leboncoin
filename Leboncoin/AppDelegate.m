@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "MainViewController.h"
+#import "SearchResultViewController.h"
 #import "LeboncoinAgent.h"
 
 
@@ -21,10 +21,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    MainViewController *controller = (MainViewController *)self.window.rootViewController;
-    controller.managedObjectContext = self.managedObjectContext;
-    
-    [self performSelectorInBackground:@selector(prepareTessData) withObject:nil];
+//    SearchResultViewController *controller = (SearchResultViewController *)self.window.rootViewController;
+//    controller.managedObjectContext = self.managedObjectContext;
+//    
+//    [self performSelectorInBackground:@selector(prepareTessData) withObject:nil];
     
     return YES;
 }

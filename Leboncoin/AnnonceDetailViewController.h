@@ -29,7 +29,10 @@
 @property (nonatomic) IBOutlet UIScrollView *scrvImages;
 @property (nonatomic) IBOutlet UIScrollView *scrvAnnonce;
 @property (nonatomic) IBOutlet UITextView *tvTitle;
-
+@property (nonatomic) IBOutlet UIButton *btnShowMaps;
+@property (nonatomic) IBOutlet UILabel *lblCity;
 
 - (void)imageClicked:(UIGestureRecognizer *)gesture;
+
+
 @end

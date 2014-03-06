@@ -24,7 +24,7 @@
 		ED1516141863B694008F04BD /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED1516121863B694008F04BD /* Main_iPhone.storyboard */; };
 		ED1516171863B694008F04BD /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED1516151863B694008F04BD /* Main_iPad.storyboard */; };
 		ED15161A1863B694008F04BD /* Leboncoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED1516181863B694008F04BD /* Leboncoin.xcdatamodeld */; };
-		ED15161D1863B694008F04BD /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED15161C1863B694008F04BD /* MainViewController.m */; };
+		ED15161D1863B694008F04BD /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED15161C1863B694008F04BD /* SearchResultViewController.m */; };
 		ED1516201863B694008F04BD /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED15161F1863B694008F04BD /* FlipsideViewController.m */; };
 		ED1516221863B694008F04BD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED1516211863B694008F04BD /* Images.xcassets */; };
 		ED1516291863B694008F04BD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1516281863B694008F04BD /* XCTest.framework */; };
@@ -53,6 +53,7 @@
 		ED1FEDF4186E51DC00DA47A5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF3186E51DC00DA47A5 /* CoreImage.framework */; };
 		ED1FEDF6186E51E200DA47A5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF5186E51E200DA47A5 /* CoreVideo.framework */; };
 		ED1FEDF8186E51F500DA47A5 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF7186E51F500DA47A5 /* libc++.dylib */; };
+		ED85D01A18C7E17A0004CAF4 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85D01918C7E17A0004CAF4 /* MainPageViewController.m */; };
 		ED85E3891863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E36E1863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m */; };
 		ED85E38A1863B8EF0073FC3C /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E3701863B8EF0073FC3C /* CXMLNode_CreationExtensions.m */; };
 		ED85E38B1863B8EF0073FC3C /* CXHTMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E3721863B8EF0073FC3C /* CXHTMLDocument.m */; };
@@ -131,8 +132,8 @@
 		ED1516131863B694008F04BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		ED1516161863B694008F04BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		ED1516191863B694008F04BD /* Leboncoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Leboncoin.xcdatamodel; sourceTree = "<group>"; };
-		ED15161B1863B694008F04BD /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		ED15161C1863B694008F04BD /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		ED15161B1863B694008F04BD /* SearchResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		ED15161C1863B694008F04BD /* SearchResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
 		ED15161E1863B694008F04BD /* FlipsideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
 		ED15161F1863B694008F04BD /* FlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
 		ED1516211863B694008F04BD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -162,6 +163,8 @@
 		ED1FEDF3186E51DC00DA47A5 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		ED1FEDF5186E51E200DA47A5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		ED1FEDF7186E51F500DA47A5 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		ED85D01818C7E17A0004CAF4 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
+		ED85D01918C7E17A0004CAF4 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		ED85E36D1863B8EF0073FC3C /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		ED85E36E1863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		ED85E36F1863B8EF0073FC3C /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -342,12 +345,14 @@
 				ED85E3961863B8F70073FC3C /* src */,
 				ED15160F1863B694008F04BD /* AppDelegate.h */,
 				ED1516101863B694008F04BD /* AppDelegate.m */,
+				ED85D01818C7E17A0004CAF4 /* MainPageViewController.h */,
+				ED85D01918C7E17A0004CAF4 /* MainPageViewController.m */,
 				ED1516121863B694008F04BD /* Main_iPhone.storyboard */,
 				ED1516151863B694008F04BD /* Main_iPad.storyboard */,
 				ED07211F1867A03800C8E89A /* AnnonceDetailViewController.h */,
 				ED0721201867A03800C8E89A /* AnnonceDetailViewController.m */,
-				ED15161B1863B694008F04BD /* MainViewController.h */,
-				ED15161C1863B694008F04BD /* MainViewController.m */,
+				ED15161B1863B694008F04BD /* SearchResultViewController.h */,
+				ED15161C1863B694008F04BD /* SearchResultViewController.m */,
 				EDE2C470187639C200F9B895 /* SearchManagerViewController.h */,
 				EDE2C471187639C200F9B895 /* SearchManagerViewController.m */,
 				EDE2C473187639D300F9B895 /* SearchEditViewController.h */,
@@ -688,6 +693,7 @@
 				ED0721211867A03800C8E89A /* AnnonceDetailViewController.m in Sources */,
 				EDE2C472187639C200F9B895 /* SearchManagerViewController.m in Sources */,
 				ED85E3891863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m in Sources */,
+				ED85D01A18C7E17A0004CAF4 /* MainPageViewController.m in Sources */,
 				ED85E38F1863B8EF0073FC3C /* CXMLElement_CreationExtensions.m in Sources */,
 				EDE2C475187639D300F9B895 /* SearchEditViewController.m in Sources */,
 				ED07211E18679F6400C8E89A /* FPPopoverKeyboardResponsiveController.m in Sources */,
@@ -703,7 +709,7 @@
 				EDD765DB186CE35200C283C6 /* ModelController.m in Sources */,
 				ED1516201863B694008F04BD /* FlipsideViewController.m in Sources */,
 				EDF0385418C16F4E0038B074 /* AFHTTPClient.m in Sources */,
-				ED15161D1863B694008F04BD /* MainViewController.m in Sources */,
+				ED15161D1863B694008F04BD /* SearchResultViewController.m in Sources */,
 				ED85E3A31863C5F40073FC3C /* HTMLParser.m in Sources */,
 				EDF0385718C16F4E0038B074 /* AFJSONRequestOperation.m in Sources */,
 				ED85E38C1863B8EF0073FC3C /* CXMLDocument.m in Sources */,

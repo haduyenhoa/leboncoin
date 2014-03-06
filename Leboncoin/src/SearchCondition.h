@@ -23,7 +23,8 @@ enum SearchCategory {
     SC_IMAGE_SON = 3,
     SC_TELEPHONE = 4,
     SC_ELECTROMENAGER = 5,
-    SC_EQUIPEMENT_AUTO = 6
+    SC_EQUIPEMENT_AUTO = 6,
+    SC_MUSIC = 7
 };
 
 

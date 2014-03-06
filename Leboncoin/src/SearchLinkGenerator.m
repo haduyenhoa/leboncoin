@@ -60,6 +60,11 @@ static SearchLinkGenerator *_shareSLG;
             result = @"http://www.leboncoin.fr/equipement_auto/offres/";
         }
             break;
+        case SC_MUSIC:
+        {
+            result = @"http://www.leboncoin.fr/cd_musique/offres/";
+        }
+            break;
         default:
         {
             //ALL

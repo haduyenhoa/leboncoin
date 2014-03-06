@@ -11,11 +11,9 @@
 #import "ARCMacros.h"
 #import "FPPopoverKeyboardResponsiveController.h"
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, UIPopoverControllerDelegate, UITableViewDataSource, UITableViewDelegate, FPPopoverControllerDelegate> {
+@interface SearchResultViewController : UIViewController <FlipsideViewControllerDelegate, UIPopoverControllerDelegate, UITableViewDataSource, UITableViewDelegate, FPPopoverControllerDelegate> {
     
     NSMutableDictionary *dictResult;
-    
-    int currentIndex;
     
     NSMutableDictionary *dictImage;
     
@@ -30,5 +28,7 @@
 
 @property (nonatomic) IBOutlet UIButton *btnNext;
 @property (nonatomic) IBOutlet UIButton *btnPrevious;
+
+@property NSUInteger pageIndex;
 
 @end

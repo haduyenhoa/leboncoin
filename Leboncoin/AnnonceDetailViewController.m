@@ -38,6 +38,13 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    NSLog(@"%s",__FUNCTION__);
+    [super viewDidAppear:animated];
+    
     for (UIView *subview in self.scrvImages.subviews) {
         [subview removeFromSuperview];
     }
@@ -75,7 +82,7 @@
         
         NSLog(@"resize frame to %0.2f",contentSize);
         float originalX = 4;
-        float originalY = 176;
+        float originalY = 200;
         float width = 292;
         UITextView *tv = [[UITextView alloc] initWithFrame:CGRectMake(originalX, originalY, width, contentSize)];
         tv.attributedText = attributedString;
@@ -98,6 +105,9 @@
             [self.btnCall setEnabled:NO];
         }
         
+        NSString *cityInfo = [NSString stringWithFormat:@"%@ (%@)", myAnnonceDetail.postalCode == nil ? @"" : myAnnonceDetail.postalCode, myAnnonceDetail.ville == nil? @"" : myAnnonceDetail.ville];
+        self.lblCity.text = cityInfo;
+
         if (myAnnonceDetail.priceString) {
             [self.btnPrice setTitle:[NSString stringWithFormat:@"%@",myAnnonceDetail.priceString]];
         } else {
@@ -171,6 +181,12 @@
     if (myAnnonceDetail && myAnnonceDetail.telephoneNumber) {
         [[[UIAlertView alloc] initWithTitle:@"Appeler vendeur" message:[NSString stringWithFormat:@"Sure to call: %@ ?", myAnnonceDetail.telephoneNumber] delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] show];
     }
+}
+
+-(IBAction)showMaps:(id)sender {
+    NSString* addr = [NSString stringWithFormat:@"comgooglemaps://maps.google.com/maps?q=%@&views=traffic",myAnnonceDetail.postalCode];
+    NSURL* url = [[NSURL alloc] initWithString:[addr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 -(void)callNow {

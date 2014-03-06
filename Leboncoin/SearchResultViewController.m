@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 Duyen Hoa Ha. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "SearchResultViewController.h"
 #import "LeboncoinAgent.h"
 #import "SearchCondition.h"
 #import "Annonce.h"
 #import "LeboncoinAgent.h"
 #import "AnnonceDetailViewController.h"
 
-@interface MainViewController ()
+@interface SearchResultViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation SearchResultViewController
 
 - (void)viewDidLoad
 {
@@ -26,6 +26,7 @@
     
     dictResult  = [[NSMutableDictionary alloc] init];
     dictImage  = [[NSMutableDictionary alloc] init];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,9 +38,12 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
+}
 
-//    [self performSelectorInBackground:@selector(threadSearchAll) withObject:nil];
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.tblSearch.alpha  = 0.0;
+    [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
 }
 
 -(void)mainThreadRefresh {
@@ -50,18 +54,18 @@
     
     @synchronized(self) {
         NSLog(@"%s",__FUNCTION__);
-        if (currentIndex >= ([LeboncoinAgent shareAgent].searchConditions.count - 1)) {
+        if (self.pageIndex >= ([LeboncoinAgent shareAgent].searchConditions.count - 1)) {
             self.btnNext.enabled = NO;
         } else {
             self.btnNext.enabled = YES;
         }
         
-        if (currentIndex <= 0) {
+        if (self.pageIndex <= 0) {
             self.btnPrevious.enabled = NO;
         } else {
             self.btnPrevious.enabled = YES;
         }
-        SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:currentIndex];
+        SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
         NSArray *listResultForCurrentSearch = [dictResult valueForKey:aSearchCondition.uuid];
         [self.tblSearch reloadData];
         if (listResultForCurrentSearch.count > 0) {
@@ -91,7 +95,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showAnnonceDetail"]) {
-        SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:currentIndex];
+        SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
         
         NSArray *listAnnonce = [dictResult valueForKey:aSearchCondition.uuid];
         Annonce *anAnnonce = [listAnnonce objectAtIndex:[self.tblSearch indexPathForCell:sender].row];
@@ -112,16 +116,11 @@
 }
 
 -(void)threadSearchCurrentIndex {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.tblSearch.alpha  = 0.0;
-    });
     NSLog(@"%s",__FUNCTION__);
-    currentIndex = MIN((int)[LeboncoinAgent shareAgent].searchConditions.count-1, currentIndex);
-    currentIndex = MAX(0, currentIndex);
-//    
-//    [self performSelectorOnMainThread:@selector(mainThreadRefresh) withObject:nil waitUntilDone:NO];
-    
-    SearchCondition *aCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:currentIndex];
+    self.pageIndex = MIN((int)[LeboncoinAgent shareAgent].searchConditions.count-1, self.pageIndex);
+    self.pageIndex = MAX(0, self.pageIndex);
+
+    SearchCondition *aCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     [self performSelectorInBackground:@selector(threadRenewSearch:) withObject:aCondition];
 }
 
@@ -157,7 +156,7 @@
 
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:currentIndex];
+    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     
     NSString *title = aSearchCondition.searchKey == nil ? @"[Unknown]": aSearchCondition.searchKey;
     title = [title stringByAppendingFormat:@"- %@ - %@",[aSearchCondition getCategoryName], [aSearchCondition getLocationName]];
@@ -166,7 +165,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:currentIndex];
+    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     
     NSArray *listResultForCurrentSearch = [dictResult valueForKey:aSearchCondition.uuid];
     return listResultForCurrentSearch.count;
@@ -174,7 +173,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnnonceCellId"];
-    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:currentIndex];
+    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     
     NSArray *listAnnonce = [dictResult valueForKey:aSearchCondition.uuid];
 
@@ -217,18 +216,18 @@
     } else {
         [annonceImage setImage:[UIImage imageNamed:@"unknownImage.png"]];
     }
-    
-    if (indexPath.row % 2 == 0) {
-        cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.4];
-    } else {
-        cell.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.4];
-    }
+//    
+//    if (indexPath.row % 2 == 0) {
+//        cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.4];
+//    } else {
+//        cell.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.4];
+//    }
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:currentIndex];
+    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     
     NSArray *listAnnonce = [dictResult valueForKey:aSearchCondition.uuid];
     Annonce *anAnnonce = [listAnnonce objectAtIndex:indexPath.row];
@@ -241,9 +240,6 @@
 #pragma mark PopOver
 -(void)showAnonceDetail:(Annonce*)anAnnonce
 {
-    //NSLog(@"popover retain count: %d",[popover retainCount]);
-    
-    SAFE_ARC_RELEASE(popover); popover=nil;
     
     //the controller we want to present as a popover
     AnnonceDetailViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil]instantiateViewControllerWithIdentifier:@"AnnonceDetail"];
@@ -264,15 +260,15 @@
 
 #pragma mark Actions
 -(IBAction)nextSearch:(id)sender {
-    currentIndex++;
-    currentIndex = MIN((int)[LeboncoinAgent shareAgent].searchConditions.count-1, currentIndex);
+    self.pageIndex++;
+    self.pageIndex = MIN((int)[LeboncoinAgent shareAgent].searchConditions.count-1, self.pageIndex);
     
     [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
 }
 
 -(IBAction)previousSearch:(id)sender {
-    currentIndex --;
-    currentIndex = MAX(0, currentIndex);
+    self.pageIndex --;
+    self.pageIndex = MAX(0, self.pageIndex);
     
     [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
 }
