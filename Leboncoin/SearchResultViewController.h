@@ -10,8 +10,11 @@
 #import "FPPopoverController.h"
 #import "ARCMacros.h"
 #import "FPPopoverKeyboardResponsiveController.h"
+#import "PKHPickerContainerView.h"
 
-@interface SearchResultViewController : UIViewController <FlipsideViewControllerDelegate, UIPopoverControllerDelegate, UITableViewDataSource, UITableViewDelegate, FPPopoverControllerDelegate> {
+@interface SearchResultViewController : UIViewController <FlipsideViewControllerDelegate, UIPopoverControllerDelegate, UITableViewDataSource, UITableViewDelegate, FPPopoverControllerDelegate,UIPickerViewDataSource, UIPickerViewDelegate
+, UISearchBarDelegate
+> {
     
     NSMutableDictionary *dictResult;
     
@@ -28,6 +31,12 @@
 
 @property (nonatomic) IBOutlet UIButton *btnNext;
 @property (nonatomic) IBOutlet UIButton *btnPrevious;
+
+@property (nonatomic) IBOutlet UIButton *btnChangeSearchCondition;
+@property (nonatomic) IBOutlet UILabel *lblSearchTitle;
+@property (nonatomic) IBOutlet UISearchBar *sbCustomizedSearch;
+
+@property (nonatomic) IBOutlet NSLayoutConstraint *constraintMainTable;
 
 @property NSUInteger pageIndex;
 

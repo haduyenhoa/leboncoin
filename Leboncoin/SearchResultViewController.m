@@ -12,8 +12,17 @@
 #import "Annonce.h"
 #import "LeboncoinAgent.h"
 #import "AnnonceDetailViewController.h"
+#import "PKHPickerContainerView.h"
 
-@interface SearchResultViewController ()
+@interface SearchResultViewController () {
+    PKHPickerContainerView *_pickerContainerView;
+    
+    int _direction; //1: up; 2: down; 0: nothing
+    
+    SearchCondition *_currentSearchCondition;
+    
+    BOOL _isSearchEnabled;
+}
 
 @end
 
@@ -43,6 +52,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tblSearch.alpha  = 0.0;
+    
     [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
 }
 
@@ -65,8 +75,8 @@
         } else {
             self.btnPrevious.enabled = YES;
         }
-        SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
-        NSArray *listResultForCurrentSearch = [dictResult valueForKey:aSearchCondition.uuid];
+        
+        NSArray *listResultForCurrentSearch = [dictResult valueForKey:_currentSearchCondition.uuid];
         [self.tblSearch reloadData];
         if (listResultForCurrentSearch.count > 0) {
             [self.tblSearch scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
@@ -95,9 +105,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showAnnonceDetail"]) {
-        SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
+//        SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
         
-        NSArray *listAnnonce = [dictResult valueForKey:aSearchCondition.uuid];
+        NSArray *listAnnonce = [dictResult valueForKey:_currentSearchCondition.uuid];
         Annonce *anAnnonce = [listAnnonce objectAtIndex:[self.tblSearch indexPathForCell:sender].row];
         
         AnnonceDetailViewController *dest = [segue destinationViewController];
@@ -119,12 +129,25 @@
     NSLog(@"%s",__FUNCTION__);
     self.pageIndex = MIN((int)[LeboncoinAgent shareAgent].searchConditions.count-1, self.pageIndex);
     self.pageIndex = MAX(0, self.pageIndex);
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self enableSearch:YES];
+    }];
 
-    SearchCondition *aCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
-    [self performSelectorInBackground:@selector(threadRenewSearch:) withObject:aCondition];
+    
+    _currentSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
+    [self performSelectorInBackground:@selector(threadRenewSearch:) withObject:_currentSearchCondition];
 }
 
 -(void)threadRenewSearch:(SearchCondition*)aCondition {
+    NSString *title = aCondition.searchKey == nil ? @"[Unknown]": aCondition.searchKey;
+    title = [title stringByAppendingFormat:@" - %@ - %@",[aCondition getCategoryName], [aCondition getLocationName]];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        self.lblSearchTitle.text = title;
+        self.sbCustomizedSearch.text = title;
+    }];
+    
     NSArray *result = [[LeboncoinAgent shareAgent] search:aCondition];
     [dictResult setValue:result forKey:aCondition.uuid];
     
@@ -154,28 +177,18 @@
     return 1;
 }
 
--(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
-    
-    NSString *title = aSearchCondition.searchKey == nil ? @"[Unknown]": aSearchCondition.searchKey;
-    title = [title stringByAppendingFormat:@"- %@ - %@",[aSearchCondition getCategoryName], [aSearchCondition getLocationName]];
-    
-    return title;
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
+//    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     
-    NSArray *listResultForCurrentSearch = [dictResult valueForKey:aSearchCondition.uuid];
+    NSArray *listResultForCurrentSearch = [dictResult valueForKey:_currentSearchCondition.uuid];
     return listResultForCurrentSearch.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnnonceCellId"];
-    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
+//    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     
-    NSArray *listAnnonce = [dictResult valueForKey:aSearchCondition.uuid];
+    NSArray *listAnnonce = [dictResult valueForKey:_currentSearchCondition.uuid];
 
     Annonce *anAnnonce = [listAnnonce objectAtIndex:indexPath.row];
     
@@ -227,15 +240,68 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
+//    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     
-    NSArray *listAnnonce = [dictResult valueForKey:aSearchCondition.uuid];
+    NSArray *listAnnonce = [dictResult valueForKey:_currentSearchCondition.uuid];
     Annonce *anAnnonce = [listAnnonce objectAtIndex:indexPath.row];
     [self showAnonceDetail:anAnnonce];
 }
-
 #pragma -
 
+#pragma mark Scroll view
+-(void)enableSearch:(BOOL)enabled {
+    if (_isSearchEnabled == enabled) {
+        NSLog(@"do not change to same state");
+        return;
+    }
+    
+    _isSearchEnabled = enabled;
+    
+    //scroll up
+    [UIView beginAnimations:@"hide search" context:nil];
+    [UIView setAnimationDuration:0.6];
+
+    if (_isSearchEnabled) {
+        self.sbCustomizedSearch.alpha = 1.0;
+        self.lblSearchTitle.alpha = 0.0;
+    } else {
+        self.sbCustomizedSearch.alpha = 0.0;
+        self.lblSearchTitle.alpha = 1.0;
+    }
+
+    [self.constraintMainTable setConstant:_isSearchEnabled ? 40 : 20];
+    
+    [UIView commitAnimations];
+}
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (decelerate) {
+        if (_direction == 1) {
+            NSLog(@"decelerating to top");
+            [self enableSearch:NO];
+        } else if (_direction == 2) {
+            NSLog(@"decelerating to bottom");
+            //scroll down
+            [self enableSearch:YES];
+        }
+    } else {
+        _direction = 0;
+    }
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    if (velocity.y > 0){
+        _direction = 1; //up
+    } else if (velocity.y < 0){
+        _direction = 2; //down
+    } else {
+        _direction = 0;
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"scroll end");
+}
+#pragma -
 
 #pragma mark PopOver
 -(void)showAnonceDetail:(Annonce*)anAnnonce
@@ -258,6 +324,34 @@
 }
 #pragma -
 
+#pragma mark Search bar 
+-(void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
+    [self pickerButtonAction:nil];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    
+    _currentSearchCondition.searchKey = searchBar.text;
+    
+    [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
+}
+
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    searchBar.text = _currentSearchCondition.searchKey;
+    searchBar.showsCancelButton = YES;
+    return YES;
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    searchBar.showsCancelButton = NO;
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+#pragma -
+
 #pragma mark Actions
 -(IBAction)nextSearch:(id)sender {
     self.pageIndex++;
@@ -272,5 +366,82 @@
     
     [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
 }
+
+- (IBAction)pickerButtonAction:(id)sender {
+    
+    if (!_pickerContainerView) {
+        _pickerContainerView = [[PKHPickerContainerView alloc] initWithinView:self.view];
+        _pickerContainerView.backgroundColor = [UIColor lightGrayColor];
+        [_pickerContainerView.pickerView setDataSource:self];
+        [_pickerContainerView.pickerView setDelegate:self];
+
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonAction:)];
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonAction:)];
+        UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        
+        [_pickerContainerView setToolbarItems:@[cancelButton,spacer,doneButton]];
+        
+        
+        
+        [self.view addSubview:_pickerContainerView];
+
+        [_pickerContainerView.pickerView selectRow:self.pageIndex inComponent:0 animated:NO];
+
+        
+        [_pickerContainerView showPickerContainerView];
+        
+    }
+    
+}
+
+
+- (IBAction)doneButtonAction:(id)sender {
+    self.pageIndex = [_pickerContainerView.pickerView selectedRowInComponent:0];
+    
+    
+    _currentSearchCondition = (SearchCondition*)[[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
+    NSString *title = _currentSearchCondition.searchKey == nil ? @"[Unknown]": _currentSearchCondition.searchKey;
+    title = [title stringByAppendingFormat:@" - %@ - %@",[_currentSearchCondition getCategoryName], [_currentSearchCondition getLocationName]];
+    NSLog(@"Chosen: %@",title);
+    
+    [_pickerContainerView hidePickerContainerView];
+    _pickerContainerView = nil;
+    
+    [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
+    
+}
+
+- (IBAction)cancelButtonAction:(id)sender {
+    
+    [_pickerContainerView hidePickerContainerView];
+    _pickerContainerView = nil;
+    
+}
+
 #pragma -
+
+#pragma mark - Picker Delegate
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    return 40;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [[LeboncoinAgent shareAgent].searchConditions count];;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    SearchCondition *aCondition = (SearchCondition*)[[LeboncoinAgent shareAgent].searchConditions objectAtIndex:row];
+    NSString *title = aCondition.searchKey == nil ? @"[Unknown]": aCondition.searchKey;
+    title = [title stringByAppendingFormat:@" - %@ - %@",[aCondition getCategoryName], [aCondition getLocationName]];
+    return title;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+}
 @end

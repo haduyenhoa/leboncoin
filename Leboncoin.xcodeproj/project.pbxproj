@@ -53,6 +53,7 @@
 		ED1FEDF4186E51DC00DA47A5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF3186E51DC00DA47A5 /* CoreImage.framework */; };
 		ED1FEDF6186E51E200DA47A5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF5186E51E200DA47A5 /* CoreVideo.framework */; };
 		ED1FEDF8186E51F500DA47A5 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF7186E51F500DA47A5 /* libc++.dylib */; };
+		ED746E1C18F4C566001A61B8 /* PKHPickerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED746E1B18F4C566001A61B8 /* PKHPickerContainerView.m */; };
 		ED85D01A18C7E17A0004CAF4 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85D01918C7E17A0004CAF4 /* MainPageViewController.m */; };
 		ED85E3891863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E36E1863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m */; };
 		ED85E38A1863B8EF0073FC3C /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E3701863B8EF0073FC3C /* CXMLNode_CreationExtensions.m */; };
@@ -163,6 +164,8 @@
 		ED1FEDF3186E51DC00DA47A5 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		ED1FEDF5186E51E200DA47A5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		ED1FEDF7186E51F500DA47A5 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		ED746E1A18F4C566001A61B8 /* PKHPickerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKHPickerContainerView.h; sourceTree = "<group>"; };
+		ED746E1B18F4C566001A61B8 /* PKHPickerContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKHPickerContainerView.m; sourceTree = "<group>"; };
 		ED85D01818C7E17A0004CAF4 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		ED85D01918C7E17A0004CAF4 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		ED85E36D1863B8EF0073FC3C /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
@@ -421,9 +424,19 @@
 			path = tessdata;
 			sourceTree = "<group>";
 		};
+		ED746E1918F4C566001A61B8 /* PKHPicker */ = {
+			isa = PBXGroup;
+			children = (
+				ED746E1A18F4C566001A61B8 /* PKHPickerContainerView.h */,
+				ED746E1B18F4C566001A61B8 /* PKHPickerContainerView.m */,
+			);
+			path = PKHPicker;
+			sourceTree = "<group>";
+		};
 		ED85E36A1863B8EF0073FC3C /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				ED746E1918F4C566001A61B8 /* PKHPicker */,
 				EDF0384018C16F4E0038B074 /* AFNetworking */,
 				EDF0383918C16C300038B074 /* MHFacebookImageViewer.h */,
 				EDF0383A18C16C300038B074 /* MHFacebookImageViewer.m */,
@@ -708,6 +721,7 @@
 				EDFB0245186651EE0027AAC8 /* SearchLinkGenerator.m in Sources */,
 				EDD765DB186CE35200C283C6 /* ModelController.m in Sources */,
 				ED1516201863B694008F04BD /* FlipsideViewController.m in Sources */,
+				ED746E1C18F4C566001A61B8 /* PKHPickerContainerView.m in Sources */,
 				EDF0385418C16F4E0038B074 /* AFHTTPClient.m in Sources */,
 				ED15161D1863B694008F04BD /* SearchResultViewController.m in Sources */,
 				ED85E3A31863C5F40073FC3C /* HTMLParser.m in Sources */,
