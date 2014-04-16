@@ -22,6 +22,9 @@
     SearchCondition *_currentSearchCondition;
     
     BOOL _isSearchEnabled;
+    
+    int numberOfPages;
+    int currentPage;
 }
 
 @end
@@ -52,6 +55,8 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tblSearch.alpha  = 0.0;
+    
+    currentPage = 1;
     
     [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
 }
@@ -133,13 +138,15 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self enableSearch:YES];
     }];
-
     
     _currentSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     [self performSelectorInBackground:@selector(threadRenewSearch:) withObject:_currentSearchCondition];
 }
 
 -(void)threadRenewSearch:(SearchCondition*)aCondition {
+    //edit currentpage
+    aCondition.page = currentPage;
+    
     NSString *title = aCondition.searchKey == nil ? @"[Unknown]": aCondition.searchKey;
     title = [title stringByAppendingFormat:@" - %@ - %@",[aCondition getCategoryName], [aCondition getLocationName]];
     
@@ -181,70 +188,102 @@
 //    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     
     NSArray *listResultForCurrentSearch = [dictResult valueForKey:_currentSearchCondition.uuid];
-    return listResultForCurrentSearch.count;
+    if (listResultForCurrentSearch  && listResultForCurrentSearch.count > 0) {
+        return listResultForCurrentSearch.count + 1;
+    } else {
+        return 0;
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnnonceCellId"];
-//    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
+    UITableViewCell *cell = nil;
     
     NSArray *listAnnonce = [dictResult valueForKey:_currentSearchCondition.uuid];
-
-    Annonce *anAnnonce = [listAnnonce objectAtIndex:indexPath.row];
     
-    UILabel *annonceTitleLabel = (UILabel*)[cell viewWithTag:2];
-    annonceTitleLabel.text = anAnnonce.title;
-    
-    UILabel *annonceDateLabel = (UILabel*)[cell viewWithTag:3];
-    annonceDateLabel.text = anAnnonce.dateStr;
-    
-    UILabel *annonceLocation = (UILabel*)[cell viewWithTag:4];
-    annonceLocation.text = anAnnonce.location;
-    
-    UILabel *annoncePrice = (UILabel*)[cell viewWithTag:5];
-    annoncePrice.text = anAnnonce.price;
-    
-    UIImageView *annonceImage = (UIImageView*)[cell viewWithTag:1];
-    
-    //configure cell background
-    if (anAnnonce.linkImage) {
-        if ([dictImage valueForKey:anAnnonce.linkImage]) {
-            [annonceImage setImage:[dictImage valueForKey:anAnnonce.linkImage]];
-        } else if (anAnnonce.linkImage != nil && ![anAnnonce.linkImage isEqualToString:@""]){
-            dispatch_async(dispatch_queue_create("com.company.app.imageQueue", NULL), ^{
-                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:anAnnonce.linkImage]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (imageData) {
-                        [dictImage setValue:[UIImage imageWithData:imageData] forKey:anAnnonce.linkImage];
-                        [annonceImage setImage:[dictImage valueForKey:anAnnonce.linkImage]];
-                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                    } else {
-                        [annonceImage setImage:[UIImage imageNamed:@"unknownImage.png"]];
-                    }
+    if (indexPath.row < listAnnonce.count) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"AnnonceCellId"];
+        Annonce *anAnnonce = [listAnnonce objectAtIndex:indexPath.row];
+        
+        UILabel *annonceTitleLabel = (UILabel*)[cell viewWithTag:2];
+        annonceTitleLabel.text = anAnnonce.title;
+        
+        UILabel *annonceDateLabel = (UILabel*)[cell viewWithTag:3];
+        annonceDateLabel.text = anAnnonce.dateStr;
+        
+        UILabel *annonceLocation = (UILabel*)[cell viewWithTag:4];
+        annonceLocation.text = anAnnonce.location;
+        
+        UILabel *annoncePrice = (UILabel*)[cell viewWithTag:5];
+        annoncePrice.text = anAnnonce.price;
+        
+        UIImageView *annonceImage = (UIImageView*)[cell viewWithTag:1];
+        
+        //configure cell background
+        if (anAnnonce.linkImage) {
+            if ([dictImage valueForKey:anAnnonce.linkImage]) {
+                [annonceImage setImage:[dictImage valueForKey:anAnnonce.linkImage]];
+            } else if (anAnnonce.linkImage != nil && ![anAnnonce.linkImage isEqualToString:@""]){
+                dispatch_async(dispatch_queue_create("com.company.app.imageQueue", NULL), ^{
+                    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:anAnnonce.linkImage]];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (imageData) {
+                            [dictImage setValue:[UIImage imageWithData:imageData] forKey:anAnnonce.linkImage];
+                            [annonceImage setImage:[dictImage valueForKey:anAnnonce.linkImage]];
+                            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                        } else {
+                            [annonceImage setImage:[UIImage imageNamed:@"unknownImage.png"]];
+                        }
+                    });
                 });
-            });
+            } else {
+                [annonceImage setImage:[UIImage imageNamed:@"unknownImage.png"]];
+            }
         } else {
             [annonceImage setImage:[UIImage imageNamed:@"unknownImage.png"]];
         }
     } else {
-        [annonceImage setImage:[UIImage imageNamed:@"unknownImage.png"]];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SearchPageNavigationCellId"];
+        if (currentPage == 1) {
+            [cell viewWithTag:1001].alpha = 0;
+            [cell viewWithTag:1002].alpha = 0;
+        } else {
+            [cell viewWithTag:1001].alpha = 1.0;
+            [cell viewWithTag:1002].alpha = 1.0;
+        }
+        NSLog(@"for next & previous line");
     }
-//    
-//    if (indexPath.row % 2 == 0) {
-//        cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.4];
-//    } else {
-//        cell.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.4];
-//    }
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    SearchCondition *aSearchCondition = [[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
-    
     NSArray *listAnnonce = [dictResult valueForKey:_currentSearchCondition.uuid];
-    Annonce *anAnnonce = [listAnnonce objectAtIndex:indexPath.row];
-    [self showAnonceDetail:anAnnonce];
+    if (indexPath.row < listAnnonce.count) {
+        Annonce *anAnnonce = [listAnnonce objectAtIndex:indexPath.row];
+        [self showAnonceDetail:anAnnonce];
+    }
+}
+
+-(IBAction)nextPage:(id)sender {
+    currentPage++;
+    NSLog(@"go to page %d",currentPage);
+    
+    [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
+}
+
+-(IBAction)previousPage:(id)sender {
+    currentPage--;
+    currentPage = MAX(1, currentPage);
+    NSLog(@"go to page %d",currentPage-1);
+    
+    [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
+}
+
+-(IBAction)firstPage:(id)sender {
+    currentPage = 1;
+    NSLog(@"goto first page");
+    
+    [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
 }
 #pragma -
 
@@ -355,6 +394,7 @@
 #pragma mark Actions
 -(IBAction)nextSearch:(id)sender {
     self.pageIndex++;
+    currentPage = 1;
     self.pageIndex = MIN((int)[LeboncoinAgent shareAgent].searchConditions.count-1, self.pageIndex);
     
     [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
@@ -362,6 +402,7 @@
 
 -(IBAction)previousSearch:(id)sender {
     self.pageIndex --;
+    currentPage = 1;
     self.pageIndex = MAX(0, self.pageIndex);
     
     [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
@@ -397,7 +438,7 @@
 
 - (IBAction)doneButtonAction:(id)sender {
     self.pageIndex = [_pickerContainerView.pickerView selectedRowInComponent:0];
-    
+    currentPage = 1;
     
     _currentSearchCondition = (SearchCondition*)[[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     NSString *title = _currentSearchCondition.searchKey == nil ? @"[Unknown]": _currentSearchCondition.searchKey;

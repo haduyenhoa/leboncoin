@@ -32,6 +32,9 @@
 @property (nonatomic) IBOutlet UIButton *btnShowMaps;
 @property (nonatomic) IBOutlet UILabel *lblCity;
 
+@property (nonatomic) IBOutlet UILabel *lblSellerName;
+@property (nonatomic) IBOutlet UIButton *btnCallInDetail;
+
 - (void)imageClicked:(UIGestureRecognizer *)gesture;
 
 

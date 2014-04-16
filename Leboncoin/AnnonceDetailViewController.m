@@ -86,6 +86,7 @@
         float width = 292;
         UITextView *tv = [[UITextView alloc] initWithFrame:CGRectMake(originalX, originalY, width, contentSize)];
         tv.attributedText = attributedString;
+        tv.editable = NO;
         [tv setScrollEnabled:NO];
         [tv sizeToFit];
         [tv layoutIfNeeded];

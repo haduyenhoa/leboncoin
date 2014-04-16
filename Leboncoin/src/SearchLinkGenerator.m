@@ -101,9 +101,9 @@ static SearchLinkGenerator *_shareSLG;
     
     
     if (aCondition.page > 1) {
-        result = [result stringByAppendingFormat:@"?o=%d",aCondition.page];
+        result = [result stringByAppendingFormat:@"?f=p&o=%d",aCondition.page];
     } else {
-        result = [result stringByAppendingFormat:@"?f=a&th=1"];
+        result = [result stringByAppendingFormat:@"?f=p&th=1"];
     }
     
     //only search in title

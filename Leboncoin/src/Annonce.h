@@ -18,5 +18,7 @@
 @property (nonatomic) NSString *linkImage;
 @property (nonatomic) NSString *location;
 @property (nonatomic) NSString *price;
+@property (nonatomic) NSString *htmlContent;
+@property (nonatomic) NSString *textContent;
 
 @end
