@@ -14,6 +14,8 @@
 
 #import "Tesseract.h"
 
+#import "TouchXML.h"
+
 static LeboncoinAgent *_shareAgent;
 
 @implementation LeboncoinAgent
@@ -31,118 +33,263 @@ static LeboncoinAgent *_shareAgent;
     if (self) {
 
         
-        //create an annonce
-        SearchCondition *cabasseCondition = [[SearchCondition alloc] init];
-        cabasseCondition.page = 1;
-        cabasseCondition.searchCategory = SC_IMAGE_SON;
-        cabasseCondition.searchRegion = SL_LA_FRANCE;
-        cabasseCondition.searchKey = @"cabasse";
+//        //create an annonce
+//        SearchCondition *cabasseCondition = [[SearchCondition alloc] init];
+//        cabasseCondition.page = 1;
+//        cabasseCondition.searchCategory = SC_IMAGE_SON;
+//        cabasseCondition.searchRegion = SL_LA_FRANCE;
+//        cabasseCondition.searchKey = @"cabasse";
+//        
+//        SearchCondition *tannoyCondition = [[SearchCondition alloc] init];
+//        tannoyCondition.page = 1;
+//        tannoyCondition.searchCategory = SC_IMAGE_SON;
+//        tannoyCondition.searchRegion = SL_LA_FRANCE;
+//        tannoyCondition.searchKey = @"tannoy";
+//        
+//        SearchCondition *thielCondition = [[SearchCondition alloc] init];
+//        thielCondition.page = 1;
+//        thielCondition.searchCategory = SC_IMAGE_SON;
+//        thielCondition.searchRegion = SL_LA_FRANCE;
+//        thielCondition.searchKey = @"thiel";
+//        
+//        SearchCondition *sansuiCondition = [[SearchCondition alloc] init];
+//        sansuiCondition.page = 1;
+//        sansuiCondition.searchCategory = SC_IMAGE_SON;
+//        sansuiCondition.searchRegion = SL_LA_FRANCE;
+//        sansuiCondition.searchKey = @"sansui";
+//        
+//        SearchCondition *regaCondition = [[SearchCondition alloc] init];
+//        regaCondition.page = 1;
+//        regaCondition.searchCategory = SC_IMAGE_SON;
+//        regaCondition.searchRegion = SL_LA_FRANCE;
+//        regaCondition.searchKey = @"rega";
+//        
+//        SearchCondition *linnCondition = [[SearchCondition alloc] init];
+//        linnCondition.page = 1;
+//        linnCondition.searchCategory = SC_IMAGE_SON;
+//        linnCondition.searchRegion = SL_LA_FRANCE;
+//        linnCondition.searchKey = @"linn";
+//        
+//        SearchCondition *aristonCondition = [[SearchCondition alloc] init];
+//        aristonCondition.page = 1;
+//        aristonCondition.searchCategory = SC_IMAGE_SON;
+//        aristonCondition.searchRegion = SL_LA_FRANCE;
+//        aristonCondition.searchKey = @"ariston";
+//        
+//        SearchCondition *transcriptorCondition = [[SearchCondition alloc] init];
+//        transcriptorCondition.page = 1;
+//        transcriptorCondition.searchCategory = SC_IMAGE_SON;
+//        transcriptorCondition.searchRegion = SL_LA_FRANCE;
+//        transcriptorCondition.searchKey = @"transcriptor";
+//        
+//        SearchCondition *michellCondition = [[SearchCondition alloc] init];
+//        michellCondition.page = 1;
+//        michellCondition.searchCategory = SC_IMAGE_SON;
+//        michellCondition.searchRegion = SL_LA_FRANCE;
+//        michellCondition.searchKey = @"michell";
+//        
+//        SearchCondition *mcintoshCondition = [[SearchCondition alloc] init];
+//        mcintoshCondition.page = 1;
+//        mcintoshCondition.searchCategory = SC_IMAGE_SON;
+//        mcintoshCondition.searchRegion = SL_LA_FRANCE;
+//        mcintoshCondition.searchKey = @"mcintosh";
+//        
+//        SearchCondition *iphone5sCondition = [[SearchCondition alloc] init];
+//        iphone5sCondition.page = 1;
+//        iphone5sCondition.searchCategory = SC_TELEPHONE;
+//        iphone5sCondition.searchRegion = SL_ILE_DE_FRANCE;
+//        iphone5sCondition.searchKey = @"iphone 5s";
+//        
+//        SearchCondition *tomtoGoCondition = [[SearchCondition alloc] init];
+//        tomtoGoCondition.page = 1;
+//        tomtoGoCondition.searchCategory = SC_EQUIPEMENT_AUTO;
+//        tomtoGoCondition.searchRegion = SL_ILE_DE_FRANCE;
+//        tomtoGoCondition.searchKey = @"tomtom go";
+//        
+//        SearchCondition *dysonSearch = [[SearchCondition alloc] init];
+//        dysonSearch.page = 1;
+//        dysonSearch.searchCategory = SC_ELECTROMENAGER;
+//        dysonSearch.searchRegion = SL_LA_FRANCE;
+//        dysonSearch.searchKey = @"dyson";
+//        
+//        SearchCondition *demenagementCondition = [[SearchCondition alloc] init];
+//        demenagementCondition.page = 1;
+//        demenagementCondition.searchCategory = SC_IMAGE_SON;
+//        demenagementCondition.searchRegion = SL_LA_FRANCE;
+//        demenagementCondition.searchKey = @"demenagement";
+//        
+//        SearchCondition *demenagementAllCatCondition = [[SearchCondition alloc] init];
+//        demenagementAllCatCondition.page = 1;
+//        demenagementAllCatCondition.searchCategory = SC_ALL;
+//        demenagementAllCatCondition.searchRegion = SL_LA_FRANCE;
+//        demenagementAllCatCondition.searchKey = @"demenagement";
+//        
+//        SearchCondition *neilYoungCondition = [[SearchCondition alloc] init];
+//        neilYoungCondition.page = 1;
+//        neilYoungCondition.searchCategory = SC_MUSIC;
+//        neilYoungCondition.searchRegion = SL_LA_FRANCE;
+//        neilYoungCondition.searchKey = @"neil young";
+//        
+//        SearchCondition *ericClaptonCondition = [[SearchCondition alloc] init];
+//        ericClaptonCondition.page = 1;
+//        ericClaptonCondition.searchCategory = SC_MUSIC;
+//        ericClaptonCondition.searchRegion = SL_LA_FRANCE;
+//        ericClaptonCondition.searchKey = @"eric clapton";
+//        
+//        SearchCondition *vinylesCondition = [[SearchCondition alloc] init];
+//        vinylesCondition.page = 1;
+//        vinylesCondition.searchCategory = SC_MUSIC;
+//        vinylesCondition.searchRegion = SL_LA_FRANCE;
+//        vinylesCondition.searchKey = @"vinyles";
+//        
+//        self.searchConditions = [NSArray arrayWithObjects:cabasseCondition, thielCondition, tannoyCondition, regaCondition, michellCondition, demenagementCondition, dysonSearch, sansuiCondition, iphone5sCondition, mcintoshCondition, transcriptorCondition, aristonCondition, linnCondition, tomtoGoCondition, demenagementAllCatCondition, neilYoungCondition, ericClaptonCondition, vinylesCondition, nil];
         
-        SearchCondition *tannoyCondition = [[SearchCondition alloc] init];
-        tannoyCondition.page = 1;
-        tannoyCondition.searchCategory = SC_IMAGE_SON;
-        tannoyCondition.searchRegion = SL_LA_FRANCE;
-        tannoyCondition.searchKey = @"tannoy";
+        NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"leboncoin.xml"];
         
-        SearchCondition *thielCondition = [[SearchCondition alloc] init];
-        thielCondition.page = 1;
-        thielCondition.searchCategory = SC_IMAGE_SON;
-        thielCondition.searchRegion = SL_LA_FRANCE;
-        thielCondition.searchKey = @"thiel";
+        [self getSearchConditionsFromFile:filePath];
         
-        SearchCondition *sansuiCondition = [[SearchCondition alloc] init];
-        sansuiCondition.page = 1;
-        sansuiCondition.searchCategory = SC_IMAGE_SON;
-        sansuiCondition.searchRegion = SL_LA_FRANCE;
-        sansuiCondition.searchKey = @"sansui";
-        
-        SearchCondition *regaCondition = [[SearchCondition alloc] init];
-        regaCondition.page = 1;
-        regaCondition.searchCategory = SC_IMAGE_SON;
-        regaCondition.searchRegion = SL_LA_FRANCE;
-        regaCondition.searchKey = @"rega";
-        
-        SearchCondition *linnCondition = [[SearchCondition alloc] init];
-        linnCondition.page = 1;
-        linnCondition.searchCategory = SC_IMAGE_SON;
-        linnCondition.searchRegion = SL_LA_FRANCE;
-        linnCondition.searchKey = @"linn";
-        
-        SearchCondition *aristonCondition = [[SearchCondition alloc] init];
-        aristonCondition.page = 1;
-        aristonCondition.searchCategory = SC_IMAGE_SON;
-        aristonCondition.searchRegion = SL_LA_FRANCE;
-        aristonCondition.searchKey = @"ariston";
-        
-        SearchCondition *transcriptorCondition = [[SearchCondition alloc] init];
-        transcriptorCondition.page = 1;
-        transcriptorCondition.searchCategory = SC_IMAGE_SON;
-        transcriptorCondition.searchRegion = SL_LA_FRANCE;
-        transcriptorCondition.searchKey = @"transcriptor";
-        
-        SearchCondition *michellCondition = [[SearchCondition alloc] init];
-        michellCondition.page = 1;
-        michellCondition.searchCategory = SC_IMAGE_SON;
-        michellCondition.searchRegion = SL_LA_FRANCE;
-        michellCondition.searchKey = @"michell";
-        
-        SearchCondition *mcintoshCondition = [[SearchCondition alloc] init];
-        mcintoshCondition.page = 1;
-        mcintoshCondition.searchCategory = SC_IMAGE_SON;
-        mcintoshCondition.searchRegion = SL_LA_FRANCE;
-        mcintoshCondition.searchKey = @"mcintosh";
-        
-        SearchCondition *iphone5sCondition = [[SearchCondition alloc] init];
-        iphone5sCondition.page = 1;
-        iphone5sCondition.searchCategory = SC_TELEPHONE;
-        iphone5sCondition.searchRegion = SL_ILE_DE_FRANCE;
-        iphone5sCondition.searchKey = @"iphone 5s";
-        
-        SearchCondition *tomtoGoCondition = [[SearchCondition alloc] init];
-        tomtoGoCondition.page = 1;
-        tomtoGoCondition.searchCategory = SC_EQUIPEMENT_AUTO;
-        tomtoGoCondition.searchRegion = SL_ILE_DE_FRANCE;
-        tomtoGoCondition.searchKey = @"tomtom go";
-        
-        SearchCondition *dysonSearch = [[SearchCondition alloc] init];
-        dysonSearch.page = 1;
-        dysonSearch.searchCategory = SC_ELECTROMENAGER;
-        dysonSearch.searchRegion = SL_LA_FRANCE;
-        dysonSearch.searchKey = @"dyson";
-        
-        SearchCondition *demenagementCondition = [[SearchCondition alloc] init];
-        demenagementCondition.page = 1;
-        demenagementCondition.searchCategory = SC_IMAGE_SON;
-        demenagementCondition.searchRegion = SL_LA_FRANCE;
-        demenagementCondition.searchKey = @"demenagement";
-        
-        SearchCondition *demenagementAllCatCondition = [[SearchCondition alloc] init];
-        demenagementAllCatCondition.page = 1;
-        demenagementAllCatCondition.searchCategory = SC_ALL;
-        demenagementAllCatCondition.searchRegion = SL_LA_FRANCE;
-        demenagementAllCatCondition.searchKey = @"demenagement";
-        
-        SearchCondition *neilYoungCondition = [[SearchCondition alloc] init];
-        neilYoungCondition.page = 1;
-        neilYoungCondition.searchCategory = SC_MUSIC;
-        neilYoungCondition.searchRegion = SL_LA_FRANCE;
-        neilYoungCondition.searchKey = @"neil young";
-        
-        SearchCondition *ericClaptonCondition = [[SearchCondition alloc] init];
-        ericClaptonCondition.page = 1;
-        ericClaptonCondition.searchCategory = SC_MUSIC;
-        ericClaptonCondition.searchRegion = SL_LA_FRANCE;
-        ericClaptonCondition.searchKey = @"eric clapton";
-        
-        SearchCondition *vinylesCondition = [[SearchCondition alloc] init];
-        vinylesCondition.page = 1;
-        vinylesCondition.searchCategory = SC_MUSIC;
-        vinylesCondition.searchRegion = SL_LA_FRANCE;
-        vinylesCondition.searchKey = @"vinyles";
-        
-        self.searchConditions = [NSArray arrayWithObjects:cabasseCondition, thielCondition, tannoyCondition, regaCondition, michellCondition, demenagementCondition, dysonSearch, sansuiCondition, iphone5sCondition, mcintoshCondition, transcriptorCondition, aristonCondition, linnCondition, tomtoGoCondition, demenagementAllCatCondition, neilYoungCondition, ericClaptonCondition, vinylesCondition, nil];
+//        [self saveSearchConditions:self.searchConditions toFile:filePath];
     }
     return self;
+}
+
+-(void)getSearchConditionsFromFile:(NSString*)filePath {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSLog(@"files %@ does not exist",filePath);
+        return;
+    }
+    
+    NSMutableArray *searchConditions  = [[NSMutableArray alloc] init];
+    
+    NSError *readXmlError;
+    CXMLDocument *doc = [[CXMLDocument alloc] initWithData:[NSData dataWithContentsOfFile:filePath] encoding:NSUTF8StringEncoding options:0 error:&readXmlError];
+    if (doc == nil || readXmlError) {
+        NSLog(@"Cannot get content: %@", readXmlError? readXmlError.localizedDescription : @"");
+        return;
+    }
+    
+    CXMLElement *root = doc.rootElement;
+    if (root) {
+        for (CXMLElement *aSearchElement in [root elementsForName:@"SearchCondition"]) {
+            SearchCondition *aSearchCondition = [[SearchCondition alloc] init];
+            
+            //get page
+            CXMLElement *pageElement = nil;
+            NSArray *temp = [aSearchElement elementsForName:@"Page"];
+            if (temp && temp.count > 0) {
+                pageElement = [temp firstObject];
+            }
+            aSearchCondition.page = pageElement.stringValue == nil ? 0 : pageElement.stringValue.intValue;
+            
+            //get search category
+            CXMLElement *searchCategoryElement = nil;
+            temp = [aSearchElement elementsForName:@"Category"];
+            if (temp && temp.count > 0) {
+                searchCategoryElement = [temp firstObject];
+            }
+            aSearchCondition.searchCategory = searchCategoryElement.stringValue == nil ? 0 : searchCategoryElement.stringValue.intValue;
+            
+            //get region
+            CXMLElement *searchRegionElement = nil;
+            temp = [aSearchElement elementsForName:@"Region"];
+            if (temp && temp.count > 0) {
+                searchRegionElement = [temp firstObject];
+            }
+            aSearchCondition.searchRegion = searchRegionElement.stringValue == nil ? 0 : searchRegionElement.stringValue.intValue;
+            
+            //get key
+            CXMLElement *searchKeyElement = nil;
+            temp = [aSearchElement elementsForName:@"Key"];
+            if (temp && temp.count > 0) {
+                searchKeyElement = [temp firstObject];
+            }
+            aSearchCondition.searchKey = searchKeyElement.stringValue == nil ? @"" : searchKeyElement.stringValue;
+            
+            //get search in title
+            CXMLElement *searchInTitleOnlyElement = nil;
+            temp = [aSearchElement elementsForName:@"SearchInTitleOnly"];
+            if (temp && temp.count > 0) {
+                searchInTitleOnlyElement = [temp firstObject];
+                
+                aSearchCondition.searchInTitleOnly = searchInTitleOnlyElement.stringValue == nil ? NO : searchInTitleOnlyElement.stringValue.boolValue;
+            } else {
+                aSearchCondition.searchInTitleOnly = NO;
+            }
+            
+            //get search in title
+            CXMLElement *searchCodePostalElement = nil;
+            temp = [aSearchElement elementsForName:@"CodePostal"];
+            if (temp && temp.count > 0) {
+                searchCodePostalElement = [temp firstObject];
+                
+                if (searchCodePostalElement.stringValue) {
+                    aSearchCondition.searchCodePostal = searchCodePostalElement.stringValue.intValue;
+                }
+            } else {
+                
+            }
+            
+            //get ME
+            CXMLElement *meElement = nil;
+            temp = [aSearchElement elementsForName:@"ME"];
+            if (temp && temp.count > 0) {
+                meElement = [temp firstObject];
+                
+                if (meElement.stringValue) {
+                    aSearchCondition.me = meElement.stringValue.intValue;
+                }
+            } else {
+                
+            }
+            
+            //get RS
+            CXMLElement *rsElement = nil;
+            temp = [aSearchElement elementsForName:@"RS"];
+            if (temp && temp.count > 0) {
+                rsElement = [temp firstObject];
+                
+                if (rsElement.stringValue) {
+                    aSearchCondition.rs = rsElement.stringValue.intValue;
+                }
+            } else {
+                
+            }
+            
+            [searchConditions addObject:aSearchCondition];
+        }
+    }
+    
+    self.searchConditions = searchConditions;
+}
+
+-(void)saveSearchConditions:(NSArray*)searchConditions toFile:(NSString*)filePath {
+    NSString *xmlDoc = @"<Leboncoin>\n";
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSLog(@"remove old file at %@",filePath);
+        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+    }
+    
+    for (SearchCondition *aSC in searchConditions) {
+        xmlDoc = [xmlDoc stringByAppendingString:@"\t<SearchCondition>\n"];
+        xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<Page>%d</Page>\n",aSC.page];
+        xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<Category>%d</Category>\n",aSC.searchCategory];
+        xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<Region>%d</Region>\n",aSC.searchRegion];
+        xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<Key>%@</Key>\n",aSC.searchKey];
+        xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<SearchInTitleOnly>%@</SearchInTitleOnly>\n",aSC.searchInTitleOnly ? @"true" : @"false"];
+        if (aSC.searchCodePostal > 0) {
+            xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<CodePostal>%d</CodePostal>\n",aSC.searchCodePostal];
+        }
+        if (aSC.rs) {
+            xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<RS>%d</RS>\n",aSC.rs];
+        }
+        if (aSC.me) {
+            xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<ME>%d</ME>\n",aSC.me];
+        }
+        xmlDoc = [xmlDoc stringByAppendingString:@"\t</SearchCondition>\n"];
+    }
+    xmlDoc = [xmlDoc stringByAppendingString:@"</Leboncoin>"];
+    
+    [xmlDoc writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 -(void)beginSchedule {
@@ -737,20 +884,20 @@ static LeboncoinAgent *_shareAgent;
         }
     }
     
-    NSData *dataPhoneNumber = nil;
-    NSString *phoneNumberLink = [self getPhoneImageLink:annonceId];
-    if (phoneNumberLink) {
-        dataPhoneNumber = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:phoneNumberLink]] returningResponse:nil error:nil];
-        if (dataPhoneNumber) {
-            Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
-            [tesseract setVariableValue:@"0123456789" forKey:@"tessedit_char_whitelist"];
-            [tesseract setImage:[UIImage imageWithData:dataPhoneNumber]];
-            [tesseract recognize];
-            
-            NSLog(@"v: %@ - %@", [Tesseract version],  [tesseract recognizedText]);
-            [tesseract clear];
-        }
-    }
+//    NSData *dataPhoneNumber = nil;
+//    NSString *phoneNumberLink = [self getPhoneImageLink:annonceId];
+//    if (phoneNumberLink) {
+//        dataPhoneNumber = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:phoneNumberLink]] returningResponse:nil error:nil];
+//        if (dataPhoneNumber) {
+//            Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
+//            [tesseract setVariableValue:@"0123456789" forKey:@"tessedit_char_whitelist"];
+//            [tesseract setImage:[UIImage imageWithData:dataPhoneNumber]];
+//            [tesseract recognize];
+//            
+//            NSLog(@"v: %@ - %@", [Tesseract version],  [tesseract recognizedText]);
+//            [tesseract clear];
+//        }
+//    }
     
     if (contentNodes && contentNodes.count == 1) {
         HTMLNode *foundContentNode = [contentNodes objectAtIndex:0];
@@ -760,10 +907,10 @@ static LeboncoinAgent *_shareAgent;
 //        NSLog(@"content: %@",foundContentNode.rawContents);
         result.annonceId = annonceId;
         result.imageLink = listImage;
-        result.telephoneNumberImageLink = phoneNumberLink;
-        if (dataPhoneNumber) {
-            result.imgPhoneNumber = [UIImage imageWithData:dataPhoneNumber];
-        }
+//        result.telephoneNumberImageLink = phoneNumberLink;
+//        if (dataPhoneNumber) {
+//            result.imgPhoneNumber = [UIImage imageWithData:dataPhoneNumber];
+//        }
         result.ville = ville;
         result.postalCode = codePostal;
         result.annonceData = annonceData;

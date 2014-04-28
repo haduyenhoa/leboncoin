@@ -25,6 +25,9 @@
 
 -(NSArray*)search:(SearchCondition*)aCondition;
 
+-(void)getSearchConditionsFromFile:(NSString*)filePath;
+-(void)saveSearchConditions:(NSArray*)searchConditions toFile:(NSString*)filePath ;
+
 -(AnnonceDetail*)getAnnonceDetailFromJson:(Annonce*)anAnnonce;
 -(AnnonceDetail*)getAnnonceDetail:(Annonce*)anAnnonce;
 @end

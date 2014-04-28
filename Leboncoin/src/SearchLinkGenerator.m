@@ -65,6 +65,11 @@ static SearchLinkGenerator *_shareSLG;
             result = @"http://www.leboncoin.fr/cd_musique/offres/";
         }
             break;
+        case SC_AUTO:
+        {
+            result = @"http://www.leboncoin.fr/voitures/offres/";
+        }
+            break;
         default:
         {
             //ALL
@@ -89,6 +94,11 @@ static SearchLinkGenerator *_shareSLG;
         case SL_PARIS:
         {
             result = [result stringByAppendingString:@"paris/"];
+        }
+            break;
+        case SL_VOISIN_IDF:
+        {
+            result = [result stringByAppendingString:@"bonnes_affaires/"];
         }
             break;
             
@@ -119,6 +129,14 @@ static SearchLinkGenerator *_shareSLG;
     
     if (aCondition.searchCodePostal > 9999) { //code postale France has 5 digits
         result = [result stringByAppendingFormat:@"&location=%d",aCondition.searchCodePostal];
+    }
+    
+    if (aCondition.rs > 0) {
+        result = [result stringByAppendingFormat:@"&rs=%d",aCondition.rs];
+    }
+    
+    if (aCondition.me > 0) {
+        result = [result stringByAppendingFormat:@"&me=%d",aCondition.me];
     }
     
     return result;

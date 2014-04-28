@@ -12,7 +12,8 @@ enum SearchLocation {
     SL_LA_FRANCE = 0,
     SL_PARIS = 1,
     SL_ILE_DE_FRANCE = 2,
-    SL_HAUT_DE_SEINE = 3
+    SL_HAUT_DE_SEINE = 3,
+    SL_VOISIN_IDF = 100
     
 };
 
@@ -24,7 +25,8 @@ enum SearchCategory {
     SC_TELEPHONE = 4,
     SC_ELECTROMENAGER = 5,
     SC_EQUIPEMENT_AUTO = 6,
-    SC_MUSIC = 7
+    SC_MUSIC = 7,
+    SC_AUTO = 8
 };
 
 
@@ -34,6 +36,8 @@ enum SearchCategory {
 @property (nonatomic) NSString *searchKey;
 @property (nonatomic) int searchRegion;
 @property (nonatomic) int searchCodePostal;
+@property (nonatomic) int rs; //min year
+@property (nonatomic) int me; //model
 @property (nonatomic) int searchCategory;
 @property (nonatomic) int page;
 @property (nonatomic) BOOL searchInTitleOnly;

@@ -53,6 +53,7 @@
 		ED1FEDF4186E51DC00DA47A5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF3186E51DC00DA47A5 /* CoreImage.framework */; };
 		ED1FEDF6186E51E200DA47A5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF5186E51E200DA47A5 /* CoreVideo.framework */; };
 		ED1FEDF8186E51F500DA47A5 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF7186E51F500DA47A5 /* libc++.dylib */; };
+		ED2EA60D190F16C70097A313 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2EA60C190F16C70097A313 /* SettingsViewController.m */; };
 		ED746E1C18F4C566001A61B8 /* PKHPickerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED746E1B18F4C566001A61B8 /* PKHPickerContainerView.m */; };
 		ED85D01A18C7E17A0004CAF4 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85D01918C7E17A0004CAF4 /* MainPageViewController.m */; };
 		ED85E3891863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E36E1863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m */; };
@@ -75,6 +76,7 @@
 		ED85E3A41863C5F40073FC3C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED85E3A11863C5F40073FC3C /* README.md */; };
 		ED85E3A71863DB300073FC3C /* Annonce.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E3A61863DB300073FC3C /* Annonce.m */; };
 		EDD765DB186CE35200C283C6 /* ModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD765DA186CE35200C283C6 /* ModelController.m */; };
+		EDDAD384190F118200FF974A /* leboncoin.xml in Resources */ = {isa = PBXBuildFile; fileRef = EDDAD383190F118200FF974A /* leboncoin.xml */; };
 		EDE2C472187639C200F9B895 /* SearchManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE2C471187639C200F9B895 /* SearchManagerViewController.m */; };
 		EDE2C475187639D300F9B895 /* SearchEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE2C474187639D300F9B895 /* SearchEditViewController.m */; };
 		EDF0383818C168940038B074 /* unknownImage.png in Resources */ = {isa = PBXBuildFile; fileRef = EDF0383718C168940038B074 /* unknownImage.png */; };
@@ -164,6 +166,8 @@
 		ED1FEDF3186E51DC00DA47A5 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		ED1FEDF5186E51E200DA47A5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		ED1FEDF7186E51F500DA47A5 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		ED2EA60B190F16C70097A313 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		ED2EA60C190F16C70097A313 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		ED746E1A18F4C566001A61B8 /* PKHPickerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKHPickerContainerView.h; sourceTree = "<group>"; };
 		ED746E1B18F4C566001A61B8 /* PKHPickerContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKHPickerContainerView.m; sourceTree = "<group>"; };
 		ED85D01818C7E17A0004CAF4 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 		ED85E3A61863DB300073FC3C /* Annonce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annonce.m; sourceTree = "<group>"; };
 		EDD765D9186CE35200C283C6 /* ModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelController.h; sourceTree = "<group>"; };
 		EDD765DA186CE35200C283C6 /* ModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelController.m; sourceTree = "<group>"; };
+		EDDAD383190F118200FF974A /* leboncoin.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = leboncoin.xml; sourceTree = "<group>"; };
 		EDE2C470187639C200F9B895 /* SearchManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchManagerViewController.h; sourceTree = "<group>"; };
 		EDE2C471187639C200F9B895 /* SearchManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchManagerViewController.m; sourceTree = "<group>"; };
 		EDE2C473187639D300F9B895 /* SearchEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEditViewController.h; sourceTree = "<group>"; };
@@ -302,6 +307,7 @@
 				ED1FEDBE186E3D3700DA47A5 /* libtesseract_all.a */,
 				EDF0383718C168940038B074 /* unknownImage.png */,
 				EDF0383C18C16C390038B074 /* Done.png */,
+				EDDAD383190F118200FF974A /* leboncoin.xml */,
 				EDF0383D18C16C390038B074 /* Done@2x.png */,
 				ED1FEDEB186E517800DA47A5 /* opencv2.framework */,
 				ED1516061863B694008F04BD /* Leboncoin */,
@@ -360,6 +366,8 @@
 				EDE2C471187639C200F9B895 /* SearchManagerViewController.m */,
 				EDE2C473187639D300F9B895 /* SearchEditViewController.h */,
 				EDE2C474187639D300F9B895 /* SearchEditViewController.m */,
+				ED2EA60B190F16C70097A313 /* SettingsViewController.h */,
+				ED2EA60C190F16C70097A313 /* SettingsViewController.m */,
 				ED15161E1863B694008F04BD /* FlipsideViewController.h */,
 				ED15161F1863B694008F04BD /* FlipsideViewController.m */,
 				ED1516211863B694008F04BD /* Images.xcassets */,
@@ -653,6 +661,7 @@
 				ED1FEDE6186E402000DA47A5 /* eng.cube.word-freq in Resources */,
 				ED1516221863B694008F04BD /* Images.xcassets in Resources */,
 				ED85E3A41863C5F40073FC3C /* README.md in Resources */,
+				EDDAD384190F118200FF974A /* leboncoin.xml in Resources */,
 				ED1FEDE3186E402000DA47A5 /* eng.cube.nn in Resources */,
 				ED1516141863B694008F04BD /* Main_iPhone.storyboard in Resources */,
 				ED1FEDE5186E402000DA47A5 /* eng.cube.size in Resources */,
@@ -683,6 +692,7 @@
 				EDF0385818C16F4E0038B074 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				ED85E3A21863C5F40073FC3C /* HTMLNode.m in Sources */,
 				ED85E3901863B8EF0073FC3C /* CXMLElement_ElementTreeExtensions.m in Sources */,
+				ED2EA60D190F16C70097A313 /* SettingsViewController.m in Sources */,
 				EDF0385518C16F4E0038B074 /* AFHTTPRequestOperation.m in Sources */,
 				ED1FEDBC186E3CF300DA47A5 /* Tesseract.mm in Sources */,
 				ED1FEDE2186E402000DA47A5 /* eng.cube.lm in Sources */,

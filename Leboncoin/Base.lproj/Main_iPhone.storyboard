@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KJW-Qw-LoW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KJW-Qw-LoW">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-2703" y="535"/>
         </scene>
-        <!--View Controller - Settings-->
+        <!--Settings View Controller - Settings-->
         <scene sceneID="WAG-rE-MUM">
             <objects>
-                <viewController id="gAq-GR-Tli" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingViewControllerId" id="gAq-GR-Tli" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yYc-Yo-J1E"/>
                         <viewControllerLayoutGuide type="bottom" id="BEm-Xs-qDj"/>
@@ -34,9 +34,24 @@
                     <view key="view" contentMode="scaleToFill" id="ZOm-xL-WW9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJt-OT-9ab">
+                                <rect key="frame" x="84" y="318" width="136" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update via dropbox">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateViaDropBox:" destination="gAq-GR-Tli" eventType="touchUpInside" id="wrD-Q5-ogI"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="V0T-fI-ehK"/>
+                    <connections>
+                        <outlet property="view" destination="ZOm-xL-WW9" id="c7D-LT-cnQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIZ-6g-pSe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

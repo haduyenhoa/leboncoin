@@ -61,6 +61,9 @@
         case SL_PARIS:
             return @"Paris" ;
             break;
+        case SL_VOISIN_IDF:
+            return @"Voisin IdF";
+            break;
         default:
             return @"La France";
             break;

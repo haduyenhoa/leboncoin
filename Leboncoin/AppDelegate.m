@@ -26,7 +26,24 @@
 //    
 //    [self performSelectorInBackground:@selector(prepareTessData) withObject:nil];
     
+    
+    [self prepareSearchConditions];
     return YES;
+}
+
+-(void)prepareSearchConditions {
+    NSString *leboncoinXmlPath = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"leboncoin.xml"];
+    NSString *leboncoinXmlBundlePath  = [[NSBundle mainBundle] pathForResource:@"leboncoin" ofType:@"xml"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:leboncoinXmlPath]
+        ) {
+        if (leboncoinXmlBundlePath) {
+            [[NSFileManager defaultManager] copyItemAtPath:leboncoinXmlBundlePath toPath:leboncoinXmlPath error:nil];
+        } else {
+            NSLog(@"Bundle does not have leboncoin.xml");
+        }
+    } else {
+        NSLog(@"file exist, do nothing");
+    }
 }
 
 -(void)prepareTessData {
