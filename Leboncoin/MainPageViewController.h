@@ -12,4 +12,6 @@
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
+-(void)jumpToPage:(int)pageIdx;
+
 @end

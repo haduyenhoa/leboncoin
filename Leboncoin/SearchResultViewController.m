@@ -439,6 +439,11 @@
     self.pageIndex = [_pickerContainerView.pickerView selectedRowInComponent:0];
     currentPage = 1;
     
+    if (self.controller) {
+        [self.controller jumpToPage:self.pageIndex];
+    }
+    
+    /*
     _currentSearchCondition = (SearchCondition*)[[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
     NSString *title = _currentSearchCondition.searchTitle == nil ? @"[Unknown]": _currentSearchCondition.searchTitle;
 //    title = [title stringByAppendingFormat:@" - %@ - %@",[_currentSearchCondition getCategoryName], [_currentSearchCondition getLocationName]];
@@ -448,7 +453,7 @@
     _pickerContainerView = nil;
     
     [self performSelectorInBackground:@selector(threadSearchCurrentIndex) withObject:nil];
-    
+    */
 }
 
 - (IBAction)cancelButtonAction:(id)sender {

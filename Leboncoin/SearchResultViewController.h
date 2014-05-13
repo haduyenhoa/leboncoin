@@ -11,6 +11,7 @@
 #import "ARCMacros.h"
 #import "FPPopoverKeyboardResponsiveController.h"
 #import "PKHPickerContainerView.h"
+#import "MainPageViewController.h"
 
 @interface SearchResultViewController : UIViewController <FlipsideViewControllerDelegate, UIPopoverControllerDelegate, UITableViewDataSource, UITableViewDelegate, FPPopoverControllerDelegate,UIPickerViewDataSource, UIPickerViewDelegate
 , UISearchBarDelegate
@@ -39,5 +40,7 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *constraintMainTable;
 
 @property NSUInteger pageIndex;
+
+@property (nonatomic) MainPageViewController *controller;
 
 @end

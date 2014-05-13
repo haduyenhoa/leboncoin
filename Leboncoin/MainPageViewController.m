@@ -10,7 +10,9 @@
 #import "SearchResultViewController.h"
 #import "LeboncoinAgent.h"
 
-@interface MainPageViewController ()
+@interface MainPageViewController () {
+    int _currentPageIndex;
+}
 
 @end
 
@@ -41,6 +43,8 @@
     // Change the size of page view controller
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 30);
     
+    _currentPageIndex = 0;
+    
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
@@ -53,24 +57,36 @@
 }
 
 -(void)jumpToPage:(int)pageIdx {
+    if (pageIdx == _currentPageIndex) {
+        return;
+    }
+    
     // Grab the viewControllers at position 4 & 5 - note, your model is responsible for providing these.
     // Technically, you could have them pre-made and passed in as an array containing the two items...
-    int firstIndex = 0;
-    int nextIndex = 1;
+    
+//    int firstIndex = 0;
+//    int nextIndex = 1;
+//    if (pageIdx > 0) {
+//        nextIndex = pageIdx;
+//        firstIndex = pageIdx-1;
+//    }
+
     SearchResultViewController *firstViewController = [self viewControllerAtIndex:pageIdx];
-    SearchResultViewController *secondViewController = [self viewControllerAtIndex:pageIdx];
+//    SearchResultViewController *secondViewController = [self viewControllerAtIndex:nextIndex];
     
     //  Set up the array that holds these guys...
     
     NSArray *viewControllers = nil;
     
-    viewControllers = [NSArray arrayWithObjects:firstViewController, secondViewController, nil];
+    viewControllers = [NSArray arrayWithObjects: firstViewController, nil];
     
     //  Now, tell the pageViewContoller to accept these guys and do the forward turn of the page.
     //  Again, forward is subjective - you could go backward.  Animation is optional but it's
     //  a nice effect for your audience.
     
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+    [self.pageViewController setViewControllers:viewControllers direction:pageIdx > _currentPageIndex ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    
+    _currentPageIndex = pageIdx;
     
     //  Voila' - c'est fin!
 }
@@ -83,9 +99,8 @@
     
     // Create a new view controller and pass suitable data.
     SearchResultViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchResultViewControllerId"];
-//    pageContentViewController.imageFile = self.pageImages[index];
-//    pageContentViewController.titleText = self.pageTitles[index];
     pageContentViewController.pageIndex = index;
+    pageContentViewController.controller = self;
     
     return pageContentViewController;
 }
@@ -101,6 +116,9 @@
     }
     
     index--;
+    
+    _currentPageIndex = index;
+    
     return [self viewControllerAtIndex:index];
 }
 
@@ -116,6 +134,9 @@
     if (index == [[LeboncoinAgent shareAgent].searchConditions count]) {
         return nil;
     }
+    
+    _currentPageIndex = index;
+    
     return [self viewControllerAtIndex:index];
 }
 
