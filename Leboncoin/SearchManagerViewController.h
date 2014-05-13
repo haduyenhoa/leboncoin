@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchManagerViewController : UIViewController
+@interface SearchManagerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic) IBOutlet UITableView *tblSearchConditions;
 
 @end

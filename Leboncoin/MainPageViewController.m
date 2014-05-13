@@ -52,6 +52,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)jumpToPage:(int)pageIdx {
+    // Grab the viewControllers at position 4 & 5 - note, your model is responsible for providing these.
+    // Technically, you could have them pre-made and passed in as an array containing the two items...
+    int firstIndex = 0;
+    int nextIndex = 1;
+    SearchResultViewController *firstViewController = [self viewControllerAtIndex:pageIdx];
+    SearchResultViewController *secondViewController = [self viewControllerAtIndex:pageIdx];
+    
+    //  Set up the array that holds these guys...
+    
+    NSArray *viewControllers = nil;
+    
+    viewControllers = [NSArray arrayWithObjects:firstViewController, secondViewController, nil];
+    
+    //  Now, tell the pageViewContoller to accept these guys and do the forward turn of the page.
+    //  Again, forward is subjective - you could go backward.  Animation is optional but it's
+    //  a nice effect for your audience.
+    
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+    
+    //  Voila' - c'est fin!
+}
+
 - (SearchResultViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if (([[LeboncoinAgent shareAgent].searchConditions count] == 0) || (index >= [[LeboncoinAgent shareAgent].searchConditions count])) {

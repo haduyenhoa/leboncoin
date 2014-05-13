@@ -3,6 +3,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>Cabasse FR</Title>
 		<Key>cabasse</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -10,6 +11,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>Thiel FR</Title>
 		<Key>thiel</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -17,6 +19,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>Tannoy FR</Title>
 		<Key>tannoy</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -24,6 +27,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>Rega FR</Title>
 		<Key>rega</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -31,6 +35,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>Michell FR</Title>
 		<Key>michell</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -38,6 +43,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>Demenagement FR</Title>
 		<Key>demenagement</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -45,6 +51,7 @@
 		<Page>1</Page>
 		<Category>5</Category>
 		<Region>0</Region>
+        <Title>Dyson FR</Title>
 		<Key>dyson</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -52,6 +59,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>Sansui FR</Title>
 		<Key>sansui</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -59,6 +67,7 @@
 		<Page>1</Page>
 		<Category>4</Category>
 		<Region>2</Region>
+        <Title>iPhone 5s IdF</Title>
 		<Key>iphone 5s</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -66,6 +75,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>McIntosh FR</Title>
 		<Key>mcintosh</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -73,6 +83,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>Transcriptor FR</Title>
 		<Key>transcriptor</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -80,6 +91,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>AristonFR</Title>
 		<Key>ariston</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -87,6 +99,7 @@
 		<Page>1</Page>
 		<Category>3</Category>
 		<Region>0</Region>
+        <Title>Linn LP12</Title>
 		<Key>linn</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -94,6 +107,7 @@
 		<Page>1</Page>
 		<Category>6</Category>
 		<Region>2</Region>
+        <Title>Tomtom Go</Title>
 		<Key>tomtom go</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -101,6 +115,7 @@
 		<Page>1</Page>
 		<Category>0</Category>
 		<Region>0</Region>
+        <Title>Demenagement all category</Title>
 		<Key>demenagement</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -109,12 +124,14 @@
 		<Category>7</Category>
 		<Region>0</Region>
 		<Key>neil young</Key>
+        <Title>Neil Young vinyles</Title>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
 	<SearchCondition>
 		<Page>1</Page>
 		<Category>7</Category>
 		<Region>0</Region>
+        <Title>Eric clapton vinyles</Title>
 		<Key>eric clapton</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>
@@ -122,6 +139,7 @@
 		<Page>1</Page>
 		<Category>7</Category>
 		<Region>0</Region>
+        <Title>All vinyles</Title>
 		<Key>vinyles</Key>
 		<SearchInTitleOnly>false</SearchInTitleOnly>
 	</SearchCondition>

@@ -33,6 +33,7 @@ enum SearchCategory {
 @interface SearchCondition : NSObject
 
 @property (nonatomic) NSString *uuid;
+@property (nonatomic) NSString *searchTitle;
 @property (nonatomic) NSString *searchKey;
 @property (nonatomic) int searchRegion;
 @property (nonatomic) int searchCodePostal;
@@ -41,8 +42,5 @@ enum SearchCategory {
 @property (nonatomic) int searchCategory;
 @property (nonatomic) int page;
 @property (nonatomic) BOOL searchInTitleOnly;
-
--(NSString*)getCategoryName;
--(NSString*)getLocationName;
 
 @end

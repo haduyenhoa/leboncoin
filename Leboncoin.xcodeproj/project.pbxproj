@@ -75,6 +75,8 @@
 		ED85E3A31863C5F40073FC3C /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E3A01863C5F40073FC3C /* HTMLParser.m */; };
 		ED85E3A41863C5F40073FC3C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED85E3A11863C5F40073FC3C /* README.md */; };
 		ED85E3A71863DB300073FC3C /* Annonce.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E3A61863DB300073FC3C /* Annonce.m */; };
+		ED8BF6F11912766700323109 /* SearchCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8BF6F01912766700323109 /* SearchCategoryViewController.m */; };
+		ED8BF6F41912767400323109 /* SearchLocationSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8BF6F31912767400323109 /* SearchLocationSelectorViewController.m */; };
 		EDD765DB186CE35200C283C6 /* ModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD765DA186CE35200C283C6 /* ModelController.m */; };
 		EDDAD384190F118200FF974A /* leboncoin.xml in Resources */ = {isa = PBXBuildFile; fileRef = EDDAD383190F118200FF974A /* leboncoin.xml */; };
 		EDE2C472187639C200F9B895 /* SearchManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE2C471187639C200F9B895 /* SearchManagerViewController.m */; };
@@ -209,6 +211,10 @@
 		ED85E3A11863C5F40073FC3C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		ED85E3A51863DB300073FC3C /* Annonce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annonce.h; sourceTree = "<group>"; };
 		ED85E3A61863DB300073FC3C /* Annonce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annonce.m; sourceTree = "<group>"; };
+		ED8BF6EF1912766700323109 /* SearchCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryViewController.h; sourceTree = "<group>"; };
+		ED8BF6F01912766700323109 /* SearchCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryViewController.m; sourceTree = "<group>"; };
+		ED8BF6F21912767400323109 /* SearchLocationSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationSelectorViewController.h; sourceTree = "<group>"; };
+		ED8BF6F31912767400323109 /* SearchLocationSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationSelectorViewController.m; sourceTree = "<group>"; };
 		EDD765D9186CE35200C283C6 /* ModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelController.h; sourceTree = "<group>"; };
 		EDD765DA186CE35200C283C6 /* ModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelController.m; sourceTree = "<group>"; };
 		EDDAD383190F118200FF974A /* leboncoin.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = leboncoin.xml; sourceTree = "<group>"; };
@@ -368,6 +374,10 @@
 				EDE2C474187639D300F9B895 /* SearchEditViewController.m */,
 				ED2EA60B190F16C70097A313 /* SettingsViewController.h */,
 				ED2EA60C190F16C70097A313 /* SettingsViewController.m */,
+				ED8BF6EF1912766700323109 /* SearchCategoryViewController.h */,
+				ED8BF6F01912766700323109 /* SearchCategoryViewController.m */,
+				ED8BF6F21912767400323109 /* SearchLocationSelectorViewController.h */,
+				ED8BF6F31912767400323109 /* SearchLocationSelectorViewController.m */,
 				ED15161E1863B694008F04BD /* FlipsideViewController.h */,
 				ED15161F1863B694008F04BD /* FlipsideViewController.m */,
 				ED1516211863B694008F04BD /* Images.xcassets */,
@@ -709,11 +719,13 @@
 				EDF0385C18C16F4E0038B074 /* UIImageView+AFNetworking.m in Sources */,
 				EDF0385B18C16F4E0038B074 /* AFXMLRequestOperation.m in Sources */,
 				ED85E38E1863B8EF0073FC3C /* CXMLElement.m in Sources */,
+				ED8BF6F11912766700323109 /* SearchCategoryViewController.m in Sources */,
 				ED85E38A1863B8EF0073FC3C /* CXMLNode_CreationExtensions.m in Sources */,
 				ED85E3A71863DB300073FC3C /* Annonce.m in Sources */,
 				EDF0383B18C16C300038B074 /* MHFacebookImageViewer.m in Sources */,
 				ED85E38B1863B8EF0073FC3C /* CXHTMLDocument.m in Sources */,
 				ED0721211867A03800C8E89A /* AnnonceDetailViewController.m in Sources */,
+				ED8BF6F41912767400323109 /* SearchLocationSelectorViewController.m in Sources */,
 				EDE2C472187639C200F9B895 /* SearchManagerViewController.m in Sources */,
 				ED85E3891863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m in Sources */,
 				ED85D01A18C7E17A0004CAF4 /* MainPageViewController.m in Sources */,

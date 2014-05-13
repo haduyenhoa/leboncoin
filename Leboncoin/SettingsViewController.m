@@ -54,7 +54,7 @@
             [[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
         }
         
-        [[LeboncoinAgent shareAgent] getSearchConditionsFromFile:libraryPath];
+        [LeboncoinAgent shareAgent].searchConditions = [[LeboncoinAgent shareAgent] getSearchConditionsFromFile:libraryPath];
     } else {
         NSLog(@"cannot get content at %@ ",dropBoxLink);
     }

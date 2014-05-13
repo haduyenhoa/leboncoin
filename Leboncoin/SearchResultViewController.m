@@ -147,8 +147,7 @@
     //edit currentpage
     aCondition.page = currentPage;
     
-    NSString *title = aCondition.searchKey == nil ? @"[Unknown]": aCondition.searchKey;
-    title = [title stringByAppendingFormat:@" - %@ - %@",[aCondition getCategoryName], [aCondition getLocationName]];
+    NSString *title = aCondition.searchTitle == nil ? @"[Unknown]": aCondition.searchTitle;
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.lblSearchTitle.text = title;
@@ -441,8 +440,8 @@
     currentPage = 1;
     
     _currentSearchCondition = (SearchCondition*)[[LeboncoinAgent shareAgent].searchConditions objectAtIndex:self.pageIndex];
-    NSString *title = _currentSearchCondition.searchKey == nil ? @"[Unknown]": _currentSearchCondition.searchKey;
-    title = [title stringByAppendingFormat:@" - %@ - %@",[_currentSearchCondition getCategoryName], [_currentSearchCondition getLocationName]];
+    NSString *title = _currentSearchCondition.searchTitle == nil ? @"[Unknown]": _currentSearchCondition.searchTitle;
+//    title = [title stringByAppendingFormat:@" - %@ - %@",[_currentSearchCondition getCategoryName], [_currentSearchCondition getLocationName]];
     NSLog(@"Chosen: %@",title);
     
     [_pickerContainerView hidePickerContainerView];
@@ -477,8 +476,8 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     SearchCondition *aCondition = (SearchCondition*)[[LeboncoinAgent shareAgent].searchConditions objectAtIndex:row];
-    NSString *title = aCondition.searchKey == nil ? @"[Unknown]": aCondition.searchKey;
-    title = [title stringByAppendingFormat:@" - %@ - %@",[aCondition getCategoryName], [aCondition getLocationName]];
+    NSString *title = aCondition.searchTitle == nil ? @"[Unknown]": aCondition.searchTitle;
+//    title = [title stringByAppendingFormat:@" - %@ - %@",[aCondition getCategoryName], [aCondition getLocationName]];
     return title;
 }
 

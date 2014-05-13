@@ -72,7 +72,7 @@
 }
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    //[[LeboncoinAgent shareAgent] scheduleSearch];
+    [[LeboncoinAgent shareAgent] scheduleSearch];
     
     completionHandler(UIBackgroundFetchResultNewData);
     NSLog(@"fetch in background complete");

@@ -29,45 +29,6 @@
     return uuidString;
 }
 
--(NSString*)getCategoryName {
-    switch (self.searchCategory) {
-        case SC_MULTIMEDIA:
-            return @"Multimedia";
-            break;
-            
-        case SC_INFORMATIQUE:
-            return @"Informatique";
-            break;
-        case SC_IMAGE_SON:
-            return @"Image & Son";
-            break;
-        case SC_TELEPHONE:
-            return @"Telephone";
-            break;
-            
-        default: //all
-            return @"All";
-            break;
-    }
-}
--(NSString*)getLocationName {
-    switch (self.searchRegion) {
-        case SL_HAUT_DE_SEINE:
-            return @"Haut de Seine" ;
-            break;
-        case SL_ILE_DE_FRANCE:
-            return @"IDF" ;
-            break;
-        case SL_PARIS:
-            return @"Paris" ;
-            break;
-        case SL_VOISIN_IDF:
-            return @"Voisin IdF";
-            break;
-        default:
-            return @"La France";
-            break;
-    }
-}
+
 
 @end

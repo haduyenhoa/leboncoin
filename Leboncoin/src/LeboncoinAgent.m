@@ -144,19 +144,22 @@ static LeboncoinAgent *_shareAgent;
 //        
 //        self.searchConditions = [NSArray arrayWithObjects:cabasseCondition, thielCondition, tannoyCondition, regaCondition, michellCondition, demenagementCondition, dysonSearch, sansuiCondition, iphone5sCondition, mcintoshCondition, transcriptorCondition, aristonCondition, linnCondition, tomtoGoCondition, demenagementAllCatCondition, neilYoungCondition, ericClaptonCondition, vinylesCondition, nil];
         
+//        NSString *bundleFilePath = [[NSBundle mainBundle] pathForResource:@"leboncoin" ofType:@"xml"];
+//        self.searchConditions = [self getSearchConditionsFromFile:bundleFilePath];
+        
+        
         NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"leboncoin.xml"];
         
-        [self getSearchConditionsFromFile:filePath];
-        
+        self.searchConditions = [self getSearchConditionsFromFile:filePath];
 //        [self saveSearchConditions:self.searchConditions toFile:filePath];
     }
     return self;
 }
 
--(void)getSearchConditionsFromFile:(NSString*)filePath {
+-(NSArray*)getSearchConditionsFromFile:(NSString*)filePath {
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSLog(@"files %@ does not exist",filePath);
-        return;
+        return nil;
     }
     
     NSMutableArray *searchConditions  = [[NSMutableArray alloc] init];
@@ -165,7 +168,7 @@ static LeboncoinAgent *_shareAgent;
     CXMLDocument *doc = [[CXMLDocument alloc] initWithData:[NSData dataWithContentsOfFile:filePath] encoding:NSUTF8StringEncoding options:0 error:&readXmlError];
     if (doc == nil || readXmlError) {
         NSLog(@"Cannot get content: %@", readXmlError? readXmlError.localizedDescription : @"");
-        return;
+        return nil;
     }
     
     CXMLElement *root = doc.rootElement;
@@ -204,6 +207,14 @@ static LeboncoinAgent *_shareAgent;
                 searchKeyElement = [temp firstObject];
             }
             aSearchCondition.searchKey = searchKeyElement.stringValue == nil ? @"" : searchKeyElement.stringValue;
+            
+            //get title
+            CXMLElement *searchTitleElement = nil;
+            temp = [aSearchElement elementsForName:@"Title"];
+            if (temp && temp.count > 0) {
+                searchTitleElement = [temp firstObject];
+            }
+            aSearchCondition.searchTitle = searchTitleElement.stringValue == nil ? @"" : searchTitleElement.stringValue;
             
             //get search in title
             CXMLElement *searchInTitleOnlyElement = nil;
@@ -259,7 +270,7 @@ static LeboncoinAgent *_shareAgent;
         }
     }
     
-    self.searchConditions = searchConditions;
+    return searchConditions;
 }
 
 -(void)saveSearchConditions:(NSArray*)searchConditions toFile:(NSString*)filePath {
@@ -274,6 +285,9 @@ static LeboncoinAgent *_shareAgent;
         xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<Page>%d</Page>\n",aSC.page];
         xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<Category>%d</Category>\n",aSC.searchCategory];
         xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<Region>%d</Region>\n",aSC.searchRegion];
+        if (aSC.searchTitle) {
+            xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<Title>%@</Title>\n",aSC.searchTitle];
+        }
         xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<Key>%@</Key>\n",aSC.searchKey];
         xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<SearchInTitleOnly>%@</SearchInTitleOnly>\n",aSC.searchInTitleOnly ? @"true" : @"false"];
         if (aSC.searchCodePostal > 0) {
@@ -285,6 +299,7 @@ static LeboncoinAgent *_shareAgent;
         if (aSC.me) {
             xmlDoc = [xmlDoc stringByAppendingFormat:@"\t\t<ME>%d</ME>\n",aSC.me];
         }
+        
         xmlDoc = [xmlDoc stringByAppendingString:@"\t</SearchCondition>\n"];
     }
     xmlDoc = [xmlDoc stringByAppendingString:@"</Leboncoin>"];
@@ -938,6 +953,64 @@ static LeboncoinAgent *_shareAgent;
     NSString *result = [json objectForKey:@"phoneUrl"];
     
     return result;
+}
+
+#pragma -
+
+#pragma mark Search Helpers
+-(NSString*)getCategoryName:(int)category {
+    switch (category) {
+        case SC_ALL:
+            return @"All Categories";
+            break;
+        case SC_AUTO:
+            return @"Automobiles";
+            break;
+        case SC_ELECTROMENAGER:
+            return @"Electromenager";
+            break;
+        case SC_MULTIMEDIA:
+            return @"Multimedia";
+            break;
+            
+        case SC_INFORMATIQUE:
+            return @"Informatique";
+            break;
+        case SC_IMAGE_SON:
+            return @"Image & Son";
+            break;
+        case SC_TELEPHONE:
+            return @"Telephone";
+            break;
+        case SC_MUSIC:
+            return @"Music";
+            break;
+        default: //all
+            return @"All";
+            break;
+    }
+}
+-(NSString*)getLocationName:(int)region {
+    switch (region) {
+        case SL_HAUT_DE_SEINE:
+            return @"Haut de Seine" ;
+            break;
+        case SL_ILE_DE_FRANCE:
+            return @"IDF" ;
+            break;
+        case SL_PARIS:
+            return @"Paris" ;
+            break;
+        case SL_VOISIN_IDF:
+            return @"Voisin IdF";
+            break;
+        case SL_LA_FRANCE:
+            return @"La France";
+            break;
+        default:
+            return @"La France";
+            break;
+    }
 }
 
 #pragma -
