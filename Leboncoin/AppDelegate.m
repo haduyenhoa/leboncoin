@@ -24,12 +24,11 @@
 //    SearchResultViewController *controller = (SearchResultViewController *)self.window.rootViewController;
 //    controller.managedObjectContext = self.managedObjectContext;
 //    
-//    [self performSelectorInBackground:@selector(prepareTessData) withObject:nil];
-    
-    
+
     [self prepareSearchConditions];
     return YES;
 }
+
 
 -(void)prepareSearchConditions {
     NSString *leboncoinXmlPath = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"leboncoin.xml"];

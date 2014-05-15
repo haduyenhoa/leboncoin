@@ -97,6 +97,7 @@
         return nil;
     }
     
+    
     // Create a new view controller and pass suitable data.
     SearchResultViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchResultViewControllerId"];
     pageContentViewController.pageIndex = index;

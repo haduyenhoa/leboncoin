@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Leboncoin/src/LeboncoinAgent.m"
-            timestampString = "420594606.624933"
+            timestampString = "421800083.204156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "435"
-            endingLineNumber = "435"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
             landmarkName = "-search:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Leboncoin/src/LeboncoinAgent.m"
-            timestampString = "420594606.624933"
+            timestampString = "421800083.204156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "439"
-            endingLineNumber = "439"
+            startingLineNumber = "456"
+            endingLineNumber = "456"
             landmarkName = "-search:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Leboncoin/src/LeboncoinAgent.m"
-            timestampString = "420594606.624933"
+            timestampString = "421800083.204156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
             landmarkName = "-search:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Leboncoin/AnnonceDetailViewController.m"
-            timestampString = "419379336.715156"
+            timestampString = "421805751.101399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "-imageClicked:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Leboncoin/AppDelegate.m"
-            timestampString = "420418106.025847"
+            timestampString = "421798868.423675"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "-prepareTessData"
             landmarkType = "5">
          </BreakpointContent>
@@ -174,6 +174,38 @@
             startingLineNumber = "34"
             endingLineNumber = "34"
             landmarkName = "-init"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Leboncoin/src/LeboncoinAgent.m"
+            timestampString = "421806635.090159"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "747"
+            endingLineNumber = "747"
+            landmarkName = "-getAnnonceDetailFromJson:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Leboncoin/src/LeboncoinAgent.m"
+            timestampString = "421806635.090159"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "659"
+            endingLineNumber = "659"
+            landmarkName = "-sendEmail:toAnnonce:fromEmail:fromName:fromTelephone:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

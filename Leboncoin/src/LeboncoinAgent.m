@@ -12,9 +12,12 @@
 #import "SearchLinkGenerator.h"
 #import <Foundation/NSJSONSerialization.h>
 
-#import "Tesseract.h"
+#import <AdSupport/AdSupport.h>
 
+#import "Tesseract.h"
+#import "Hoa_OpenUDID.h"
 #import "TouchXML.h"
+
 
 static LeboncoinAgent *_shareAgent;
 
@@ -152,9 +155,23 @@ static LeboncoinAgent *_shareAgent;
         
         self.searchConditions = [self getSearchConditionsFromFile:filePath];
 //        [self saveSearchConditions:self.searchConditions toFile:filePath];
+        
+        self.lbcSessionUUID = [Hoa_OpenUDID value];
+        self.lbcSessionUUID = @"2a4ff69a2b654dd219568ca6942beefa49c8dde0";
     }
     return self;
 }
+
+- (NSString *)uuidString {
+    // Returns a UUID
+    
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    CFRelease(uuid);
+    
+    return uuidString;
+}
+
 
 -(NSArray*)getSearchConditionsFromFile:(NSString*)filePath {
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -596,9 +613,90 @@ static LeboncoinAgent *_shareAgent;
     return nil;
 }
 
+#pragma mark Send email to Seller
+-(BOOL)sendEmail:(NSString*)message toAnnonce:(Annonce*)anAnnonce fromEmail:(NSString*)email fromName:(NSString*)contactName fromTelephone:(NSString*)telephoneNumber {
+    
+    BOOL sent = NO;
+    
+    NSString *key =self.lbcSessionUUID;
+    NSString *jsonUrl = [NSString stringWithFormat:@"https://mobile.leboncoin.fr/templates/api/sendmail.json"];
+    NSString *postString = [NSString stringWithFormat:@"adreply_body=%@&key=%@&app_id=leboncoin_iphone&email=%@&id=%@&name=%@&phone=%@", message, key,email,  anAnnonce.annonceId, contactName, telephoneNumber == nil ?@"" : telephoneNumber];
+    postString = [postString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    
+    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:jsonUrl]];
+    
+
+    
+//    [req setValue:message forKey:@"adreply_body"];
+//    [req setValue:@"leboncoin_iphone" forKey:@"app_id"];
+//    [req setValue:(key == nil ? @"" : key) forKey:@"key"];
+//    [req setValue:(email == nil? @"": email) forKey:@"email"];
+//    [req setValue:(telephoneNumber == nil ? @"": telephoneNumber) forKey:@"email"];
+//    [req setValue:(contactName == nil ? @"" : contactName) forKey:@"name"];
+//    [req setValue:anAnnonce.annonceId forKey:@"id"];
+    
+    [req setHTTPMethod:@"POST"];
+    [req setValue:@"Leboncoin/310182 CFNetwork/672.1.12 Darwin/14.0.0" forHTTPHeaderField:@"User-Agent"];
+    [req setHTTPBody:postData];
+    [req setValue:[NSString stringWithFormat:@"%d",postData.length] forHTTPHeaderField:@"Content-Length"];
+    [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [req setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
+    [req setValue:@"fr/fr" forHTTPHeaderField:@"Accept-Language"];
+    [req setValue:@"*/*" forHTTPHeaderField:@"Accept"];
+    [req setValue:@"keep-alive" forHTTPHeaderField:@"Connection"];
+    
+    NSURLResponse *resp;
+    NSError *error;
+    NSData *annonceContent = [NSURLConnection sendSynchronousRequest:req returningResponse:&resp error:&error];
+    
+    if (error) {
+        NSLog(@"error while getting content: %@",error.localizedDescription);
+    }
+    
+    if (annonceContent) {
+        NSString *annonceFilePath = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"sendMail.tmp"];
+        [[NSFileManager defaultManager] removeItemAtPath:annonceFilePath error:nil];
+        [annonceContent writeToFile:annonceFilePath atomically:YES];
+    }
+    
+    
+    NSString *utf8String =[[NSString alloc] initWithData:annonceContent encoding:NSUTF8StringEncoding];
+    NSString *asciiString = [[NSString alloc] initWithData:annonceContent encoding:NSASCIIStringEncoding];
+    
+    NSLog(@"utf8 annonce: %@",utf8String);
+    NSLog(@"ascii annonce: %@",asciiString);
+    
+    id jsonObject = nil;
+    NSInputStream *is = [NSInputStream inputStreamWithData:annonceContent];
+    [is open];
+    
+    jsonObject = [NSJSONSerialization JSONObjectWithStream:is options:NSJSONReadingMutableContainers error:&error];
+    
+    [is close];
+    
+    if (jsonObject) {
+        error = nil;
+        
+        NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
+        NSString *sendStatus = [jsonDictionary objectForKey:@"status"];
+
+        if (sendStatus!=nil && [sendStatus.lowercaseString isEqualToString:@"ok"]) {
+            sent = YES;
+        }
+    }
+    
+    NSLog(@"email has been sent: %@",sent ? @"YES" : @"NO");
+    return sent;
+}
+#pragma -
+
+
 #pragma mark Annonce detail
 -(AnnonceDetail*)getAnnonceDetailFromJson:(Annonce*)anAnnonce {
-    NSString *key = @"2a4ff69a2b654dd219568ca6942beefa49c8dde0";
+    NSString *key = self.lbcSessionUUID;
     NSString *jsonUrl = [NSString stringWithFormat:@"https://mobile.leboncoin.fr/templates/api/view.json"];
     NSData *postData = [[NSString stringWithFormat:@"ad_id=%@&key=%@&app_id=leboncoin_iphone", anAnnonce.annonceId, key] dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -607,7 +705,7 @@ static LeboncoinAgent *_shareAgent;
     [req setValue:@"Leboncoin/310182 CFNetwork/672.1.12 Darwin/14.0.0" forHTTPHeaderField:@"User-Agent"];
     [req setHTTPBody:postData];
     [req setValue:[NSString stringWithFormat:@"%d",postData.length] forHTTPHeaderField:@"Content-Length"];
-    [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [req setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [req setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
     [req setValue:@"fr/fr" forHTTPHeaderField:@"Accept-Language"];
     [req setValue:@"*/*" forHTTPHeaderField:@"Accept"];
@@ -635,21 +733,10 @@ static LeboncoinAgent *_shareAgent;
     NSLog(@"ascii annonce: %@",asciiString);
     
     id jsonObject = nil;
-//    NSData *jsonData = nil;
-//    if (utf8String != nil) {
-//        jsonObject = [NSJSONSerialization JSONObjectWithData:annonceContent options:NSJSONReadingAllowFragments error:&error];
-//    } else if (asciiString != nil) {
-//        jsonData = [asciiString dataUsingEncoding:NSASCIIStringEncoding];
-//        
-//        jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
-//    } else {
-//        NSLog(@"unknown string encoding");
-//    }
-//
     NSInputStream *is = [NSInputStream inputStreamWithData:annonceContent];
     [is open];
     
-    jsonObject = [NSJSONSerialization JSONObjectWithStream:is options:NSJSONReadingMutableContainers error:&error];
+    jsonObject = [NSJSONSerialization JSONObjectWithStream:is options:NSJSONReadingAllowFragments error:&error];
     
     [is close];
     
@@ -676,9 +763,7 @@ static LeboncoinAgent *_shareAgent;
             for (NSDictionary *aParam in listParams) {
                 if ([[aParam objectForKey:@"id"] isEqualToString:@"city"]) {
                     result.ville = [aParam objectForKey:@"value"];
-                }
-                
-                if ([[aParam objectForKey:@"id"] isEqualToString:@"zipcode"]) {
+                } else if ([[aParam objectForKey:@"id"] isEqualToString:@"zipcode"]) {
                     result.postalCode = [aParam objectForKey:@"value"];
                 }
                 
@@ -708,9 +793,19 @@ static LeboncoinAgent *_shareAgent;
 -(AnnonceDetail*)manualGetDetail:(NSString*)annonceContent {
     AnnonceDetail *result = [[AnnonceDetail alloc] init];
     
+    //annonce id
+    NSUInteger firstIndex = [annonceContent rangeOfString:@"\"list_id\": \""].location + 12;
+    NSUInteger lastIndex = [annonceContent rangeOfString:@"\"subject\": \""].location;
+    
+    if (firstIndex != NSNotFound && lastIndex > firstIndex && lastIndex != NSNotFound) {
+        NSRange findRange = {firstIndex, lastIndex - firstIndex};
+        result.annonceId = [annonceContent substringWithRange:findRange];
+        result.annonceId = [result.annonceId substringToIndex:[result.annonceId rangeOfString:@"\"," options:NSBackwardsSearch].location];
+    }
+    
     //body:
-    NSUInteger firstIndex = [annonceContent rangeOfString:@"\"body\": \""].location + 9;
-    NSUInteger lastIndex = [annonceContent rangeOfString:@"\"phone\": \""].location;
+    firstIndex = [annonceContent rangeOfString:@"\"body\": \""].location + 9;
+    lastIndex = [annonceContent rangeOfString:@"\"phone\": \""].location;
     if (lastIndex == NSNotFound) {
         lastIndex = [annonceContent rangeOfString:@"\"date\": \""].location;
     }
@@ -766,6 +861,71 @@ static LeboncoinAgent *_shareAgent;
             [listImageUrl addObject:str];
         }
         result.imageLink = listImageUrl;
+    }
+    
+    firstIndex = [annonceContent rangeOfString:@"\"parameters\": ["].location + 15;
+    lastIndex = [annonceContent rangeOfString:@"\"images\":"].location;
+    
+    if (firstIndex != NSNotFound && lastIndex > firstIndex && lastIndex != NSNotFound) {
+        NSRange findRange = {firstIndex, lastIndex - firstIndex};
+        NSString *temp = [annonceContent substringWithRange:findRange];
+        temp = [temp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+        lastIndex = [temp rangeOfString:@"]" options:NSBackwardsSearch].location;
+        NSRange range2 = {0, lastIndex};
+        temp = [temp substringWithRange:range2];
+
+        
+        firstIndex = [temp rangeOfString:@"{"].location ;
+        lastIndex = [temp rangeOfString:@"}"].location +1;
+        
+        NSRange firstParms = {firstIndex, lastIndex - firstIndex};
+        NSString *firstJson = [temp substringWithRange:firstParms];
+        
+        NSError *error;
+        id json = [NSJSONSerialization JSONObjectWithData:[firstJson dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
+        
+        if (json) {
+            NSString *idJs = [json objectForKey:@"id"];
+            NSString *valueJs = [json objectForKey:@"value"];
+            if ([idJs isEqualToString:@"city"]) {
+                result.ville = valueJs;
+            }
+        }
+        
+        //get last params
+        temp = [temp substringFromIndex:lastIndex];
+        firstIndex = [temp rangeOfString:@"{"].location ;
+        lastIndex = [temp rangeOfString:@"}"].location +1;
+        
+        
+        NSRange secondParam = {firstIndex, lastIndex - firstIndex};
+        NSString *secondJson = [temp substringWithRange:secondParam];
+        
+        json = [NSJSONSerialization JSONObjectWithData:[secondJson dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
+        
+        if (json) {
+            NSString *idJs = [json objectForKey:@"id"];
+            NSString *valueJs = [json objectForKey:@"value"];
+            if ([idJs isEqualToString:@"zipcode"] ) {
+                result.postalCode = valueJs;
+            }
+        }
+//        
+//        
+//        
+//        
+//        NSArray *listParams = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+//        
+//        
+//        
+//        
+//        NSArray *allLinks = [temp componentsSeparatedByString:@"\r\n"];
+//        for (NSString *aLink in allLinks) {
+//            NSString *str = [aLink stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//            NSLog(@"get line: %@",str);
+//        }
+        
     }
     
     //

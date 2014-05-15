@@ -750,15 +750,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQb-Gz-sXC">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQb-Gz-sXC" userLabel="AnnonceTitle">
                                 <rect key="frame" x="3" y="2" width="294" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="oze-je-Btn"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zJW-7X-uHe">
-                                <rect key="frame" x="-1" y="59" width="298" height="357"/>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywg-vy-sfJ" userLabel="SendMail">
+                                <rect key="frame" x="-1" y="60" width="301" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l9l-1x-2gY">
+                                        <rect key="frame" x="170" y="3" width="124" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="21h-Fr-E93" id="4Wd-yY-5ZE"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZhA-j3-9tB">
+                                        <rect key="frame" x="170" y="41" width="124" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="21h-Fr-E93" id="d9e-L0-iud"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Telephone" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQ0-LI-zNu">
+                                        <rect key="frame" x="170" y="79" width="124" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="21h-Fr-E93" id="19e-cC-C7t"/>
+                                        </connections>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr3-WI-sWL">
+                                        <rect key="frame" x="5" y="3" width="157" height="145"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAc-fL-AWz">
+                                        <rect key="frame" x="177" y="118" width="36" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendMessageToSeller:" destination="21h-Fr-E93" eventType="touchUpInside" id="ZxD-ZC-94k"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLf-mv-JG7">
+                                        <rect key="frame" x="249" y="117" width="40" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Close">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hideSendEmail:" destination="21h-Fr-E93" eventType="touchUpInside" id="aaJ-5J-Eij"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="0oz-nZ-C4g"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJW-7X-uHe" userLabel="AnnonceDetail">
+                                <rect key="frame" x="-1" y="210" width="298" height="205"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aw1-Ke-P6e">
@@ -801,7 +868,7 @@
                                     </button>
                                 </subviews>
                             </scrollView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u0V-I2-hFu">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u0V-I2-hFu">
                                 <rect key="frame" x="0.0" y="416" width="300" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
@@ -813,11 +880,30 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="g9q-hR-13w"/>
                                     <barButtonItem id="Jvy-fr-sMH"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="EFe-Jk-EO1"/>
-                                    <barButtonItem title="Email" id="Kbe-Yl-Wzx"/>
+                                    <barButtonItem title="Email" id="Kbe-Yl-Wzx">
+                                        <connections>
+                                            <action selector="showSendEmail:" destination="21h-Fr-E93" id="aRZ-iu-8JV"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GbJ-uV-SDN" firstAttribute="top" secondItem="u0V-I2-hFu" secondAttribute="bottom" id="2S5-bt-nwi"/>
+                            <constraint firstItem="eQb-Gz-sXC" firstAttribute="top" secondItem="vAd-jb-85V" secondAttribute="bottom" constant="2" id="BdD-tv-71X"/>
+                            <constraint firstItem="Ywg-vy-sfJ" firstAttribute="leading" secondItem="y7O-gc-5cK" secondAttribute="leading" constant="-1" id="Hwm-lC-85h"/>
+                            <constraint firstItem="zJW-7X-uHe" firstAttribute="top" secondItem="eQb-Gz-sXC" secondAttribute="bottom" constant="159" id="JIb-SM-NY6"/>
+                            <constraint firstItem="u0V-I2-hFu" firstAttribute="top" secondItem="zJW-7X-uHe" secondAttribute="bottom" constant="1" id="T5e-AQ-Qyp"/>
+                            <constraint firstItem="eQb-Gz-sXC" firstAttribute="leading" secondItem="y7O-gc-5cK" secondAttribute="leading" constant="3" id="TjC-jn-h6s"/>
+                            <constraint firstAttribute="trailing" secondItem="u0V-I2-hFu" secondAttribute="trailing" id="U6j-o9-BVU"/>
+                            <constraint firstAttribute="trailing" secondItem="eQb-Gz-sXC" secondAttribute="trailing" constant="3" id="ZW0-er-73u"/>
+                            <constraint firstAttribute="trailing" secondItem="Ywg-vy-sfJ" secondAttribute="trailing" id="dsV-0W-Qlw"/>
+                            <constraint firstAttribute="trailing" secondItem="zJW-7X-uHe" secondAttribute="trailing" constant="3" id="lMS-Ow-KZS"/>
+                            <constraint firstItem="Ywg-vy-sfJ" firstAttribute="top" secondItem="eQb-Gz-sXC" secondAttribute="bottom" constant="9" id="nrM-4k-8zu"/>
+                            <constraint firstItem="zJW-7X-uHe" firstAttribute="leading" secondItem="y7O-gc-5cK" secondAttribute="leading" constant="-1" id="pxx-Ix-ml1"/>
+                            <constraint firstItem="u0V-I2-hFu" firstAttribute="leading" secondItem="y7O-gc-5cK" secondAttribute="leading" id="w7O-NO-g8z"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -827,16 +913,22 @@
                         <outlet property="btnEmail" destination="Kbe-Yl-Wzx" id="udb-oX-gYa"/>
                         <outlet property="btnPrice" destination="Jvy-fr-sMH" id="fXK-bt-ZDN"/>
                         <outlet property="btnShowMaps" destination="9VN-RB-maH" id="Ec6-b3-dVg"/>
+                        <outlet property="constraintHeightSendMail" destination="JIb-SM-NY6" id="BOR-5m-Ec9"/>
                         <outlet property="lblCity" destination="Scq-rP-paY" id="cBS-3s-qDT"/>
                         <outlet property="scrvAnnonce" destination="zJW-7X-uHe" id="oIJ-wO-zQU"/>
                         <outlet property="scrvImages" destination="Aw1-Ke-P6e" id="tNj-Mi-4jU"/>
+                        <outlet property="tfEmail" destination="l9l-1x-2gY" id="poq-Tp-KAz"/>
+                        <outlet property="tfName" destination="ZhA-j3-9tB" id="HSa-7B-PrZ"/>
+                        <outlet property="tfPhone" destination="KQ0-LI-zNu" id="6VT-Qz-ZLk"/>
+                        <outlet property="tvMessage" destination="dr3-WI-sWL" id="cJm-Hx-PcI"/>
                         <outlet property="tvTitle" destination="eQb-Gz-sXC" id="6tM-zG-fpz"/>
+                        <outlet property="vSendMail" destination="Ywg-vy-sfJ" id="4P7-kg-VPC"/>
                         <outlet property="view" destination="y7O-gc-5cK" id="kiF-xj-pmw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ss-vz-7eT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="374" y="-277"/>
+            <point key="canvasLocation" x="-230" y="-583"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -77,6 +77,9 @@
 		ED85E3A71863DB300073FC3C /* Annonce.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E3A61863DB300073FC3C /* Annonce.m */; };
 		ED8BF6F11912766700323109 /* SearchCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8BF6F01912766700323109 /* SearchCategoryViewController.m */; };
 		ED8BF6F41912767400323109 /* SearchLocationSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8BF6F31912767400323109 /* SearchLocationSelectorViewController.m */; };
+		ED9A902A192425D400BD5E60 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9A9029192425D400BD5E60 /* AdSupport.framework */; };
+		ED9A902F192426DD00BD5E60 /* Hoa_OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9A902D192426DD00BD5E60 /* Hoa_OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ED9A9030192426DD00BD5E60 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED9A902E192426DD00BD5E60 /* README.md */; };
 		EDD765DB186CE35200C283C6 /* ModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD765DA186CE35200C283C6 /* ModelController.m */; };
 		EDDAD384190F118200FF974A /* leboncoin.xml in Resources */ = {isa = PBXBuildFile; fileRef = EDDAD383190F118200FF974A /* leboncoin.xml */; };
 		EDE2C472187639C200F9B895 /* SearchManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE2C471187639C200F9B895 /* SearchManagerViewController.m */; };
@@ -215,6 +218,10 @@
 		ED8BF6F01912766700323109 /* SearchCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryViewController.m; sourceTree = "<group>"; };
 		ED8BF6F21912767400323109 /* SearchLocationSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationSelectorViewController.h; sourceTree = "<group>"; };
 		ED8BF6F31912767400323109 /* SearchLocationSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationSelectorViewController.m; sourceTree = "<group>"; };
+		ED9A9029192425D400BD5E60 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		ED9A902C192426DD00BD5E60 /* Hoa_OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hoa_OpenUDID.h; sourceTree = "<group>"; };
+		ED9A902D192426DD00BD5E60 /* Hoa_OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hoa_OpenUDID.m; sourceTree = "<group>"; };
+		ED9A902E192426DD00BD5E60 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		EDD765D9186CE35200C283C6 /* ModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelController.h; sourceTree = "<group>"; };
 		EDD765DA186CE35200C283C6 /* ModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelController.m; sourceTree = "<group>"; };
 		EDDAD383190F118200FF974A /* leboncoin.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = leboncoin.xml; sourceTree = "<group>"; };
@@ -257,6 +264,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED9A902A192425D400BD5E60 /* AdSupport.framework in Frameworks */,
 				ED1FEDF8186E51F500DA47A5 /* libc++.dylib in Frameworks */,
 				ED1FEDF6186E51E200DA47A5 /* CoreVideo.framework in Frameworks */,
 				ED1FEDF4186E51DC00DA47A5 /* CoreImage.framework in Frameworks */,
@@ -335,6 +343,7 @@
 		ED1515FD1863B694008F04BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED9A9029192425D400BD5E60 /* AdSupport.framework */,
 				ED1FEDF7186E51F500DA47A5 /* libc++.dylib */,
 				ED1FEDF5186E51E200DA47A5 /* CoreVideo.framework */,
 				ED1FEDF3186E51DC00DA47A5 /* CoreImage.framework */,
@@ -454,6 +463,7 @@
 		ED85E36A1863B8EF0073FC3C /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				ED9A902B192426DD00BD5E60 /* openUDID */,
 				ED746E1918F4C566001A61B8 /* PKHPicker */,
 				EDF0384018C16F4E0038B074 /* AFNetworking */,
 				EDF0383918C16C300038B074 /* MHFacebookImageViewer.h */,
@@ -544,6 +554,16 @@
 				ED85E3A11863C5F40073FC3C /* README.md */,
 			);
 			path = objcHtmlParser;
+			sourceTree = "<group>";
+		};
+		ED9A902B192426DD00BD5E60 /* openUDID */ = {
+			isa = PBXGroup;
+			children = (
+				ED9A902C192426DD00BD5E60 /* Hoa_OpenUDID.h */,
+				ED9A902D192426DD00BD5E60 /* Hoa_OpenUDID.m */,
+				ED9A902E192426DD00BD5E60 /* README.md */,
+			);
+			path = openUDID;
 			sourceTree = "<group>";
 		};
 		EDD765D8186CE34200C283C6 /* PageController */ = {
@@ -670,6 +690,7 @@
 				ED1FEDE4186E402000DA47A5 /* eng.cube.params in Resources */,
 				ED1FEDE6186E402000DA47A5 /* eng.cube.word-freq in Resources */,
 				ED1516221863B694008F04BD /* Images.xcassets in Resources */,
+				ED9A9030192426DD00BD5E60 /* README.md in Resources */,
 				ED85E3A41863C5F40073FC3C /* README.md in Resources */,
 				EDDAD384190F118200FF974A /* leboncoin.xml in Resources */,
 				ED1FEDE3186E402000DA47A5 /* eng.cube.nn in Resources */,
@@ -720,6 +741,7 @@
 				EDF0385B18C16F4E0038B074 /* AFXMLRequestOperation.m in Sources */,
 				ED85E38E1863B8EF0073FC3C /* CXMLElement.m in Sources */,
 				ED8BF6F11912766700323109 /* SearchCategoryViewController.m in Sources */,
+				ED9A902F192426DD00BD5E60 /* Hoa_OpenUDID.m in Sources */,
 				ED85E38A1863B8EF0073FC3C /* CXMLNode_CreationExtensions.m in Sources */,
 				ED85E3A71863DB300073FC3C /* Annonce.m in Sources */,
 				EDF0383B18C16C300038B074 /* MHFacebookImageViewer.m in Sources */,

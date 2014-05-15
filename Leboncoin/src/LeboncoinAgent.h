@@ -31,6 +31,9 @@
 -(AnnonceDetail*)getAnnonceDetailFromJson:(Annonce*)anAnnonce;
 -(AnnonceDetail*)getAnnonceDetail:(Annonce*)anAnnonce;
 
+-(BOOL)sendEmail:(NSString*)message toAnnonce:(Annonce*)anAnnonce fromEmail:(NSString*)email fromName:(NSString*)contactName fromTelephone:(NSString*)telephoneNumber;
+
+@property (nonatomic) NSString *lbcSessionUUID;
 
 -(NSString*)getCategoryName:(int)category;
 -(NSString*)getLocationName:(int)region;

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Annonce.h"
 #import "AnnonceDetail.h"
-@interface AnnonceDetailViewController : UIViewController <UIAlertViewDelegate>{
+@interface AnnonceDetailViewController : UIViewController <UIAlertViewDelegate, UITextFieldDelegate>{
     AnnonceDetail *myAnnonceDetail;
     
     NSMutableArray *imageArrays;
@@ -34,6 +34,15 @@
 
 @property (nonatomic) IBOutlet UILabel *lblSellerName;
 @property (nonatomic) IBOutlet UIButton *btnCallInDetail;
+
+@property (nonatomic) IBOutlet UIView *vSendMail;
+@property (nonatomic) IBOutlet UIButton *btnSendMessage;
+@property (nonatomic) IBOutlet UIButton *hideSendMail;
+@property (nonatomic) IBOutlet UITextView *tvMessage;
+@property (nonatomic) IBOutlet UITextField *tfName;
+@property (nonatomic) IBOutlet UITextField *tfPhone;
+@property (nonatomic) IBOutlet UITextField *tfEmail;
+@property (nonatomic) IBOutlet NSLayoutConstraint *constraintHeightSendMail;
 
 - (void)imageClicked:(UIGestureRecognizer *)gesture;
 

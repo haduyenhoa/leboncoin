@@ -37,8 +37,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -54,6 +52,44 @@
     
     //load content in background
     [self performSelectorInBackground:@selector(loadContent) withObject:nil];
+}
+
+-(IBAction)sendMessageToSeller:(id)sender
+{
+   BOOL sent =  [[LeboncoinAgent shareAgent] sendEmail:self.tvMessage.text toAnnonce:self.myAnnonce fromEmail:self.tfEmail.text fromName:self.tfName.text fromTelephone:self.tfPhone.text];
+    
+    if (sent) {
+        [[[UIAlertView alloc] initWithTitle:@"Info" message:@"Message sent" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Cannot send message" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+    }
+}
+
+-(IBAction)showSendEmail:(id)sender
+{
+    [UIView beginAnimations:@"test1" context:nil];
+    [UIView setAnimationDuration:0.5];
+    self.constraintHeightSendMail.constant = 160;
+    [UIView commitAnimations];
+    
+    [UIView beginAnimations:@"test2" context:nil];
+    [UIView setAnimationDuration:0.5];
+    self.vSendMail.alpha = 1.0;
+    [UIView commitAnimations];
+
+}
+
+-(IBAction)hideSendEmail:(id)sender
+{
+    [UIView beginAnimations:@"test2" context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.vSendMail.alpha = 0.0;
+    [UIView commitAnimations];
+    
+    [UIView beginAnimations:@"test1" context:nil];
+    [UIView setAnimationDuration:0.5];
+    self.constraintHeightSendMail.constant = 0;
+    [UIView commitAnimations];
 }
 
 -(void)loadContent {
@@ -138,6 +174,10 @@
             }
         });
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self hideSendEmail:nil];
+    });
 }
 
 -(void)refreshImages {
@@ -208,6 +248,13 @@
 }
 #pragma -
 
+
+#pragma mark UITextField
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+#pragma -
 
 - (void)didReceiveMemoryWarning
 {
