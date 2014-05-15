@@ -349,6 +349,7 @@
     AnnonceDetailViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil]instantiateViewControllerWithIdentifier:@"AnnonceDetail"];
     controller.myAnnonce = anAnnonce;
 //    AnnonceDetail *anAnnounceDetail = [[LeboncoinAgent shareAgent] getAnnonceDetail:anAnnonce];
+    [controller hideSendEmail:nil];
     
     popover = [[FPPopoverKeyboardResponsiveController alloc] initWithViewController:controller];
     popover.tint = FPPopoverDefaultTint;

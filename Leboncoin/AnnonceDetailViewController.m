@@ -51,7 +51,8 @@
     [self.scrvImages setAlwaysBounceVertical:NO];
     
     //load content in background
-    [self performSelectorInBackground:@selector(loadContent) withObject:nil];
+//    [self performSelectorInBackground:@selector(loadContent) withObject:nil];
+    [self hideSendEmail:nil];
 }
 
 -(IBAction)sendMessageToSeller:(id)sender
@@ -77,6 +78,7 @@
     self.vSendMail.alpha = 1.0;
     [UIView commitAnimations];
 
+    [self performSelectorInBackground:@selector(loadContent) withObject:nil];
 }
 
 -(IBAction)hideSendEmail:(id)sender
@@ -90,6 +92,8 @@
     [UIView setAnimationDuration:0.5];
     self.constraintHeightSendMail.constant = 0;
     [UIView commitAnimations];
+    
+    [self performSelectorInBackground:@selector(loadContent) withObject:nil];
 }
 
 -(void)loadContent {
@@ -175,9 +179,7 @@
         });
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self hideSendEmail:nil];
-    });
+
 }
 
 -(void)refreshImages {

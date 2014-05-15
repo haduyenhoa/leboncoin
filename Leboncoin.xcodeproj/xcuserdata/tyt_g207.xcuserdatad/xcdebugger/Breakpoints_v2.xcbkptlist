@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Leboncoin/AnnonceDetailViewController.m"
-            timestampString = "421805751.101399"
+            timestampString = "421807998.624727"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "-imageClicked:"
             landmarkType = "5">
          </BreakpointContent>

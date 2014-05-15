@@ -45,6 +45,7 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *constraintHeightSendMail;
 
 - (void)imageClicked:(UIGestureRecognizer *)gesture;
+-(IBAction)hideSendEmail:(id)sender;
 
 
 @end
