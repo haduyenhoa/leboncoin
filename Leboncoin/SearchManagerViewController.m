@@ -49,7 +49,7 @@
 }
 
 #pragma mark UITableViewDelegate
--(int)numberOfSectionsInTableView:(UITableView *)tableView {
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 

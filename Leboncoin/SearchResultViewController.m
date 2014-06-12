@@ -54,6 +54,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    NSLog(@"%s",__FUNCTION__);
     self.tblSearch.alpha  = 0.0;
     
     currentPage = 1;
@@ -351,14 +352,16 @@
 //    AnnonceDetail *anAnnounceDetail = [[LeboncoinAgent shareAgent] getAnnonceDetail:anAnnonce];
     [controller hideSendEmail:nil];
     
-    popover = [[FPPopoverKeyboardResponsiveController alloc] initWithViewController:controller];
-    popover.tint = FPPopoverDefaultTint;
+    [self.navigationController pushViewController:controller animated:YES];
     
-    popover.contentSize = CGSizeMake(320, 500);
-    
-    popover.arrowDirection = FPPopoverNoArrow;
-//    [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - popover.contentSize.height/2)];
-    [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, 30)];
+//    popover = [[FPPopoverKeyboardResponsiveController alloc] initWithViewController:controller];
+//    popover.tint = FPPopoverDefaultTint;
+//    
+//    popover.contentSize = CGSizeMake(320, 500);
+//    
+//    popover.arrowDirection = FPPopoverNoArrow;
+////    [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - popover.contentSize.height/2)];
+//    [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, 30)];
     
 }
 #pragma -
@@ -369,6 +372,7 @@
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"%s",__FUNCTION__);
     [searchBar resignFirstResponder];
     
     _currentSearchCondition.searchKey = searchBar.text;
@@ -393,6 +397,7 @@
 
 #pragma mark Actions
 -(IBAction)nextSearch:(id)sender {
+    NSLog(@"%s",__FUNCTION__);
     self.pageIndex++;
     currentPage = 1;
     self.pageIndex = MIN((int)[LeboncoinAgent shareAgent].searchConditions.count-1, self.pageIndex);
@@ -401,6 +406,7 @@
 }
 
 -(IBAction)previousSearch:(id)sender {
+    NSLog(@"%s",__FUNCTION__);
     self.pageIndex --;
     currentPage = 1;
     self.pageIndex = MAX(0, self.pageIndex);

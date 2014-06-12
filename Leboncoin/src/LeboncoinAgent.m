@@ -14,7 +14,6 @@
 
 #import <AdSupport/AdSupport.h>
 
-#import "Tesseract.h"
 #import "Hoa_OpenUDID.h"
 #import "TouchXML.h"
 
@@ -386,10 +385,10 @@ static LeboncoinAgent *_shareAgent;
             
             NSString *annonceId = nil;
             NSRange range1 = [link rangeOfString:@"htm?"];
-            int lastIndexOfId = range1.location - 1;
+            NSInteger lastIndexOfId = range1.location - 1;
             
             NSRange range2 = [link rangeOfString:@"/" options:NSBackwardsSearch];
-            int firstIndexOfId = range2.location + 1;
+            NSUInteger firstIndexOfId = range2.location + 1;
             
             if (lastIndexOfId > firstIndexOfId) {
                 NSRange annonceIdRange = {firstIndexOfId, lastIndexOfId - firstIndexOfId};
@@ -641,7 +640,7 @@ static LeboncoinAgent *_shareAgent;
     [req setHTTPMethod:@"POST"];
     [req setValue:@"Leboncoin/310182 CFNetwork/672.1.12 Darwin/14.0.0" forHTTPHeaderField:@"User-Agent"];
     [req setHTTPBody:postData];
-    [req setValue:[NSString stringWithFormat:@"%d",postData.length] forHTTPHeaderField:@"Content-Length"];
+    [req setValue:[NSString stringWithFormat:@"%lu",(unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
     [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [req setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
     [req setValue:@"fr/fr" forHTTPHeaderField:@"Accept-Language"];
@@ -704,7 +703,7 @@ static LeboncoinAgent *_shareAgent;
     [req setHTTPMethod:@"POST"];
     [req setValue:@"Leboncoin/310182 CFNetwork/672.1.12 Darwin/14.0.0" forHTTPHeaderField:@"User-Agent"];
     [req setHTTPBody:postData];
-    [req setValue:[NSString stringWithFormat:@"%d",postData.length] forHTTPHeaderField:@"Content-Length"];
+    [req setValue:[NSString stringWithFormat:@"%lu",(unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
     [req setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [req setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
     [req setValue:@"fr/fr" forHTTPHeaderField:@"Accept-Language"];
@@ -986,7 +985,7 @@ static LeboncoinAgent *_shareAgent;
         return nil;
     }
     
-    HTMLNode *headNode = [parser head];
+//    HTMLNode *headNode = [parser head];
     HTMLNode *bodyNode = [parser body];
 //    NSLog(@"all page: %@",bodyNode.rawContents);
     NSArray *contentNodes = [bodyNode findChildrenWithAttribute:@"class" matchingName:@"AdviewContent" allowPartial:NO];
@@ -1075,7 +1074,7 @@ static LeboncoinAgent *_shareAgent;
 //    }
     
     if (contentNodes && contentNodes.count == 1) {
-        HTMLNode *foundContentNode = [contentNodes objectAtIndex:0];
+//        HTMLNode *foundContentNode = [contentNodes objectAtIndex:0];
         AnnonceDetail *result = [[AnnonceDetail alloc] init];
 //        result.text = [foundContentNode getAttributeNamed:@"content"];
         result.text = annonceText;

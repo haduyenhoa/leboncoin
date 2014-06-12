@@ -11,7 +11,7 @@
 #import "LeboncoinAgent.h"
 
 @interface MainPageViewController () {
-    int _currentPageIndex;
+    NSUInteger _currentPageIndex;
 }
 
 @end
@@ -48,6 +48,11 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,11 +96,30 @@
     //  Voila' - c'est fin!
 }
 
+-(IBAction)openGoogleReader:(id)sender
+{
+    NSURL *url = [NSURL URLWithString:@"ghttp://www.example.com/myfile.pdf"];
+    
+    if (![[UIApplication sharedApplication] openURL:url])
+    {
+        NSLog(@"Cannot open url: %@",[url description]);
+    }
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setLocale:[NSLocale currentLocale]];
+
+}
+
 - (SearchResultViewController *)viewControllerAtIndex:(NSUInteger)index
 {
+    NSLog(@"%s",__FUNCTION__);
     if (([[LeboncoinAgent shareAgent].searchConditions count] == 0) || (index >= [[LeboncoinAgent shareAgent].searchConditions count])) {
         return nil;
     }
+    
+    
+   
+        
     
     
     // Create a new view controller and pass suitable data.
@@ -110,6 +134,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
+    NSLog(@"%s",__FUNCTION__);
     NSUInteger index = ((SearchResultViewController*) viewController).pageIndex;
     
     if ((index == 0) || (index == NSNotFound)) {
@@ -125,6 +150,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
+    NSLog(@"%s",__FUNCTION__);
     NSUInteger index = ((SearchResultViewController*) viewController).pageIndex;
     
     if (index == NSNotFound) {

@@ -33,7 +33,6 @@
 		ED15162C1863B694008F04BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1516041863B694008F04BD /* CoreData.framework */; };
 		ED1516341863B694008F04BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED1516321863B694008F04BD /* InfoPlist.strings */; };
 		ED1516361863B694008F04BD /* LeboncoinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1516351863B694008F04BD /* LeboncoinTests.m */; };
-		ED1FEDBC186E3CF300DA47A5 /* Tesseract.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED1FEDBB186E3CF300DA47A5 /* Tesseract.mm */; };
 		ED1FEDBF186E3D3700DA47A5 /* liblept.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDBD186E3D3700DA47A5 /* liblept.a */; };
 		ED1FEDC0186E3D3700DA47A5 /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDBE186E3D3700DA47A5 /* libtesseract_all.a */; };
 		ED1FEDC2186E3E6400DA47A5 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDC1186E3E6400DA47A5 /* libstdc++.6.0.9.dylib */; };
@@ -54,6 +53,7 @@
 		ED1FEDF6186E51E200DA47A5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF5186E51E200DA47A5 /* CoreVideo.framework */; };
 		ED1FEDF8186E51F500DA47A5 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF7186E51F500DA47A5 /* libc++.dylib */; };
 		ED2EA60D190F16C70097A313 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2EA60C190F16C70097A313 /* SettingsViewController.m */; };
+		ED4BBB60194A5B9900D2435D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4BBB5F194A5B9900D2435D /* iAd.framework */; };
 		ED746E1C18F4C566001A61B8 /* PKHPickerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED746E1B18F4C566001A61B8 /* PKHPickerContainerView.m */; };
 		ED85D01A18C7E17A0004CAF4 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85D01918C7E17A0004CAF4 /* MainPageViewController.m */; };
 		ED85E3891863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85E36E1863B8EF0073FC3C /* CXMLDocument_CreationExtensions.m */; };
@@ -150,8 +150,6 @@
 		ED1516311863B694008F04BD /* LeboncoinTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LeboncoinTests-Info.plist"; sourceTree = "<group>"; };
 		ED1516331863B694008F04BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ED1516351863B694008F04BD /* LeboncoinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeboncoinTests.m; sourceTree = "<group>"; };
-		ED1FEDBA186E3CF300DA47A5 /* Tesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tesseract.h; sourceTree = "<group>"; };
-		ED1FEDBB186E3CF300DA47A5 /* Tesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tesseract.mm; sourceTree = "<group>"; };
 		ED1FEDBD186E3D3700DA47A5 /* liblept.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblept.a; path = ../tesseract/lib/liblept.a; sourceTree = "<group>"; };
 		ED1FEDBE186E3D3700DA47A5 /* libtesseract_all.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtesseract_all.a; path = ../tesseract/lib/libtesseract_all.a; sourceTree = "<group>"; };
 		ED1FEDC1186E3E6400DA47A5 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
@@ -173,6 +171,7 @@
 		ED1FEDF7186E51F500DA47A5 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		ED2EA60B190F16C70097A313 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		ED2EA60C190F16C70097A313 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		ED4BBB5F194A5B9900D2435D /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		ED746E1A18F4C566001A61B8 /* PKHPickerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKHPickerContainerView.h; sourceTree = "<group>"; };
 		ED746E1B18F4C566001A61B8 /* PKHPickerContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKHPickerContainerView.m; sourceTree = "<group>"; };
 		ED85D01818C7E17A0004CAF4 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
@@ -264,6 +263,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED4BBB60194A5B9900D2435D /* iAd.framework in Frameworks */,
 				ED9A902A192425D400BD5E60 /* AdSupport.framework in Frameworks */,
 				ED1FEDF8186E51F500DA47A5 /* libc++.dylib in Frameworks */,
 				ED1FEDF6186E51E200DA47A5 /* CoreVideo.framework in Frameworks */,
@@ -343,6 +343,7 @@
 		ED1515FD1863B694008F04BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED4BBB5F194A5B9900D2435D /* iAd.framework */,
 				ED9A9029192425D400BD5E60 /* AdSupport.framework */,
 				ED1FEDF7186E51F500DA47A5 /* libc++.dylib */,
 				ED1FEDF5186E51E200DA47A5 /* CoreVideo.framework */,
@@ -426,15 +427,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		ED1FEDB9186E3CF300DA47A5 /* Tesseract */ = {
-			isa = PBXGroup;
-			children = (
-				ED1FEDBA186E3CF300DA47A5 /* Tesseract.h */,
-				ED1FEDBB186E3CF300DA47A5 /* Tesseract.mm */,
-			);
-			path = Tesseract;
-			sourceTree = "<group>";
-		};
 		ED1FEDD6186E402000DA47A5 /* tessdata */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,7 +460,6 @@
 				EDF0384018C16F4E0038B074 /* AFNetworking */,
 				EDF0383918C16C300038B074 /* MHFacebookImageViewer.h */,
 				EDF0383A18C16C300038B074 /* MHFacebookImageViewer.m */,
-				ED1FEDB9186E3CF300DA47A5 /* Tesseract */,
 				ED07210E18679E2100C8E89A /* fppopover */,
 				ED85E39C1863C5F40073FC3C /* objcHtmlParser */,
 				ED85E36B1863B8EF0073FC3C /* TouchXML */,
@@ -725,7 +716,6 @@
 				ED85E3901863B8EF0073FC3C /* CXMLElement_ElementTreeExtensions.m in Sources */,
 				ED2EA60D190F16C70097A313 /* SettingsViewController.m in Sources */,
 				EDF0385518C16F4E0038B074 /* AFHTTPRequestOperation.m in Sources */,
-				ED1FEDBC186E3CF300DA47A5 /* Tesseract.mm in Sources */,
 				ED1FEDE2186E402000DA47A5 /* eng.cube.lm in Sources */,
 				ED07211718679E6500C8E89A /* FPPopoverController.m in Sources */,
 				ED85E38D1863B8EF0073FC3C /* CXMLDocument_PrivateExtensions.m in Sources */,
@@ -926,7 +916,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "i386 armv7 armv7s";
+				VALID_ARCHS = "i386 armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -957,7 +947,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "i386 armv7 armv7s";
+				VALID_ARCHS = "i386 armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

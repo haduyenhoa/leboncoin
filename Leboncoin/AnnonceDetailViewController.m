@@ -10,6 +10,7 @@
 #import "LeboncoinAgent.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MHFacebookImageViewer.h"
+#import <iAd/iAd.h>
 
 @interface AnnonceDetailViewController ()
 
@@ -33,22 +34,26 @@
 	// Do any additional setup after loading the view.
     self.wvAnnonceContents.layer.borderWidth = 1;
     self.wvAnnonceContents.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.canDisplayBannerAds = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     NSLog(@"%s",__FUNCTION__);
     [super viewDidAppear:animated];
     
-    for (UIView *subview in self.scrvImages.subviews) {
-        [subview removeFromSuperview];
-    }
-    
     self.scrvImages.pagingEnabled = YES;
     [self.scrvImages setAlwaysBounceVertical:NO];
+    
+    NSArray *subViews = self.scrvImages.subviews;
+    for (UIView *subview in subViews) {
+        [subview removeFromSuperview];
+    }
+    subViews = nil;
     
     //load content in background
 //    [self performSelectorInBackground:@selector(loadContent) withObject:nil];
@@ -164,60 +169,62 @@
         }
     });
     
-    for (NSString *linkImage in myAnnonceDetail.imageLink) {
-        NSLog(@"download image: %@",linkImage);
-        dispatch_async(dispatch_queue_create("fr.leboncoin.image", DISPATCH_QUEUE_PRIORITY_DEFAULT), ^{
+    dispatch_async(dispatch_queue_create("fr.leboncoin.image", DISPATCH_QUEUE_PRIORITY_DEFAULT), ^{
         
+        for (NSString *linkImage in myAnnonceDetail.imageLink) {
+            NSLog(@"download image: %@",linkImage);
+            
             UIImage *img = [UIImage imageWithData:[NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:linkImage]] returningResponse:nil error:nil]];
             
             if (img) {
                 [imageArrays addObject:img];
-                [self performSelectorOnMainThread:@selector(refreshImages) withObject:nil waitUntilDone:NO];
+                [self performSelectorOnMainThread:@selector(refreshImages:) withObject:img waitUntilDone:NO];
             } else {
                 NSLog(@"cannot download image");
             }
-        });
-    }
+            
+        }
+    });
     
 
 }
 
--(void)refreshImages {
+-(void)refreshImages:(UIImage*)newImage {
+    if (newImage == nil) {
+        //Do nothing
+        return;
+    }
+    
     if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(refreshImages) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(refreshImages:) withObject:newImage waitUntilDone:NO];
         return;
     }
     
-    if (imageArrays.count == 0) {
-        NSLog(@"%s: does not have image",__func__);
-        return;
-    }
-    
-    float imageWidth = 200;
-    float offSet = 10;
-    int imageIdx = 0;
-    
-    for (UIImage *anImage in imageArrays) {
+    @synchronized(self) {
+        if (imageArrays.count == 0) {
+            NSLog(@"%s: does not have image",__func__);
+            return;
+        }
+        
+        float imageWidth = 200;
+        float offSet = 10;
+        NSUInteger imageIdx = self.scrvImages.subviews.count;
+        
         //set image to scroll view
         UIImageView *image = [[UIImageView alloc] initWithFrame:
                               CGRectMake((imageWidth + offSet) * imageIdx++, 0,
                                          imageWidth,
                                          self.scrvImages.frame.size.height)];
-        [image setImage:anImage];
+        [image setImage:newImage];
         image.contentMode = UIViewContentModeScaleAspectFit;
         [image setupImageViewer];
-
-//        UITapGestureRecognizer *myGesture = [[UITapGestureRecognizer alloc] init];
-//        [myGesture addTarget:self action:@selector(imageClicked:)];
-//        myGesture.numberOfTapsRequired = 1;
-//        // for the case of the imageView;
-//        [image addGestureRecognizer:myGesture];
         
         [self.scrvImages addSubview:image];
+        
+        self.scrvImages.contentSize = CGSizeMake((imageWidth +offSet)* imageIdx,
+                                                 self.scrvImages.frame.size.height);
     }
-
-    self.scrvImages.contentSize = CGSizeMake((imageWidth +offSet)* imageIdx,
-                                             self.scrvImages.frame.size.height);
+    
 }
 
 -(IBAction)callSeller:(id)sender {
