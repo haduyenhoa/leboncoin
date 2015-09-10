@@ -33,8 +33,6 @@
 		ED15162C1863B694008F04BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1516041863B694008F04BD /* CoreData.framework */; };
 		ED1516341863B694008F04BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED1516321863B694008F04BD /* InfoPlist.strings */; };
 		ED1516361863B694008F04BD /* LeboncoinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1516351863B694008F04BD /* LeboncoinTests.m */; };
-		ED1FEDBF186E3D3700DA47A5 /* liblept.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDBD186E3D3700DA47A5 /* liblept.a */; };
-		ED1FEDC0186E3D3700DA47A5 /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDBE186E3D3700DA47A5 /* libtesseract_all.a */; };
 		ED1FEDC2186E3E6400DA47A5 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDC1186E3E6400DA47A5 /* libstdc++.6.0.9.dylib */; };
 		ED1FEDE0186E402000DA47A5 /* eng.cube.bigrams in Resources */ = {isa = PBXBuildFile; fileRef = ED1FEDD7186E402000DA47A5 /* eng.cube.bigrams */; };
 		ED1FEDE1186E402000DA47A5 /* eng.cube.fold in Resources */ = {isa = PBXBuildFile; fileRef = ED1FEDD8186E402000DA47A5 /* eng.cube.fold */; };
@@ -45,7 +43,6 @@
 		ED1FEDE6186E402000DA47A5 /* eng.cube.word-freq in Resources */ = {isa = PBXBuildFile; fileRef = ED1FEDDD186E402000DA47A5 /* eng.cube.word-freq */; };
 		ED1FEDE7186E402000DA47A5 /* eng.tesseract_cube.nn in Resources */ = {isa = PBXBuildFile; fileRef = ED1FEDDE186E402000DA47A5 /* eng.tesseract_cube.nn */; };
 		ED1FEDE8186E402000DA47A5 /* eng.traineddata in Resources */ = {isa = PBXBuildFile; fileRef = ED1FEDDF186E402000DA47A5 /* eng.traineddata */; };
-		ED1FEDEC186E517800DA47A5 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDEB186E517800DA47A5 /* opencv2.framework */; };
 		ED1FEDEE186E51C300DA47A5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDED186E51C300DA47A5 /* Accelerate.framework */; };
 		ED1FEDF0186E51CA00DA47A5 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDEF186E51CA00DA47A5 /* AssetsLibrary.framework */; };
 		ED1FEDF2186E51D100DA47A5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1FEDF1186E51D100DA47A5 /* AVFoundation.framework */; };
@@ -150,8 +147,6 @@
 		ED1516311863B694008F04BD /* LeboncoinTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LeboncoinTests-Info.plist"; sourceTree = "<group>"; };
 		ED1516331863B694008F04BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ED1516351863B694008F04BD /* LeboncoinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeboncoinTests.m; sourceTree = "<group>"; };
-		ED1FEDBD186E3D3700DA47A5 /* liblept.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblept.a; path = ../tesseract/lib/liblept.a; sourceTree = "<group>"; };
-		ED1FEDBE186E3D3700DA47A5 /* libtesseract_all.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtesseract_all.a; path = ../tesseract/lib/libtesseract_all.a; sourceTree = "<group>"; };
 		ED1FEDC1186E3E6400DA47A5 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		ED1FEDD7186E402000DA47A5 /* eng.cube.bigrams */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eng.cube.bigrams; sourceTree = "<group>"; };
 		ED1FEDD8186E402000DA47A5 /* eng.cube.fold */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eng.cube.fold; sourceTree = "<group>"; };
@@ -162,7 +157,6 @@
 		ED1FEDDD186E402000DA47A5 /* eng.cube.word-freq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "eng.cube.word-freq"; sourceTree = "<group>"; };
 		ED1FEDDE186E402000DA47A5 /* eng.tesseract_cube.nn */ = {isa = PBXFileReference; lastKnownFileType = file; path = eng.tesseract_cube.nn; sourceTree = "<group>"; };
 		ED1FEDDF186E402000DA47A5 /* eng.traineddata */ = {isa = PBXFileReference; lastKnownFileType = file; path = eng.traineddata; sourceTree = "<group>"; };
-		ED1FEDEB186E517800DA47A5 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		ED1FEDED186E51C300DA47A5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		ED1FEDEF186E51CA00DA47A5 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		ED1FEDF1186E51D100DA47A5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -272,14 +266,11 @@
 				ED1FEDF0186E51CA00DA47A5 /* AssetsLibrary.framework in Frameworks */,
 				ED1FEDEE186E51C300DA47A5 /* Accelerate.framework in Frameworks */,
 				ED1FEDC2186E3E6400DA47A5 /* libstdc++.6.0.9.dylib in Frameworks */,
-				ED1FEDBF186E3D3700DA47A5 /* liblept.a in Frameworks */,
 				ED07211B18679F2500C8E89A /* QuartzCore.framework in Frameworks */,
 				ED85E3981863B99D0073FC3C /* libxml2.dylib in Frameworks */,
 				ED1516011863B694008F04BD /* CoreGraphics.framework in Frameworks */,
 				ED1516051863B694008F04BD /* CoreData.framework in Frameworks */,
 				ED1516031863B694008F04BD /* UIKit.framework in Frameworks */,
-				ED1FEDC0186E3D3700DA47A5 /* libtesseract_all.a in Frameworks */,
-				ED1FEDEC186E517800DA47A5 /* opencv2.framework in Frameworks */,
 				ED1515FF1863B694008F04BD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,13 +308,10 @@
 		ED1515F21863B694008F04BD = {
 			isa = PBXGroup;
 			children = (
-				ED1FEDBD186E3D3700DA47A5 /* liblept.a */,
-				ED1FEDBE186E3D3700DA47A5 /* libtesseract_all.a */,
 				EDF0383718C168940038B074 /* unknownImage.png */,
 				EDF0383C18C16C390038B074 /* Done.png */,
 				EDDAD383190F118200FF974A /* leboncoin.xml */,
 				EDF0383D18C16C390038B074 /* Done@2x.png */,
-				ED1FEDEB186E517800DA47A5 /* opencv2.framework */,
 				ED1516061863B694008F04BD /* Leboncoin */,
 				ED15162F1863B694008F04BD /* LeboncoinTests */,
 				ED1515FD1863B694008F04BD /* Frameworks */,
@@ -906,14 +894,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/include/libxml2,
-					"\"/Volumes/DATA/MY_WORKS/Github/Leboncoin/tesseract/include\"/**",
 				);
 				INFOPLIST_FILE = "Leboncoin/Leboncoin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Volumes/DATA/MY_WORKS/Github/Leboncoin/tesseract/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "i386 armv7 armv7s arm64";
@@ -937,14 +921,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/include/libxml2,
-					"\"/Volumes/DATA/MY_WORKS/Github/Leboncoin/tesseract/include\"/**",
 				);
 				INFOPLIST_FILE = "Leboncoin/Leboncoin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Volumes/DATA/MY_WORKS/Github/Leboncoin/tesseract/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "i386 armv7 armv7s arm64";

@@ -11,6 +11,9 @@
 static SearchLinkGenerator *_shareSLG;
 @implementation SearchLinkGenerator
 
+/**
+ @discussion singleton pattern
+ */
 +(SearchLinkGenerator*)shareSLG {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -19,10 +22,16 @@ static SearchLinkGenerator *_shareSLG;
     return _shareSLG;
 }
 
+/**
+ @discussion Obsoleted!
+ */
 -(NSString*)getJsonLinkForCondition:(SearchCondition*)aCondition {
     return @"https://mobile.leboncoin.fr/templates/api/view.json";
 }
 
+/**
+ @discussion    generate url for a search condition
+ */
 -(NSString*)getLinkForCondition:(SearchCondition*)aCondition {
     if (aCondition == nil) {
         return nil;

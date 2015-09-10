@@ -33,137 +33,19 @@ static LeboncoinAgent *_shareAgent;
 -(id)init {
     self = [super init];
     if (self) {
-
-        
-//        //create an annonce
-//        SearchCondition *cabasseCondition = [[SearchCondition alloc] init];
-//        cabasseCondition.page = 1;
-//        cabasseCondition.searchCategory = SC_IMAGE_SON;
-//        cabasseCondition.searchRegion = SL_LA_FRANCE;
-//        cabasseCondition.searchKey = @"cabasse";
-//        
-//        SearchCondition *tannoyCondition = [[SearchCondition alloc] init];
-//        tannoyCondition.page = 1;
-//        tannoyCondition.searchCategory = SC_IMAGE_SON;
-//        tannoyCondition.searchRegion = SL_LA_FRANCE;
-//        tannoyCondition.searchKey = @"tannoy";
-//        
-//        SearchCondition *thielCondition = [[SearchCondition alloc] init];
-//        thielCondition.page = 1;
-//        thielCondition.searchCategory = SC_IMAGE_SON;
-//        thielCondition.searchRegion = SL_LA_FRANCE;
-//        thielCondition.searchKey = @"thiel";
-//        
-//        SearchCondition *sansuiCondition = [[SearchCondition alloc] init];
-//        sansuiCondition.page = 1;
-//        sansuiCondition.searchCategory = SC_IMAGE_SON;
-//        sansuiCondition.searchRegion = SL_LA_FRANCE;
-//        sansuiCondition.searchKey = @"sansui";
-//        
-//        SearchCondition *regaCondition = [[SearchCondition alloc] init];
-//        regaCondition.page = 1;
-//        regaCondition.searchCategory = SC_IMAGE_SON;
-//        regaCondition.searchRegion = SL_LA_FRANCE;
-//        regaCondition.searchKey = @"rega";
-//        
-//        SearchCondition *linnCondition = [[SearchCondition alloc] init];
-//        linnCondition.page = 1;
-//        linnCondition.searchCategory = SC_IMAGE_SON;
-//        linnCondition.searchRegion = SL_LA_FRANCE;
-//        linnCondition.searchKey = @"linn";
-//        
-//        SearchCondition *aristonCondition = [[SearchCondition alloc] init];
-//        aristonCondition.page = 1;
-//        aristonCondition.searchCategory = SC_IMAGE_SON;
-//        aristonCondition.searchRegion = SL_LA_FRANCE;
-//        aristonCondition.searchKey = @"ariston";
-//        
-//        SearchCondition *transcriptorCondition = [[SearchCondition alloc] init];
-//        transcriptorCondition.page = 1;
-//        transcriptorCondition.searchCategory = SC_IMAGE_SON;
-//        transcriptorCondition.searchRegion = SL_LA_FRANCE;
-//        transcriptorCondition.searchKey = @"transcriptor";
-//        
-//        SearchCondition *michellCondition = [[SearchCondition alloc] init];
-//        michellCondition.page = 1;
-//        michellCondition.searchCategory = SC_IMAGE_SON;
-//        michellCondition.searchRegion = SL_LA_FRANCE;
-//        michellCondition.searchKey = @"michell";
-//        
-//        SearchCondition *mcintoshCondition = [[SearchCondition alloc] init];
-//        mcintoshCondition.page = 1;
-//        mcintoshCondition.searchCategory = SC_IMAGE_SON;
-//        mcintoshCondition.searchRegion = SL_LA_FRANCE;
-//        mcintoshCondition.searchKey = @"mcintosh";
-//        
-//        SearchCondition *iphone5sCondition = [[SearchCondition alloc] init];
-//        iphone5sCondition.page = 1;
-//        iphone5sCondition.searchCategory = SC_TELEPHONE;
-//        iphone5sCondition.searchRegion = SL_ILE_DE_FRANCE;
-//        iphone5sCondition.searchKey = @"iphone 5s";
-//        
-//        SearchCondition *tomtoGoCondition = [[SearchCondition alloc] init];
-//        tomtoGoCondition.page = 1;
-//        tomtoGoCondition.searchCategory = SC_EQUIPEMENT_AUTO;
-//        tomtoGoCondition.searchRegion = SL_ILE_DE_FRANCE;
-//        tomtoGoCondition.searchKey = @"tomtom go";
-//        
-//        SearchCondition *dysonSearch = [[SearchCondition alloc] init];
-//        dysonSearch.page = 1;
-//        dysonSearch.searchCategory = SC_ELECTROMENAGER;
-//        dysonSearch.searchRegion = SL_LA_FRANCE;
-//        dysonSearch.searchKey = @"dyson";
-//        
-//        SearchCondition *demenagementCondition = [[SearchCondition alloc] init];
-//        demenagementCondition.page = 1;
-//        demenagementCondition.searchCategory = SC_IMAGE_SON;
-//        demenagementCondition.searchRegion = SL_LA_FRANCE;
-//        demenagementCondition.searchKey = @"demenagement";
-//        
-//        SearchCondition *demenagementAllCatCondition = [[SearchCondition alloc] init];
-//        demenagementAllCatCondition.page = 1;
-//        demenagementAllCatCondition.searchCategory = SC_ALL;
-//        demenagementAllCatCondition.searchRegion = SL_LA_FRANCE;
-//        demenagementAllCatCondition.searchKey = @"demenagement";
-//        
-//        SearchCondition *neilYoungCondition = [[SearchCondition alloc] init];
-//        neilYoungCondition.page = 1;
-//        neilYoungCondition.searchCategory = SC_MUSIC;
-//        neilYoungCondition.searchRegion = SL_LA_FRANCE;
-//        neilYoungCondition.searchKey = @"neil young";
-//        
-//        SearchCondition *ericClaptonCondition = [[SearchCondition alloc] init];
-//        ericClaptonCondition.page = 1;
-//        ericClaptonCondition.searchCategory = SC_MUSIC;
-//        ericClaptonCondition.searchRegion = SL_LA_FRANCE;
-//        ericClaptonCondition.searchKey = @"eric clapton";
-//        
-//        SearchCondition *vinylesCondition = [[SearchCondition alloc] init];
-//        vinylesCondition.page = 1;
-//        vinylesCondition.searchCategory = SC_MUSIC;
-//        vinylesCondition.searchRegion = SL_LA_FRANCE;
-//        vinylesCondition.searchKey = @"vinyles";
-//        
-//        self.searchConditions = [NSArray arrayWithObjects:cabasseCondition, thielCondition, tannoyCondition, regaCondition, michellCondition, demenagementCondition, dysonSearch, sansuiCondition, iphone5sCondition, mcintoshCondition, transcriptorCondition, aristonCondition, linnCondition, tomtoGoCondition, demenagementAllCatCondition, neilYoungCondition, ericClaptonCondition, vinylesCondition, nil];
-        
-//        NSString *bundleFilePath = [[NSBundle mainBundle] pathForResource:@"leboncoin" ofType:@"xml"];
-//        self.searchConditions = [self getSearchConditionsFromFile:bundleFilePath];
-        
-        
+        //load search conditions from files
         NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"leboncoin.xml"];
         
         self.searchConditions = [self getSearchConditionsFromFile:filePath];
-//        [self saveSearchConditions:self.searchConditions toFile:filePath];
-        
-        self.lbcSessionUUID = [Hoa_OpenUDID value];
-        self.lbcSessionUUID = @"2a4ff69a2b654dd219568ca6942beefa49c8dde0";
+        self.lbcSessionUUID = @"2a4ff69a2b654dd219568ca6942beefa49c8dde0"; //this secrect key is not valid anymore.
     }
     return self;
 }
 
+/**
+ @discussion generate an UUID String
+ */
 - (NSString *)uuidString {
-    // Returns a UUID
-    
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
     CFRelease(uuid);
@@ -171,7 +53,11 @@ static LeboncoinAgent *_shareAgent;
     return uuidString;
 }
 
-
+#pragma mark search conditions management
+/**
+ @discussion get search conditions from an xml file
+ @param filePath    path to the xml file.
+ */
 -(NSArray*)getSearchConditionsFromFile:(NSString*)filePath {
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSLog(@"files %@ does not exist",filePath);
@@ -289,6 +175,11 @@ static LeboncoinAgent *_shareAgent;
     return searchConditions;
 }
 
+/**
+ @discussion    Save search conditions into a file, in order to be used later
+ @param searchConditions    contains all search conditions
+ @param filePath            path to the file to which those search conditions will be saved
+ */
 -(void)saveSearchConditions:(NSArray*)searchConditions toFile:(NSString*)filePath {
     NSString *xmlDoc = @"<Leboncoin>\n";
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -323,11 +214,9 @@ static LeboncoinAgent *_shareAgent;
     [xmlDoc writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
--(void)beginSchedule {
-    
-}
+#pragma -
 
-
+#pragma mark SEARCHING
 -(void)scheduleSearch {
     NSLog(@"%s",__FUNCTION__);
     
@@ -340,8 +229,12 @@ static LeboncoinAgent *_shareAgent;
     [self searchAndPostNotification:newSearchCondition];
 }
 
+/**
+@discussion executes the search and returns all annonces found. This call must be executed in background thead, cause I use direct http download in this application.
+@param aCondition   a search-condition
+ 
+ */
 -(NSArray*)search:(SearchCondition*)aCondition {
-    
     self.lastSearchTime = [NSDate date]; //update last search
     
     NSMutableArray *result = [[NSMutableArray alloc] init];
@@ -352,7 +245,11 @@ static LeboncoinAgent *_shareAgent;
     
     NSError *errorGetData;
     NSString *content = [NSString stringWithContentsOfURL:[NSURL URLWithString:requestLink] encoding:NSASCIIStringEncoding error:&errorGetData];
-    //    content = [self xmlSimpleEscape:content];
+    
+    
+    /**
+     We use HTMLParser to deserialize content found (in html format)
+     */
     
     HTMLParser *parser = [[HTMLParser alloc] initWithString:content error:&errorGetData];
     
@@ -370,8 +267,6 @@ static LeboncoinAgent *_shareAgent;
     }
     
     if (foundNode) {
-//        int i=0;
-        
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         df.dateFormat = @"HH:mm";
         
@@ -474,15 +369,16 @@ static LeboncoinAgent *_shareAgent;
     return result;
 }
 
+/**
+ @discussion The idea of this function is to execute a search then post a local notification to the iDevice. It works like '-(NSArray*)search:(SearchCondition*)aCondition' but with a notification at the end. It is in progress!
+ */
 -(void)searchAndPostNotification:(SearchCondition*)aCondition {
-    
-    
     NSString *requestLink = [[SearchLinkGenerator shareSLG] getLinkForCondition:aCondition];
 
     NSError *errorGetData;
     NSString *content = [NSString stringWithContentsOfURL:[NSURL URLWithString:requestLink] encoding:NSASCIIStringEncoding error:&errorGetData];
-//    content = [self xmlSimpleEscape:content];
-    
+//    content = [self xmlSimpleEscape:content]; // is it necessary?
+
     HTMLParser *parser = [[HTMLParser alloc] initWithString:content error:&errorGetData];
     
     if (errorGetData) {
@@ -548,10 +444,9 @@ static LeboncoinAgent *_shareAgent;
     }
 }
 
--(void)searchForCondition:(SearchCondition*)aCondition {
-    
-}
-
+/**
+ @discussion    Remove all special html characters to avoid eventual problem.
+ */
 - (NSString *)xmlSimpleEscape:(NSString*)inputStr
 {
     NSMutableString *result = [NSMutableString stringWithString:inputStr];
@@ -564,7 +459,9 @@ static LeboncoinAgent *_shareAgent;
     
     return result;
 }
+#pragma -
 
+#pragma mark PARSER utilities
 -(HTMLNode*)searchListAnnonceNode:(HTMLNode*)parentNode {
     NSLog(@"search node: %@",parentNode.tagName);
     if (parentNode.tagName && [parentNode.tagName isEqualToString:@"div"]
@@ -611,8 +508,12 @@ static LeboncoinAgent *_shareAgent;
     NSLog(@"does not found list-lbc");
     return nil;
 }
+#pragma -
 
-#pragma mark Send email to Seller
+#pragma mark Send email to Seller - obsoleted cause leboncoin has protected this service !
+/**
+ @discussion use the json webservice of leboncoin to send email to the seller.
+ */
 -(BOOL)sendEmail:(NSString*)message toAnnonce:(Annonce*)anAnnonce fromEmail:(NSString*)email fromName:(NSString*)contactName fromTelephone:(NSString*)telephoneNumber {
     
     BOOL sent = NO;
@@ -626,16 +527,6 @@ static LeboncoinAgent *_shareAgent;
     
     
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:jsonUrl]];
-    
-
-    
-//    [req setValue:message forKey:@"adreply_body"];
-//    [req setValue:@"leboncoin_iphone" forKey:@"app_id"];
-//    [req setValue:(key == nil ? @"" : key) forKey:@"key"];
-//    [req setValue:(email == nil? @"": email) forKey:@"email"];
-//    [req setValue:(telephoneNumber == nil ? @"": telephoneNumber) forKey:@"email"];
-//    [req setValue:(contactName == nil ? @"" : contactName) forKey:@"name"];
-//    [req setValue:anAnnonce.annonceId forKey:@"id"];
     
     [req setHTTPMethod:@"POST"];
     [req setValue:@"Leboncoin/310182 CFNetwork/672.1.12 Darwin/14.0.0" forHTTPHeaderField:@"User-Agent"];
@@ -693,7 +584,10 @@ static LeboncoinAgent *_shareAgent;
 #pragma -
 
 
-#pragma mark Annonce detail
+#pragma mark Annonce detail - Obsolete cause Leboncoin has protected their json webservice :(
+/**
+ @discussion get detail of an annonce by parsing the json content
+ */
 -(AnnonceDetail*)getAnnonceDetailFromJson:(Annonce*)anAnnonce {
     NSString *key = self.lbcSessionUUID;
     NSString *jsonUrl = [NSString stringWithFormat:@"https://mobile.leboncoin.fr/templates/api/view.json"];
@@ -789,6 +683,9 @@ static LeboncoinAgent *_shareAgent;
     }
 }
 
+/**
+ @discussion In case that we cannot deserialize the json content, we use this method to get annonces
+ */
 -(AnnonceDetail*)manualGetDetail:(NSString*)annonceContent {
     AnnonceDetail *result = [[AnnonceDetail alloc] init];
     
@@ -910,51 +807,13 @@ static LeboncoinAgent *_shareAgent;
                 result.postalCode = valueJs;
             }
         }
-//        
-//        
-//        
-//        
-//        NSArray *listParams = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
-//        
-//        
-//        
-//        
-//        NSArray *allLinks = [temp componentsSeparatedByString:@"\r\n"];
-//        for (NSString *aLink in allLinks) {
-//            NSString *str = [aLink stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//            NSLog(@"get line: %@",str);
-//        }
-        
     }
-    
-    //
-//    NSArray *listParams = [jsonDictionary objectForKey:@"parameters"];
-//    if (listParams && listParams.count > 0) {
-//        for (NSDictionary *aParam in listParams) {
-//            if ([[aParam objectForKey:@"id"] isEqualToString:@"city"]) {
-//                result.ville = [aParam objectForKey:@"value"];
-//            }
-//            
-//            if ([[aParam objectForKey:@"id"] isEqualToString:@"zipcode"]) {
-//                result.postalCode = [aParam objectForKey:@"value"];
-//            }
-//            
-//        }
-//    }
-//    result.priceString = [jsonDictionary objectForKey:@"price_range_formatted"];
-//    if (result.priceString) {
-//        result.priceString = [result.priceString stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-//        result.priceString = [result.priceString stringByReplacingOccurrencesOfString:@"&euro;" withString:@"€"];
-//    }
-//    
-//    result.dateString = [jsonDictionary objectForKey:@"formatted_date"];
-//    if (result.dateString) {
-//        result.dateString = [result.dateString stringByReplacingOccurrencesOfString:@"&agrave;" withString:@"à"];
-//    }
     return result;
-    
 }
 
+/**
+ @discussion get detail of an annonce by parsing the html content
+ */
 -(AnnonceDetail*)getAnnonceDetail:(Annonce*)anAnnonce {
     if (anAnnonce == nil || anAnnonce.linkAnnonce == nil || [anAnnonce.linkAnnonce isEqualToString:@""]) {
         return nil;
@@ -1058,21 +917,6 @@ static LeboncoinAgent *_shareAgent;
         }
     }
     
-//    NSData *dataPhoneNumber = nil;
-//    NSString *phoneNumberLink = [self getPhoneImageLink:annonceId];
-//    if (phoneNumberLink) {
-//        dataPhoneNumber = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:phoneNumberLink]] returningResponse:nil error:nil];
-//        if (dataPhoneNumber) {
-//            Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
-//            [tesseract setVariableValue:@"0123456789" forKey:@"tessedit_char_whitelist"];
-//            [tesseract setImage:[UIImage imageWithData:dataPhoneNumber]];
-//            [tesseract recognize];
-//            
-//            NSLog(@"v: %@ - %@", [Tesseract version],  [tesseract recognizedText]);
-//            [tesseract clear];
-//        }
-//    }
-    
     if (contentNodes && contentNodes.count == 1) {
 //        HTMLNode *foundContentNode = [contentNodes objectAtIndex:0];
         AnnonceDetail *result = [[AnnonceDetail alloc] init];
@@ -1094,6 +938,9 @@ static LeboncoinAgent *_shareAgent;
     }
 }
 
+/**
+ @discussion get image of phone number from annonce, then we use opencv to try to detect the number displayed at this image.
+ */
 -(NSString*)getPhoneImageLink:(NSString*)annonceId {
     if (annonceId == nil || [annonceId isEqualToString:@""]) {
         return nil;
@@ -1116,7 +963,10 @@ static LeboncoinAgent *_shareAgent;
 
 #pragma -
 
-#pragma mark Search Helpers
+#pragma mark Name Helpers
+/**
+ @discussion    return a name of an category
+ */
 -(NSString*)getCategoryName:(int)category {
     switch (category) {
         case SC_ALL:
@@ -1149,6 +999,10 @@ static LeboncoinAgent *_shareAgent;
             break;
     }
 }
+
+/**
+ @discussion    return location name of a region
+ */
 -(NSString*)getLocationName:(int)region {
     switch (region) {
         case SL_HAUT_DE_SEINE:

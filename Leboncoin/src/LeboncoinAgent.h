@@ -22,19 +22,47 @@
 -(void)scheduleSearch;
 
 @property (nonatomic) NSDate *lastSearchTime;
-
--(NSArray*)search:(SearchCondition*)aCondition;
-
--(NSArray*)getSearchConditionsFromFile:(NSString*)filePath;
--(void)saveSearchConditions:(NSArray*)searchConditions toFile:(NSString*)filePath ;
-
--(AnnonceDetail*)getAnnonceDetailFromJson:(Annonce*)anAnnonce;
--(AnnonceDetail*)getAnnonceDetail:(Annonce*)anAnnonce;
-
--(BOOL)sendEmail:(NSString*)message toAnnonce:(Annonce*)anAnnonce fromEmail:(NSString*)email fromName:(NSString*)contactName fromTelephone:(NSString*)telephoneNumber;
-
 @property (nonatomic) NSString *lbcSessionUUID;
 
+#pragma mark Annonce utilities
+/**
+ @discussion executes the search and returns all annonces found. This call must be executed in background thead, cause I use direct http download in this application.
+ @param aCondition   a search-condition
+ 
+ */
+-(NSArray*)search:(SearchCondition*)aCondition;
+
+/**
+ @discussion get search conditions from an xml file
+ @param filePath    path to the xml file.
+ */
+-(NSArray*)getSearchConditionsFromFile:(NSString*)filePath;
+
+/**
+ @discussion    Save search conditions into a file, in order to be used later
+ @param searchConditions    contains all search conditions
+ @param filePath            path to the file to which those search conditions will be saved
+ */
+-(void)saveSearchConditions:(NSArray*)searchConditions toFile:(NSString*)filePath ;
+
+/**
+ @discussion get detail of an annonce by parsing the json content
+ */
+-(AnnonceDetail*)getAnnonceDetailFromJson:(Annonce*)anAnnonce;
+
+/**
+ @discussion get detail of an annonce by parsing the html content
+ */
+-(AnnonceDetail*)getAnnonceDetail:(Annonce*)anAnnonce;
+
+/**
+ @discussion use the json webservice of leboncoin to send email to the seller.
+ */
+-(BOOL)sendEmail:(NSString*)message toAnnonce:(Annonce*)anAnnonce fromEmail:(NSString*)email fromName:(NSString*)contactName fromTelephone:(NSString*)telephoneNumber;
+#pragma -
+
+#pragma mark Helper
 -(NSString*)getCategoryName:(int)category;
 -(NSString*)getLocationName:(int)region;
+#pragma -
 @end
