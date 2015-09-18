@@ -68,6 +68,7 @@
 -(void)testGetJsonLinkForConditionNil {
     NSString *jsonLink = [slg getJsonLinkForCondition:nil];
     NSAssert1(jsonLink != nil && ![jsonLink isEqualToString:@""], @"jsonlink must not be nil", nil);
+    XCTAssertEqualObjects(jsonLink, @"https://mobile.leboncoin.fr/templates/api/view.json");
 }
 
 -(void)testGetLinkForConditionNil {
@@ -79,6 +80,7 @@
     NSString *mediaLink = [slg getLinkForCondition:mediaOnlySC];
     NSAssert1(mediaLink != nil && ![mediaLink isEqualToString:@""], @"MediaLink must not be nil", nil);
     NSAssert1([mediaLink hasPrefix:@"http://www.leboncoin.fr/_multimedia_/offres/"], @"Link <%@> must has prefix 'http://www.leboncoin.fr/_multimedia_/offres/'", mediaLink);
+    XCTAssertEqualObjects(mediaLink, @"http://www.leboncoin.fr/_multimedia_/offres/ile_de_france/occasions/?f=p&th=1");
 }
 
 -(void)testGetLinkForConditionWithValidCodePostal {
@@ -89,6 +91,7 @@
 -(void)testGetLinkForConditionWithInvalidCodePostal {
     NSString *link = [slg getLinkForCondition:withPostalInvalidSC];
     NSAssert1( link != nil && ![link isEqualToString:@""] && ![link containsString:@"&location="], @"Link <%@> must not contain '&location='", link);
+
 }
 
 #pragma -
